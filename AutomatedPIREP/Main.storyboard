@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--PIREP View-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="PirepView" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bId-k7-2rV">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="551"/>
+                                </variation>
+                            </mapView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hn2-Sl-vlO">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hn2-Sl-vlO" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="Iaz-mN-Ltg"/>
+                            <constraint firstAttribute="bottom" secondItem="hn2-Sl-vlO" secondAttribute="bottom" id="cUj-3y-PqQ"/>
+                            <constraint firstItem="hn2-Sl-vlO" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="io0-ER-KSz"/>
+                            <constraint firstAttribute="trailing" secondItem="hn2-Sl-vlO" secondAttribute="trailing" id="xF0-13-jbP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="bId-k7-2rV"/>
+                                <exclude reference="hn2-Sl-vlO"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Iaz-mN-Ltg"/>
+                                <exclude reference="cUj-3y-PqQ"/>
+                                <exclude reference="io0-ER-KSz"/>
+                                <exclude reference="xF0-13-jbP"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="bId-k7-2rV"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="hn2-Sl-vlO"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Iaz-mN-Ltg"/>
+                                <include reference="cUj-3y-PqQ"/>
+                                <include reference="io0-ER-KSz"/>
+                                <include reference="xF0-13-jbP"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="PIREP View" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="pirepView" destination="hn2-Sl-vlO" id="FBu-7z-zXx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-320"/>
+        </scene>
+        <!--PIREP Send-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="PIREP_Send" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kXW-GH-1bA">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kXW-GH-1bA" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="83W-JE-9UH"/>
+                            <constraint firstAttribute="bottom" secondItem="kXW-GH-1bA" secondAttribute="bottom" id="J6a-DC-1pu"/>
+                            <constraint firstAttribute="trailing" secondItem="kXW-GH-1bA" secondAttribute="trailing" id="bdb-2g-rNN"/>
+                            <constraint firstItem="kXW-GH-1bA" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="dt2-wl-yIY"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="kXW-GH-1bA"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="83W-JE-9UH"/>
+                                <exclude reference="J6a-DC-1pu"/>
+                                <exclude reference="bdb-2g-rNN"/>
+                                <exclude reference="dt2-wl-yIY"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="kXW-GH-1bA"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="83W-JE-9UH"/>
+                                <include reference="J6a-DC-1pu"/>
+                                <include reference="bdb-2g-rNN"/>
+                                <include reference="dt2-wl-yIY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="PIREP Send" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="pirepView" destination="kXW-GH-1bA" id="ajZ-W9-uhk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>

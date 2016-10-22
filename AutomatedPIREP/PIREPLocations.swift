@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class LocationFactory{
+class PIREPLocations{
     static var locationsArray: [locations] = []
     
     class func storeLocations()-> [locations]{

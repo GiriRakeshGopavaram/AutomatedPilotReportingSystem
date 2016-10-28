@@ -1,10 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--METARS-->
+        <scene sceneID="S0d-fb-XVz">
+            <objects>
+                <viewController id="ybR-Ea-H9G" customClass="TestViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ceT-LP-v0H"/>
+                        <viewControllerLayoutGuide type="bottom" id="o6E-2a-ufV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4sX-6W-UBe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wLB-cM-Wlk">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                </variation>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="wLB-cM-Wlk"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="wLB-cM-Wlk"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="METARS" image="first" id="LBV-Vb-C1q"/>
+                    <connections>
+                        <outlet property="mapView" destination="wLB-cM-Wlk" id="diV-27-qMc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GUw-gI-I6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="-702"/>
+        </scene>
+        <!--Hazards-->
+        <scene sceneID="pSu-sO-lXj">
+            <objects>
+                <viewController id="GcP-ro-yK0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T0P-nt-kpi"/>
+                        <viewControllerLayoutGuide type="bottom" id="bGA-zN-Rd3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qEo-5H-8My">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="v1b-Od-MDc">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="-206" width="800" height="806"/>
+                                </variation>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="v1b-Od-MDc"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="v1b-Od-MDc"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Hazards" image="second" id="gy2-Ed-0ZK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="voW-VC-wme" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="741.75" y="-54"/>
+        </scene>
         <!--PIREP View-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -29,10 +105,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hn2-Sl-vlO" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="Iaz-mN-Ltg"/>
-                            <constraint firstAttribute="bottom" secondItem="hn2-Sl-vlO" secondAttribute="bottom" id="cUj-3y-PqQ"/>
-                            <constraint firstItem="hn2-Sl-vlO" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="io0-ER-KSz"/>
-                            <constraint firstAttribute="trailing" secondItem="hn2-Sl-vlO" secondAttribute="trailing" id="xF0-13-jbP"/>
+                            <constraint firstItem="hn2-Sl-vlO" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="G4T-rr-GII"/>
+                            <constraint firstAttribute="bottom" secondItem="hn2-Sl-vlO" secondAttribute="bottom" id="YIp-Ix-g6r"/>
+                            <constraint firstItem="hn2-Sl-vlO" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="eXR-pF-wfa"/>
+                            <constraint firstAttribute="trailing" secondItem="hn2-Sl-vlO" secondAttribute="trailing" id="pA2-O2-XBn"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -40,10 +116,10 @@
                                 <exclude reference="hn2-Sl-vlO"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Iaz-mN-Ltg"/>
-                                <exclude reference="cUj-3y-PqQ"/>
-                                <exclude reference="io0-ER-KSz"/>
-                                <exclude reference="xF0-13-jbP"/>
+                                <exclude reference="G4T-rr-GII"/>
+                                <exclude reference="YIp-Ix-g6r"/>
+                                <exclude reference="eXR-pF-wfa"/>
+                                <exclude reference="pA2-O2-XBn"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -56,10 +132,10 @@
                                 <include reference="hn2-Sl-vlO"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Iaz-mN-Ltg"/>
-                                <include reference="cUj-3y-PqQ"/>
-                                <include reference="io0-ER-KSz"/>
-                                <include reference="xF0-13-jbP"/>
+                                <include reference="G4T-rr-GII"/>
+                                <include reference="YIp-Ix-g6r"/>
+                                <include reference="eXR-pF-wfa"/>
+                                <include reference="pA2-O2-XBn"/>
                             </mask>
                         </variation>
                     </view>
@@ -70,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="133.5" y="-54"/>
         </scene>
         <!--PIREP Send-->
         <scene sceneID="wg7-f3-ORb">
@@ -90,20 +166,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kXW-GH-1bA" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="83W-JE-9UH"/>
-                            <constraint firstAttribute="bottom" secondItem="kXW-GH-1bA" secondAttribute="bottom" id="J6a-DC-1pu"/>
-                            <constraint firstAttribute="trailing" secondItem="kXW-GH-1bA" secondAttribute="trailing" id="bdb-2g-rNN"/>
-                            <constraint firstItem="kXW-GH-1bA" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="dt2-wl-yIY"/>
+                            <constraint firstAttribute="trailing" secondItem="kXW-GH-1bA" secondAttribute="trailing" id="aMW-wK-uw5"/>
+                            <constraint firstItem="kXW-GH-1bA" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="mUk-aC-Ftb"/>
+                            <constraint firstAttribute="bottom" secondItem="kXW-GH-1bA" secondAttribute="bottom" id="uR2-da-2V5"/>
+                            <constraint firstItem="kXW-GH-1bA" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="yky-Tt-k6M"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="kXW-GH-1bA"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="83W-JE-9UH"/>
-                                <exclude reference="J6a-DC-1pu"/>
-                                <exclude reference="bdb-2g-rNN"/>
-                                <exclude reference="dt2-wl-yIY"/>
+                                <exclude reference="aMW-wK-uw5"/>
+                                <exclude reference="mUk-aC-Ftb"/>
+                                <exclude reference="uR2-da-2V5"/>
+                                <exclude reference="yky-Tt-k6M"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -111,10 +187,10 @@
                                 <include reference="kXW-GH-1bA"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="83W-JE-9UH"/>
-                                <include reference="J6a-DC-1pu"/>
-                                <include reference="bdb-2g-rNN"/>
-                                <include reference="dt2-wl-yIY"/>
+                                <include reference="aMW-wK-uw5"/>
+                                <include reference="mUk-aC-Ftb"/>
+                                <include reference="uR2-da-2V5"/>
+                                <include reference="yky-Tt-k6M"/>
                             </mask>
                         </variation>
                     </view>
@@ -125,7 +201,109 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="138" y="624"/>
+        </scene>
+        <!--TAF's-->
+        <scene sceneID="M68-Pn-iaf">
+            <objects>
+                <viewController id="iBz-GY-gKd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="83J-Je-rEG"/>
+                        <viewControllerLayoutGuide type="bottom" id="hU7-VL-dwd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Us8-j8-1XB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8uH-Vo-pFC">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8uH-Vo-pFC" secondAttribute="trailing" id="0XS-CQ-weK"/>
+                            <constraint firstItem="8uH-Vo-pFC" firstAttribute="leading" secondItem="Us8-j8-1XB" secondAttribute="leading" id="PVh-N5-c4b"/>
+                            <constraint firstAttribute="bottom" secondItem="8uH-Vo-pFC" secondAttribute="bottom" id="gM2-09-Eio"/>
+                            <constraint firstItem="8uH-Vo-pFC" firstAttribute="top" secondItem="Us8-j8-1XB" secondAttribute="top" id="htr-kE-vgb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8uH-Vo-pFC"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="0XS-CQ-weK"/>
+                                <exclude reference="PVh-N5-c4b"/>
+                                <exclude reference="gM2-09-Eio"/>
+                                <exclude reference="htr-kE-vgb"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="8uH-Vo-pFC"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0XS-CQ-weK"/>
+                                <include reference="PVh-N5-c4b"/>
+                                <include reference="gM2-09-Eio"/>
+                                <include reference="htr-kE-vgb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="TAF's" image="second" id="LzX-3i-Pgx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5u-Ox-AIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.5" y="1303"/>
+        </scene>
+        <!--Wind Barbs-->
+        <scene sceneID="C7l-qB-c3w">
+            <objects>
+                <viewController id="Rn9-sL-leE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0O1-eD-FD8"/>
+                        <viewControllerLayoutGuide type="bottom" id="EhC-HM-rrD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Sh-E5-mzE">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PWf-vo-bdw">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PWf-vo-bdw" secondAttribute="trailing" id="3RO-uE-jCJ"/>
+                            <constraint firstItem="PWf-vo-bdw" firstAttribute="leading" secondItem="6Sh-E5-mzE" secondAttribute="leading" id="F1M-NP-NLN"/>
+                            <constraint firstItem="PWf-vo-bdw" firstAttribute="top" secondItem="6Sh-E5-mzE" secondAttribute="top" id="aum-l8-aOr"/>
+                            <constraint firstAttribute="bottom" secondItem="PWf-vo-bdw" secondAttribute="bottom" id="vRU-rb-d1D"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="PWf-vo-bdw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="3RO-uE-jCJ"/>
+                                <exclude reference="F1M-NP-NLN"/>
+                                <exclude reference="aum-l8-aOr"/>
+                                <exclude reference="vRU-rb-d1D"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="PWf-vo-bdw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="3RO-uE-jCJ"/>
+                                <include reference="F1M-NP-NLN"/>
+                                <include reference="aum-l8-aOr"/>
+                                <include reference="vRU-rb-d1D"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Wind Barbs" image="first" id="0my-yy-e8d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQj-rE-s1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="741.75" y="-702"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -140,11 +318,52 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="ybR-Ea-H9G" kind="relationship" relationship="viewControllers" id="weB-cL-yL3"/>
+                        <segue destination="iBz-GY-gKd" kind="relationship" relationship="viewControllers" id="QLb-rm-ulw"/>
+                        <segue destination="Rn9-sL-leE" kind="relationship" relationship="viewControllers" id="lry-2X-ztA"/>
+                        <segue destination="GcP-ro-yK0" kind="relationship" relationship="viewControllers" id="mTa-aD-r2F"/>
+                        <segue destination="Wiv-F1-Sw7" kind="relationship" relationship="viewControllers" id="2SN-5f-mgw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-552" y="-176"/>
+        </scene>
+        <!--Hazards-->
+        <scene sceneID="EK1-uv-67D">
+            <objects>
+                <viewController id="Wiv-F1-Sw7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="StJ-fw-Nbi"/>
+                        <viewControllerLayoutGuide type="bottom" id="c4q-gH-hZQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t4Z-pz-DCh">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p72-rn-OiW">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="-206" width="800" height="806"/>
+                                </variation>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="p72-rn-OiW"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="p72-rn-OiW"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Hazards" image="second" id="6o4-ac-msC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tum-ED-Plh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="741.75" y="624"/>
         </scene>
     </scenes>
     <resources>

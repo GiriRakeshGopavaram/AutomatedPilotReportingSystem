@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PirepViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate {
+class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
 
    @IBOutlet  weak var pirepView: MKMapView!
     let locationManager  = CLLocationManager()
@@ -30,6 +30,7 @@ class PirepViewController: UIViewController ,MKMapViewDelegate,CLLocationManager
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             pirepView.addAnnotation(annotation)
+            
         }
     }
     

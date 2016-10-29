@@ -31,6 +31,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
             annotation.coordinate = location
             pirepView.addAnnotation(annotation)
             
+            
         }
     }
     

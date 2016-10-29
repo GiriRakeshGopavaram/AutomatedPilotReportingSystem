@@ -1,15 +1,16 @@
 //
-//  WindBarbsViewController.swift
+//  PIREPSendViewController.swift
 //  AutomatedPIREP
 //
-//  Created by Pruthvi Parne on 10/28/16.
+//  Created by Pruthvi Parne on 10/29/16.
 //  Copyright © 2016 Gopavaram,Giri Rakesh. All rights reserved.
 //
 
 import UIKit
 
-class WindBarbsViewController: UIViewController {
+class PIREPSendViewController: UIViewController {
 
+    @IBOutlet weak var LBL: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 

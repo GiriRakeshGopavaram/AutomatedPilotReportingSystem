@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72DE34621DC3EC4C0085463F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34611DC3EC4C0085463F /* TestViewController.swift */; };
+		72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34611DC3EC4C0085463F /* TAFsViewController.swift */; };
 		72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34631DC3EDD50085463F /* CustomAnnotation.swift */; };
 		72DE34681DC40D830085463F /* HazardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34671DC40D830085463F /* HazardsViewController.swift */; };
-		72DE346A1DC40D9E0085463F /* WindBarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34691DC40D9E0085463F /* WindBarbsViewController.swift */; };
-		72DE346C1DC40DB00085463F /* TAFsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE346B1DC40DB00085463F /* TAFsViewController.swift */; };
 		72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE346D1DC40DC60085463F /* RadarViewController.swift */; };
+		72DE34701DC466410085463F /* PIREPSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE346F1DC466410085463F /* PIREPSendViewController.swift */; };
+		72DE34721DC47C640085463F /* Weather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72DE34711DC47C640085463F /* Weather.ttf */; };
 		C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */; };
 		C069F8341DB85FDA00D9A0A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C069F8331DB85FDA00D9A0A5 /* Assets.xcassets */; };
 		C069F8371DB85FDA00D9A0A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C069F8351DB85FDA00D9A0A5 /* LaunchScreen.storyboard */; };
@@ -44,12 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		72DE34611DC3EC4C0085463F /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		72DE34611DC3EC4C0085463F /* TAFsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFsViewController.swift; sourceTree = "<group>"; };
 		72DE34631DC3EDD50085463F /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		72DE34671DC40D830085463F /* HazardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HazardsViewController.swift; sourceTree = "<group>"; };
-		72DE34691DC40D9E0085463F /* WindBarbsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindBarbsViewController.swift; sourceTree = "<group>"; };
-		72DE346B1DC40DB00085463F /* TAFsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFsViewController.swift; sourceTree = "<group>"; };
 		72DE346D1DC40DC60085463F /* RadarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
+		72DE346F1DC466410085463F /* PIREPSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendViewController.swift; sourceTree = "<group>"; };
+		72DE34711DC47C640085463F /* Weather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Weather.ttf; path = ../Weather.ttf; sourceTree = "<group>"; };
 		C069F8271DB85FDA00D9A0A5 /* AutomatedPIREP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutomatedPIREP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C069F8331DB85FDA00D9A0A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,10 +118,9 @@
 			children = (
 				C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */,
 				C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */,
-				72DE34611DC3EC4C0085463F /* TestViewController.swift */,
 				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
-				72DE34691DC40D9E0085463F /* WindBarbsViewController.swift */,
-				72DE346B1DC40DB00085463F /* TAFsViewController.swift */,
+				72DE346F1DC466410085463F /* PIREPSendViewController.swift */,
+				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
 				72DE34671DC40D830085463F /* HazardsViewController.swift */,
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
 				C069F8331DB85FDA00D9A0A5 /* Assets.xcassets */,
@@ -131,6 +130,7 @@
 				C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */,
 				72DE34631DC3EDD50085463F /* CustomAnnotation.swift */,
 				C069F8601DB8604900D9A0A5 /* locations.swift */,
+				72DE34711DC47C640085463F /* Weather.ttf */,
 			);
 			path = AutomatedPIREP;
 			sourceTree = "<group>";
@@ -261,6 +261,7 @@
 				C069F85B1DB8600700D9A0A5 /* Main.storyboard in Resources */,
 				C069F8371DB85FDA00D9A0A5 /* LaunchScreen.storyboard in Resources */,
 				C069F8341DB85FDA00D9A0A5 /* Assets.xcassets in Resources */,
+				72DE34721DC47C640085463F /* Weather.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,11 +289,10 @@
 				C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */,
 				C069F8641DB8604900D9A0A5 /* PIREPLocations.swift in Sources */,
 				72DE34681DC40D830085463F /* HazardsViewController.swift in Sources */,
-				72DE346A1DC40D9E0085463F /* WindBarbsViewController.swift in Sources */,
+				72DE34701DC466410085463F /* PIREPSendViewController.swift in Sources */,
 				C069F85F1DB8602B00D9A0A5 /* PirepViewController.swift in Sources */,
 				C069F8631DB8604900D9A0A5 /* locations.swift in Sources */,
-				72DE346C1DC40DB00085463F /* TAFsViewController.swift in Sources */,
-				72DE34621DC3EC4C0085463F /* TestViewController.swift in Sources */,
+				72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */,
 				C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */,
 				72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */,
 				72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */,

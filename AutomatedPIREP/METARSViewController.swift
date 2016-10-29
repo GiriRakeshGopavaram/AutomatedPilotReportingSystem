@@ -19,13 +19,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        self.locationManager.delegate = self
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        self.locationManager.requestWhenInUseAuthorization()
-//        self.locationManager.startUpdatingLocation()
-//        self.pirepView.showsUserLocation = true
-//        
+        // Do any additional setup after loading the view, typically from a nib.      
         for airport in airportLocation{
             let latitude = airport.latitude
             let longitude = airport.longitude

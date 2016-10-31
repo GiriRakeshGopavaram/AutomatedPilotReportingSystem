@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72CBDDD91DC6FA4C00B73554 /* TAFs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CBDDD81DC6FA4C00B73554 /* TAFs.swift */; };
 		72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34611DC3EC4C0085463F /* TAFsViewController.swift */; };
 		72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34631DC3EDD50085463F /* CustomAnnotation.swift */; };
 		72DE34681DC40D830085463F /* HazardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34671DC40D830085463F /* HazardsViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		72CBDDD81DC6FA4C00B73554 /* TAFs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFs.swift; sourceTree = "<group>"; };
 		72DE34611DC3EC4C0085463F /* TAFsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFsViewController.swift; sourceTree = "<group>"; };
 		72DE34631DC3EDD50085463F /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		72DE34671DC40D830085463F /* HazardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HazardsViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		72DE34781DC4FBF50085463F /* Supporting_Files */ = {
+			isa = PBXGroup;
+			children = (
+				C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */,
+				72DE34631DC3EDD50085463F /* CustomAnnotation.swift */,
+				72CBDDD81DC6FA4C00B73554 /* TAFs.swift */,
+				C069F8601DB8604900D9A0A5 /* locations.swift */,
+				72DE34711DC47C640085463F /* Weather.ttf */,
+			);
+			name = Supporting_Files;
+			sourceTree = "<group>";
+		};
 		C069F81E1DB85FDA00D9A0A5 = {
 			isa = PBXGroup;
 			children = (
@@ -118,8 +132,8 @@
 			children = (
 				C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */,
 				C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */,
-				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
 				72DE346F1DC466410085463F /* PIREPSendViewController.swift */,
+				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
 				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
 				72DE34671DC40D830085463F /* HazardsViewController.swift */,
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
@@ -127,10 +141,7 @@
 				C069F8351DB85FDA00D9A0A5 /* LaunchScreen.storyboard */,
 				C069F85A1DB8600700D9A0A5 /* Main.storyboard */,
 				C069F85C1DB8602200D9A0A5 /* Info.plist */,
-				C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */,
-				72DE34631DC3EDD50085463F /* CustomAnnotation.swift */,
-				C069F8601DB8604900D9A0A5 /* locations.swift */,
-				72DE34711DC47C640085463F /* Weather.ttf */,
+				72DE34781DC4FBF50085463F /* Supporting_Files */,
 			);
 			path = AutomatedPIREP;
 			sourceTree = "<group>";
@@ -294,6 +305,7 @@
 				C069F8631DB8604900D9A0A5 /* locations.swift in Sources */,
 				72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */,
 				C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */,
+				72CBDDD91DC6FA4C00B73554 /* TAFs.swift in Sources */,
 				72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */,
 				72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */,
 			);

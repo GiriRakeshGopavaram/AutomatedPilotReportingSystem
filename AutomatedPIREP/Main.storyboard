@@ -68,7 +68,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="66F7F734-CA7E-4D54-A788-7A1CB2294F45" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="66E0F183-D246-417A-BEE5-0EC237E3F214" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="pirepView" destination="hn2-Sl-vlO" id="FBu-7z-zXx"/>
                     </connections>
@@ -80,7 +80,6 @@
         <!--TAFsViewController-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <viewController title="TAFsViewController" id="8rJ-Kc-sve" customClass="TAFsViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
@@ -129,6 +128,7 @@
                         <outlet property="mapView" destination="kXW-GH-1bA" id="wku-vJ-5A5"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="93.75" y="1136"/>
         </scene>
@@ -164,12 +164,13 @@
                         <viewControllerLayoutGuide type="bottom" id="OUa-HV-GLh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5BH-Rr-B0Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGP-NU-dKe">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Weather" family="Weather" pointSize="52"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="171" y="122" width="402" height="368"/>
@@ -229,10 +230,10 @@
                                 <exclude reference="IBW-g2-z9D"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="nCX-yX-4Y1"/>
-                                <exclude reference="ZPt-hR-eEh"/>
-                                <exclude reference="QyI-ls-0ux"/>
                                 <exclude reference="PXa-sH-WxD"/>
+                                <exclude reference="QyI-ls-0ux"/>
+                                <exclude reference="ZPt-hR-eEh"/>
+                                <exclude reference="nCX-yX-4Y1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -245,10 +246,10 @@
                                 <include reference="IBW-g2-z9D"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="nCX-yX-4Y1"/>
-                                <include reference="ZPt-hR-eEh"/>
-                                <include reference="QyI-ls-0ux"/>
                                 <include reference="PXa-sH-WxD"/>
+                                <include reference="QyI-ls-0ux"/>
+                                <include reference="ZPt-hR-eEh"/>
+                                <include reference="nCX-yX-4Y1"/>
                             </mask>
                         </variation>
                     </view>
@@ -264,7 +265,6 @@
         <!--HazardsViewController-->
         <scene sceneID="mWE-aR-jsU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jCK-3C-SH7" sceneMemberID="firstResponder"/>
                 <viewController title="HazardsViewController" id="dc3-lo-YpG" customClass="HazardsViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jh7-Og-fbD"/>
@@ -297,10 +297,10 @@
                                 <exclude reference="JBP-MN-uBM"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="HYB-oC-0zP"/>
+                                <exclude reference="09S-uj-DTl"/>
                                 <exclude reference="8if-7J-3fr"/>
                                 <exclude reference="Da0-lN-fKw"/>
-                                <exclude reference="09S-uj-DTl"/>
+                                <exclude reference="HYB-oC-0zP"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -313,25 +313,25 @@
                                 <include reference="JBP-MN-uBM"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="HYB-oC-0zP"/>
+                                <include reference="09S-uj-DTl"/>
                                 <include reference="8if-7J-3fr"/>
                                 <include reference="Da0-lN-fKw"/>
-                                <include reference="09S-uj-DTl"/>
+                                <include reference="HYB-oC-0zP"/>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="022CD1FC-B66E-44E0-BA44-1D09976BAAC7" id="gRb-gg-MLS"/>
+                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="7E539C6C-D7A5-4993-9811-7385EC0DB854" id="gRb-gg-MLS"/>
                     <connections>
                         <outlet property="mapView" destination="JBP-MN-uBM" id="kAQ-d4-dgo"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCK-3C-SH7" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="753.75" y="-895"/>
         </scene>
         <!--RadarViewController-->
         <scene sceneID="5DP-Wh-Ooo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="apM-0B-Kd0" sceneMemberID="firstResponder"/>
                 <viewController title="RadarViewController" id="NgL-zX-CaS" customClass="RadarViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2mK-0h-go5"/>
@@ -364,10 +364,10 @@
                                 <exclude reference="GrT-IA-gHz"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Qtx-Eh-UOl"/>
                                 <exclude reference="6hE-we-43k"/>
-                                <exclude reference="ape-Dg-Fxa"/>
                                 <exclude reference="CXb-cW-PqB"/>
+                                <exclude reference="Qtx-Eh-UOl"/>
+                                <exclude reference="ape-Dg-Fxa"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -380,24 +380,25 @@
                                 <include reference="GrT-IA-gHz"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Qtx-Eh-UOl"/>
                                 <include reference="6hE-we-43k"/>
-                                <include reference="ape-Dg-Fxa"/>
                                 <include reference="CXb-cW-PqB"/>
+                                <include reference="Qtx-Eh-UOl"/>
+                                <include reference="ape-Dg-Fxa"/>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="RADAR" image="second" selectedImage="5E1A1C79-AC7B-4A38-956B-4DEF1F5139DF" id="Ow6-08-P4C"/>
+                    <tabBarItem key="tabBarItem" title="RADAR" image="second" selectedImage="4577DB22-9958-454E-A0BD-1AC9865FFA0A" id="Ow6-08-P4C"/>
                     <connections>
                         <outlet property="mapView" destination="GrT-IA-gHz" id="6Zq-2r-V5J"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="apM-0B-Kd0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.25" y="-249"/>
         </scene>
     </scenes>
     <resources>
-        <image name="022CD1FC-B66E-44E0-BA44-1D09976BAAC7" width="80" height="80">
+        <image name="4577DB22-9958-454E-A0BD-1AC9865FFA0A" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -893,7 +894,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="5E1A1C79-AC7B-4A38-956B-4DEF1F5139DF" width="80" height="80">
+        <image name="66E0F183-D246-417A-BEE5-0EC237E3F214" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1389,7 +1390,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="66F7F734-CA7E-4D54-A788-7A1CB2294F45" width="80" height="80">
+        <image name="7E539C6C-D7A5-4993-9811-7385EC0DB854" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

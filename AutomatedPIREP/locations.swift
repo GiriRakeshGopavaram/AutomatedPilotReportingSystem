@@ -10,6 +10,7 @@ import Foundation
 class locations{
     var latitude:Double
     var longitude:Double
+//    var place:String
     init(latitude:Double, longitude:Double){
         self.latitude = latitude
         self.longitude = longitude

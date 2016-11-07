@@ -16,8 +16,8 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     
     let locationManager = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
-    var pointAnnotation:CustomPointAnnotation!
-    var pinAnnotationView:MKPinAnnotationView!
+    //var pointAnnotation:CustomPointAnnotation!
+    //var pinAnnotationView:MKPinAnnotationView!
     
     override func viewDidLoad() {
         
@@ -41,11 +41,15 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
             let location = CLLocationCoordinate2DMake(latitude, longitude)
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
+            annotation.title = "PIREP"
+            annotation.subtitle = "Extreme Turbulence at \(latitude), \(longitude)"
+            
             pirepView.addAnnotation(annotation)
             
         }
         
     }
+    
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
@@ -53,25 +57,25 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     }
     
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> (MKAnnotationView?) {
         
         if (annotation is MKUserLocation){
             return nil
         }
         
         let reuseIdentifier = "pin"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.image = UIImage(named: "ExtremeT.png")
-            annotationView?.canShowCallout = true
+        var annotationView1 = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+       // var annotationView2 = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+        if annotationView1 == nil {
+            annotationView1 = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView1?.image = UIImage(named: "ExtremeT.png")
+            annotationView1?.canShowCallout = true
             
         } else {
-            annotationView!.annotation = annotation
+            annotationView1!.annotation = annotation
         }
-        
-        return annotationView
+
+        return (annotationView1)
         
     }
     

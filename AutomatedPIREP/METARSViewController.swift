@@ -12,39 +12,94 @@ import CoreLocation
 
 class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
 
+
+    @IBAction func metOrBarb(sender: AnyObject) {
+        if sender.selectedSegmentIndex == 0{
+           
+           
+        }
+        else{
+            
+        }
+    }
     @IBOutlet weak var pirepView: MKMapView!
     let locationManager  = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
     
-    
+    override func loadView() {
+        super.loadView()
+        makeRequest()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.      
-        for airport in airportLocation{
-            let latitude = airport.latitude
-            let longitude = airport.longitude
-            let location = CLLocationCoordinate2DMake(latitude, longitude)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            pirepView.addAnnotation(annotation)
+        super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        pirepView.delegate = self
+        makeRequest()
+   
+        
+    }
+
+    func makeRequest(){
+        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/MetarJSON.php")
+        
+        // send out the request
+        let session = NSURLSession.sharedSession()
+        // implement completion handler
+        session.dataTaskWithURL(url!, completionHandler: processResults).resume()
+        
+    }
+    
+    func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
+        do {
+            
+            // parse the data as dictionary first
+            var jsonResult: NSDictionary?
+            try jsonResult =  NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+            
+            // now if jsonResult actually contains something
+            if (jsonResult != nil) {
+                // try parse it as array
+                if let results = jsonResult!["features"] as? [NSDictionary] {
+                    // get the information of each element in an array, each element is stored in a dictionary
+                
+                        dispatch_async(dispatch_get_main_queue(), {
+                            for r in results{
+                            let gotIt:[String:AnyObject] = r as! [String : AnyObject]
+                            let geometry:[String:AnyObject] = gotIt["geometry"] as! [String:AnyObject]
+                                
+                                    var coordinates:[Double] = []
+                                var latitude:Double
+                                    var longitude:Double
+                                coordinates = geometry["coordinates"] as! [Double]
+                               longitude = (coordinates[0])
+                                latitude = (coordinates[1])
+                            let location = CLLocationCoordinate2DMake(latitude, longitude)
+                            let annotation = MKPointAnnotation()
+                            annotation.coordinate = location
+                            self.pirepView.addAnnotation(annotation)
+                            
+                            }
+                        })
+                }
+            }
+            
+            else {
+                print("No results???")
+            }
+          
+        }
+        catch {
+            
         }
     }
-  
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        let center = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
-        let region = MKCoordinateRegionMake(center, MKCoordinateSpan(latitudeDelta: 95,longitudeDelta: 95))
-        self.pirepView.setRegion(region, animated: true)
-        self.locationManager.stopUpdatingLocation()
-    }
-
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Errors" + error.localizedDescription)
     }
     
     

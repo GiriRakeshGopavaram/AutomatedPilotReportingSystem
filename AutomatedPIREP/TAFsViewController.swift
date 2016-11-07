@@ -16,7 +16,7 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
     
     let locationManager = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
-    var pointAnnotation:CustomPointAnnotation!
+    var annotation:CustomPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     
     override func viewDidLoad() {
@@ -30,6 +30,7 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
         mapView.mapType = MKMapType.Standard
         mapView.showsUserLocation = true
         
+        
     }
     
     
@@ -39,9 +40,13 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
             let latitude = airport.latitude
             let longitude = airport.longitude
             let location = CLLocationCoordinate2DMake(latitude, longitude)
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
             annotation.coordinate = location
-            mapView.addAnnotation(annotation)
+            annotation.pinCustomImageName = "pin.png"
+            annotation.title = "PIREP"
+            annotation.title = "TAF at \(latitude), \(longitude)"
+            pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+            mapView.addAnnotation(pinAnnotationView.annotation!)
             
         }
         
@@ -53,28 +58,28 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
     }
     
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if (annotation is MKUserLocation){
-            return nil
-        }
-        
-        let reuseIdentifier = "pin"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.image = UIImage(named: "pin.png")
-            annotationView?.canShowCallout = true
-            
-        } else {
-            print("full")
-            annotationView!.annotation = annotation
-        }
-        
-        return annotationView
-        
-    }
+//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+//        
+//        if (annotation is MKUserLocation){
+//            return nil
+//        }
+//        
+//        let reuseIdentifier = "pin"
+//        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+//        
+//        if annotationView == nil {
+//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+//            annotationView?.image = UIImage(named: "pinny")
+//            annotationView?.canShowCallout = true
+//            
+//        } else {
+//            print("full")
+//            annotationView!.annotation = annotation
+//        }
+//        
+//        return annotationView
+//        
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

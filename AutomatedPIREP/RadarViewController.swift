@@ -29,21 +29,16 @@ class RadarViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         mapView.delegate = self
         mapView.mapType = MKMapType.Standard
         mapView.showsUserLocation = true
+        mapView.mapType = MKMapType.Satellite;
+        mapView.mapType = MKMapType.Hybrid;
+
         
     }
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        for airport in airportLocation{
-            let latitude = airport.latitude
-            let longitude = airport.longitude
-            let location = CLLocationCoordinate2DMake(latitude, longitude)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            mapView.addAnnotation(annotation)
-            
-        }
+
         
     }
     
@@ -61,7 +56,6 @@ class RadarViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         
         let reuseIdentifier = "pin"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             annotationView?.image = UIImage(named: "pin.png")

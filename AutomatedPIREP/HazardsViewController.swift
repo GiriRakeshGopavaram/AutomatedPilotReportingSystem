@@ -47,10 +47,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print(error.localizedDescription)
-    }
     
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -64,7 +60,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.image = UIImage(named: "pin.png")
+            annotationView?.image = UIImage(named: "warning")
             annotationView?.canShowCallout = true
             
         } else {

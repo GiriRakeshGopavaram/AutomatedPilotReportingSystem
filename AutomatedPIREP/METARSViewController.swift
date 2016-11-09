@@ -21,11 +21,13 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
             
             //jsonURL = "MetarJSON"
             makeMetarRequest()
+            pirepView.removeAnnotations(pirepView.annotations)
             
         }
         else if sender.selectedSegmentIndex == 1{
             //jsonURL = "TafJSON"
             makeWindRequest()
+            pirepView.removeAnnotations(pirepView.annotations)
 
         }
     }
@@ -50,20 +52,20 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         // send out the request
         let session = NSURLSession.sharedSession()
         // implement completion handler
-        session.dataTaskWithURL(url!, completionHandler: processResults).resume()
+        session.dataTaskWithURL(url!, completionHandler: processResults1).resume()
         
     }
     func makeWindRequest(){
-        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/TafJSON.php")
+        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/FBWindsJSON.php")
         
         // send out the request
         let session = NSURLSession.sharedSession()
         // implement completion handler
-        session.dataTaskWithURL(url!, completionHandler: processResults).resume()
+        session.dataTaskWithURL(url!, completionHandler: processResults2).resume()
         
     }
     
-    func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
+    func processResults1(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
         do {
             
             // parse the data as dictionary first
@@ -90,7 +92,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 let location = CLLocationCoordinate2DMake(latitude, longitude)
                                 let annotation = CustomPointAnnotation()
                                 annotation.coordinate = location
-                                annotation.pinCustomImageName = UIImage(named: "Nil.png")
+                                annotation.pinCustomImageName = UIImage(named: "Severe.png")
                                 self.pirepView.addAnnotation(annotation)
                             
                             }
@@ -108,6 +110,54 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
             
         }
     }
+    
+    func processResults2(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
+        do {
+            
+            // parse the data as dictionary first
+            var jsonResult: NSDictionary?
+            try jsonResult =  NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+            
+            // now if jsonResult actually contains something
+            if (jsonResult != nil) {
+                // try parse it as array
+                if let results = jsonResult!["features"] as? [NSDictionary] {
+                    // get the information of each element in an array, each element is stored in a dictionary
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        for eachObject in results{
+                            
+                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+                            //let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+                            var coordinates:[Double] = []
+                            var latitude:Double
+                            var longitude:Double
+                            coordinates = geometry["coordinates"] as! [Double]
+                            longitude = (coordinates[0])
+                            latitude = (coordinates[1])
+                            let location = CLLocationCoordinate2DMake(latitude, longitude)
+                            let annotation = CustomPointAnnotation()
+                            annotation.coordinate = location
+                            annotation.pinCustomImageName = UIImage(named: "Nil.png")
+                            self.pirepView.addAnnotation(annotation)
+                            
+                        }
+                    })
+                    
+                }
+            }
+                
+            else {
+                print("Anything?")
+            }
+            
+        }
+        catch {
+            
+        }
+    }
+    
+    
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is CustomPointAnnotation) {

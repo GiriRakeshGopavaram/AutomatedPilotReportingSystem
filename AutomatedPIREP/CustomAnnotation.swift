@@ -10,5 +10,5 @@ import Foundation
 import MapKit
 
 class CustomPointAnnotation: MKPointAnnotation {
-    var pinCustomImageName:String!
+    var pinCustomImageName:UIImage!
 }

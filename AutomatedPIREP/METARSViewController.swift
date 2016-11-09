@@ -13,13 +13,20 @@ import CoreLocation
 class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
 
 
+    @IBOutlet weak var metOrbarb: MKMapView!
+    var jsonURL:String = "MetarJSON"
+    
     @IBAction func metOrBarb(sender: AnyObject) {
         if sender.selectedSegmentIndex == 0{
-           
-           
-        }
-        else{
             
+            jsonURL = "MetarJSON"
+            makeRequest(jsonURL)
+            
+        }
+        else if sender.selectedSegmentIndex == 1{
+            jsonURL = "TafJSON"
+            makeRequest(jsonURL)
+
         }
     }
     @IBOutlet weak var pirepView: MKMapView!
@@ -28,7 +35,8 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     
     override func loadView() {
         super.loadView()
-        makeRequest()
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +46,13 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         pirepView.delegate = self
-        makeRequest()
-   
+        //makeRequest()
+   makeRequest(jsonURL)
         
     }
 
-    func makeRequest(){
-        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/MetarJSON.php")
+    func makeRequest(jsonURL:String){
+        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/\(jsonURL).php")
         
         // send out the request
         let session = NSURLSession.sharedSession()
@@ -67,23 +75,26 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                     // get the information of each element in an array, each element is stored in a dictionary
                 
                         dispatch_async(dispatch_get_main_queue(), {
-                            for r in results{
-                            let gotIt:[String:AnyObject] = r as! [String : AnyObject]
-                            let geometry:[String:AnyObject] = gotIt["geometry"] as! [String:AnyObject]
-                                
-                                    var coordinates:[Double] = []
+                            for eachObject in results{
+                           
+                                let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+                                let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+                                print(properties)
+                                var coordinates:[Double] = []
                                 var latitude:Double
-                                    var longitude:Double
+                                var longitude:Double
                                 coordinates = geometry["coordinates"] as! [Double]
-                               longitude = (coordinates[0])
+                                longitude = (coordinates[0])
                                 latitude = (coordinates[1])
-                            let location = CLLocationCoordinate2DMake(latitude, longitude)
-                            let annotation = MKPointAnnotation()
-                            annotation.coordinate = location
-                            self.pirepView.addAnnotation(annotation)
+                                let location = CLLocationCoordinate2DMake(latitude, longitude)
+                                let annotation = CustomPointAnnotation()
+                                annotation.coordinate = location
+                                annotation.pinCustomImageName = UIImage(named: "SevereT.png")
+                                self.pirepView.addAnnotation(annotation)
                             
                             }
                         })
+                   
                 }
             }
             
@@ -97,7 +108,26 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         }
     }
     
-
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if !(annotation is CustomPointAnnotation) {
+            return nil
+        }
+        
+        let reuseId = "Location"
+        
+        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        if anView == nil {
+            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView!.canShowCallout = true
+        }
+        else {
+            anView!.annotation = annotation
+        }
+        let cpa = annotation as! CustomPointAnnotation
+        anView!.image = cpa.pinCustomImageName
+        
+        return anView
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

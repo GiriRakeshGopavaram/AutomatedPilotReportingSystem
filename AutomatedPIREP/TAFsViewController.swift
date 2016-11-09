@@ -42,7 +42,7 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
             let location = CLLocationCoordinate2DMake(latitude, longitude)
             let annotation = CustomPointAnnotation()
             annotation.coordinate = location
-            annotation.pinCustomImageName = "pin.png"
+            //annotation.pinCustomImageName = "pin.png"
             annotation.title = "PIREP"
             annotation.title = "TAF at \(latitude), \(longitude)"
             pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")

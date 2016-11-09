@@ -1,80 +1,108 @@
 //
-//  PIREPSendViewController.swift
+//  FirstViewController.swift
 //  AutomatedPIREP
 //
-//  Created by Pruthvi Parne on 10/29/16.
+//  Created by Gopavaram,Giri Rakesh on 10/13/16.
 //  Copyright © 2016 Gopavaram,Giri Rakesh. All rights reserved.
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class PIREPSendViewController: UIViewController {
+class PIREPSendViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
+    
+    @IBOutlet  weak var pirepView: MKMapView!
+    
+   
+    let locationManager = CLLocationManager()
+    let airportLocation = PIREPLocations.storeLocations()
 
-    @IBOutlet weak var test: UITextField!
-
-    @IBAction func getJSON(sender: AnyObject) {
-        makeRequest()
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        pirepView.delegate = self
+        pirepView.mapType = MKMapType.Standard
+        pirepView.showsUserLocation = true
+        checkLocationAuthorizationStatus()
+    }
+   
+    override func viewWillAppear(animated: Bool) {
+        self.pirepView.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        dispatch_async(dispatch_get_main_queue(),{
+            self.locationManager.startUpdatingLocation()
+        })
+    }
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .AuthorizedAlways {
+            pirepView.showsUserLocation = false
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
-    override func loadView() {
-        super.loadView()
-        makeRequest()
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+//        let strLat = 35.689949
+//        let strLon = 139.697576
+//        let info = CustomPointAnnotation()
+//        info.coordinate = CLLocationCoordinate2DMake(strLat,strLon)
+//        //info.pinCustomImageName = UIImage(named:"pin.png" )
+//        //info.title = dict!["locationName"]! as? String
+//        self.pirepView.addAnnotation(info)
+//        
+        for airport in airportLocation{
+            let latitude = airport.latitude
+            let longitude = airport.longitude
+            let location = CLLocationCoordinate2DMake(latitude, longitude)
+            let annotation = CustomPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = "PIREP"
+            annotation.subtitle = "Extreme Turbulence at \(latitude), \(longitude)"
+            annotation.pinCustomImageName = UIImage(named: "pin.png")
+            pirepView.addAnnotation(annotation)
+            
+        }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        makeRequest()
-        // Do any additional setup after loading the view.
+    
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+        print(error.localizedDescription)
     }
-
+    
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if !(annotation is CustomPointAnnotation) {
+            return nil
+        }
+        
+        let reuseId = "Location"
+        
+        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        if anView == nil {
+            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView!.canShowCallout = true
+        }
+        else {
+            anView!.annotation = annotation
+        }
+        let cpa = annotation as! CustomPointAnnotation
+        anView!.image = cpa.pinCustomImageName
+        
+        return anView
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    func makeRequest() {
-        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/MetarJSON.php")
-        
-        // send out the request
-        let session = NSURLSession.sharedSession()
-        // implement completion handler
-        session.dataTaskWithURL(url!, completionHandler: processResults).resume()
-        
-    }
-    
-    func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
-        do {
-            
-            // parse the data as dictionary first
-            var jsonResult: NSDictionary?
-            try jsonResult =  NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
-            
-            // now if jsonResult actually contains something
-            if (jsonResult != nil) {
-                // try parse it as array
-                if let results = jsonResult!["features"] as? [NSDictionary] {
-                    // get the information of each element in an array, each element is stored in a dictionary
-                    //if let properties = results[0] as? [String:AnyObject]{
-                        //if let id = properties["geometry"] as? NSString{
-                    dispatch_async(dispatch_get_main_queue(), {
-
-                        let gotIt:[String:AnyObject] = results[0] as! [String : AnyObject]
-
-                        //print(gotIt["properties"])
-                        let properties:[String:AnyObject] = gotIt["properties"] as! [String:AnyObject]
-                        let geometry:[String:AnyObject] = gotIt["geometry"] as! [String:AnyObject]
-                        let coordinates:[Double] = geometry["coordinates"] as! [Double]
-
-                    })
-
-        }
-    }
-            else {
-                print("No results???")
-            }
-            
-        }
-        catch {
-            
-        }
-    }
-
 }
+

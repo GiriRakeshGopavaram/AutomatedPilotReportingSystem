@@ -62,7 +62,6 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                             let encodedPirep:String = properties["rawOb"] as! String
-                            //print(encodedPirep)
                             var coordinates:[Double] = []
                             var latitude:Double
                             var longitude:Double
@@ -70,8 +69,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             longitude = (coordinates[0])
                             latitude = (coordinates[1])
                             if encodedPirep.containsString("TB "){
-                                var turb = encodedPirep
-                                print(turb)
+                                let turb = encodedPirep
                                 if turb.containsString("SMOOTH") || turb.containsString("LGT-MOD"){
                                     let location = CLLocationCoordinate2DMake(latitude, longitude)
                                     let annotation = CustomPointAnnotation()
@@ -96,7 +94,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     annotation.coordinate = location
                                     annotation.pinCustomImageName = UIImage(named: "Nil.png")
                                     annotation.title = "PIREP"
-//                                    annotation.subtitle = ""turb
+                                    annotation.subtitle = turb
                                     self.pirepView.addAnnotation(annotation)
                                 }
                               
@@ -127,18 +125,18 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         
         let reuseId = "Location"
         
-        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-        if anView == nil {
-            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            anView!.canShowCallout = true
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            annotationView!.canShowCallout = true
         }
         else {
-            anView!.annotation = annotation
+            annotationView!.annotation = annotation
         }
         let cpa = annotation as! CustomPointAnnotation
-        anView!.image = cpa.pinCustomImageName
+        annotationView!.image = cpa.pinCustomImageName
         
-        return anView
+        return annotationView
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

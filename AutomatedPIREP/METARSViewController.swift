@@ -14,30 +14,24 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
 
 
     @IBOutlet weak var metOrbarb: MKMapView!
-    var jsonURL:String = "MetarJSON"
+    //var jsonURL:String = "MetarJSON"
     
     @IBAction func metOrBarb(sender: AnyObject) {
         if sender.selectedSegmentIndex == 0{
             
-            jsonURL = "MetarJSON"
-            makeRequest(jsonURL)
+            //jsonURL = "MetarJSON"
+            makeMetarRequest()
             
         }
         else if sender.selectedSegmentIndex == 1{
-            jsonURL = "TafJSON"
-            makeRequest(jsonURL)
+            //jsonURL = "TafJSON"
+            makeWindRequest()
 
         }
     }
     @IBOutlet weak var pirepView: MKMapView!
     let locationManager  = CLLocationManager()
-    let airportLocation = PIREPLocations.storeLocations()
     
-    override func loadView() {
-        super.loadView()
-        
-        
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         super.viewDidLoad()
@@ -46,13 +40,21 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         pirepView.delegate = self
-        //makeRequest()
-   makeRequest(jsonURL)
+ 
         
     }
 
-    func makeRequest(jsonURL:String){
-        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/\(jsonURL).php")
+    func makeMetarRequest(){
+        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/MetarJSON.php")
+        
+        // send out the request
+        let session = NSURLSession.sharedSession()
+        // implement completion handler
+        session.dataTaskWithURL(url!, completionHandler: processResults).resume()
+        
+    }
+    func makeWindRequest(){
+        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/TafJSON.php")
         
         // send out the request
         let session = NSURLSession.sharedSession()
@@ -78,8 +80,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             for eachObject in results{
                            
                                 let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-                                let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                                print(properties)
+                                //let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                                 var coordinates:[Double] = []
                                 var latitude:Double
                                 var longitude:Double
@@ -89,7 +90,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 let location = CLLocationCoordinate2DMake(latitude, longitude)
                                 let annotation = CustomPointAnnotation()
                                 annotation.coordinate = location
-                                annotation.pinCustomImageName = UIImage(named: "SevereT.png")
+                                annotation.pinCustomImageName = UIImage(named: "Nil.png")
                                 self.pirepView.addAnnotation(annotation)
                             
                             }
@@ -99,7 +100,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
             }
             
             else {
-                print("No results???")
+                print("Anything?")
             }
           
         }

@@ -13,13 +13,8 @@ import MapKit
 class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
     let locationManager = CLLocationManager()
-    let airportLocation = PIREPLocations.storeLocations()
-    var annotation:CustomPointAnnotation!
-    var pinAnnotationView:MKPinAnnotationView!
-    
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         
         super.viewDidLoad()
         locationManager.delegate = self
@@ -29,57 +24,68 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
         mapView.delegate = self
         mapView.mapType = MKMapType.Standard
         mapView.showsUserLocation = true
-        
-        
+        makeRequest()
     }
     
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func makeRequest(){
+        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/TafJSON.php")
         
-        for airport in airportLocation{
-            let latitude = airport.latitude
-            let longitude = airport.longitude
-            let location = CLLocationCoordinate2DMake(latitude, longitude)
-            let annotation = CustomPointAnnotation()
-            annotation.coordinate = location
-            //annotation.pinCustomImageName = "pin.png"
-            annotation.title = "PIREP"
-            annotation.title = "TAF at \(latitude), \(longitude)"
-            pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-            mapView.addAnnotation(pinAnnotationView.annotation!)
+        // send out the request
+        let session = NSURLSession.sharedSession()
+        // implement completion handler
+        session.dataTaskWithURL(url!, completionHandler: processResults).resume()
+        
+    }
+    
+    func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
+        do {
+            
+            // parse the data as dictionary first
+            var jsonResult: NSDictionary?
+            try jsonResult =  NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+            
+            // now if jsonResult actually contains something
+            if (jsonResult != nil) {
+                // try parse it as array
+                if let results = jsonResult!["features"] as? [NSDictionary] {
+                    // get the information of each element in an array, each element is stored in a dictionary
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        for eachObject in results{
+                            
+                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+                            print(geometry)
+                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+                            print(properties)
+                            var coordinates:[Double] = []
+                            var latitude:Double
+                            var longitude:Double
+                            coordinates = geometry["coordinates"] as! [Double]
+                            longitude = (coordinates[0])
+                            latitude = (coordinates[1])
+                            let location = CLLocationCoordinate2DMake(latitude, longitude)
+                            let annotation = CustomPointAnnotation()
+                            annotation.coordinate = location
+                            //annotation.pinCustomImageName = UIImage(named: "")
+                            annotation.title = "TAF"
+                            annotation.subtitle = "Observed at \(latitude), \(longitude)"
+                            self.mapView.addAnnotation(annotation)
+                        }
+                    })
+                    
+                }
+            }
+                
+            else {
+                print("No results???")
+            }
             
         }
-        
+        catch {
+            
+        }
     }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print(error.localizedDescription)
-    }
-    
-    
-//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-//        
-//        if (annotation is MKUserLocation){
-//            return nil
-//        }
-//        
-//        let reuseIdentifier = "pin"
-//        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-//        
-//        if annotationView == nil {
-//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-//            annotationView?.image = UIImage(named: "pinny")
-//            annotationView?.canShowCallout = true
-//            
-//        } else {
-//            print("full")
-//            annotationView!.annotation = annotation
-//        }
-//        
-//        return annotationView
-//        
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

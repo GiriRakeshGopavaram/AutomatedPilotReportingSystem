@@ -51,14 +51,6 @@ class PIREPSendViewController: UIViewController,MKMapViewDelegate,CLLocationMana
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-//        let strLat = 35.689949
-//        let strLon = 139.697576
-//        let info = CustomPointAnnotation()
-//        info.coordinate = CLLocationCoordinate2DMake(strLat,strLon)
-//        //info.pinCustomImageName = UIImage(named:"pin.png" )
-//        //info.title = dict!["locationName"]! as? String
-//        self.pirepView.addAnnotation(info)
-//        
         for airport in airportLocation{
             let latitude = airport.latitude
             let longitude = airport.longitude

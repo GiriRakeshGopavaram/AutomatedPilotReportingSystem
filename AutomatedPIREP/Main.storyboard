@@ -63,7 +63,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="0A4A38CA-FA30-4BB0-A382-C7EBD8989D92" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="AB276C35-4A53-454B-935B-66ABEE248F70" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="pirepView" destination="hn2-Sl-vlO" id="FBu-7z-zXx"/>
                     </connections>
@@ -224,6 +224,12 @@
                                     <action selector="metOrBarb:" destination="Vqu-Ac-qHg" eventType="valueChanged" id="5iP-so-8fV"/>
                                 </connections>
                             </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10000" minValue="3000" maxValue="54000" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-kZ-Pw7">
+                                <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="18" y="513" width="369" height="31"/>
+                                </variation>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -237,6 +243,7 @@
                                 <exclude reference="8YK-P0-xWN"/>
                                 <exclude reference="IBW-g2-z9D"/>
                                 <exclude reference="oad-j0-N5S"/>
+                                <exclude reference="RvX-kZ-Pw7"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="PXa-sH-WxD"/>
@@ -254,6 +261,7 @@
                             <mask key="subviews">
                                 <include reference="IBW-g2-z9D"/>
                                 <include reference="oad-j0-N5S"/>
+                                <include reference="RvX-kZ-Pw7"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="PXa-sH-WxD"/>
@@ -296,13 +304,13 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zLt-h1-tgx">
                                 <rect key="frame" x="-60" y="-14" width="121" height="29"/>
                                 <segments>
-                                    <segment title="METARs"/>
-                                    <segment title="TAFs"/>
+                                    <segment title="IFR"/>
+                                    <segment title="TS"/>
                                     <segment title="ICING"/>
                                     <segment title="TURBULENCE"/>
                                 </segments>
                                 <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="206" y="41" width="389" height="29"/>
+                                    <rect key="frame" x="199" y="41" width="403" height="29"/>
                                 </variation>
                             </segmentedControl>
                         </subviews>
@@ -344,7 +352,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="0B141D66-9630-4351-A20E-682448EA22CF" id="gRb-gg-MLS"/>
+                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="CA2DCF88-0D11-4E39-A28D-F7E286A89EF3" id="gRb-gg-MLS"/>
                     <connections>
                         <outlet property="mapView" destination="JBP-MN-uBM" id="kAQ-d4-dgo"/>
                     </connections>
@@ -423,7 +431,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="RADAR" image="first" selectedImage="64FE000E-0285-488B-97A4-A632F4CEA178" id="Ow6-08-P4C"/>
+                    <tabBarItem key="tabBarItem" title="RADAR" image="first" selectedImage="C344520E-9539-4CC7-AC6F-ABC27C34DEB5" id="Ow6-08-P4C"/>
                     <connections>
                         <outlet property="mapView" destination="GrT-IA-gHz" id="6Zq-2r-V5J"/>
                     </connections>
@@ -434,7 +442,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0A4A38CA-FA30-4BB0-A382-C7EBD8989D92" width="80" height="80">
+        <image name="AB276C35-4A53-454B-935B-66ABEE248F70" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -870,7 +878,7 @@ AAAAAAAAAAAAAAAAAA4BAAADAAAAAQBQAAABAQADAAAAAQBQAAABAgADAAAABAAAZLYBAwADAAAAAQAB
 AAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAABFQADAAAAAQAEAAABFgADAAAAAQBQ
 AAABFwAEAAAAAQAAZAABHAADAAAAAQABAAABUgADAAAAAQACAAABUwADAAAABAAAZL6HcwAHAAAMSAAA
 ZMYAAAAAAAgACAAIAAgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0IgWFlaIAfOAAIACQAGADEAAGFj
-c3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAA
+c3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQAAAAM2Rlc2MAAAGEAAAAbHd0
 cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIsAAAAFGJYWVoAAAJAAAAAFGRt
 bmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPUAAAAJGx1bWkAAAP4AAAAFG1l
@@ -930,7 +938,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="0B141D66-9630-4351-A20E-682448EA22CF" width="80" height="80">
+        <image name="C344520E-9539-4CC7-AC6F-ABC27C34DEB5" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1366,7 +1374,7 @@ AAAAAAAAAAAAAAAAAA4BAAADAAAAAQBQAAABAQADAAAAAQBQAAABAgADAAAABAAAZLYBAwADAAAAAQAB
 AAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAABFQADAAAAAQAEAAABFgADAAAAAQBQ
 AAABFwAEAAAAAQAAZAABHAADAAAAAQABAAABUgADAAAAAQACAAABUwADAAAABAAAZL6HcwAHAAAMSAAA
 ZMYAAAAAAAgACAAIAAgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0IgWFlaIAfOAAIACQAGADEAAGFj
-c3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAA
+c3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQAAAAM2Rlc2MAAAGEAAAAbHd0
 cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIsAAAAFGJYWVoAAAJAAAAAFGRt
 bmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPUAAAAJGx1bWkAAAP4AAAAFG1l
@@ -1426,7 +1434,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="64FE000E-0285-488B-97A4-A632F4CEA178" width="80" height="80">
+        <image name="CA2DCF88-0D11-4E39-A28D-F7E286A89EF3" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1862,7 +1870,7 @@ AAAAAAAAAAAAAAAAAA4BAAADAAAAAQBQAAABAQADAAAAAQBQAAABAgADAAAABAAAZLYBAwADAAAAAQAB
 AAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAABFQADAAAAAQAEAAABFgADAAAAAQBQ
 AAABFwAEAAAAAQAAZAABHAADAAAAAQABAAABUgADAAAAAQACAAABUwADAAAABAAAZL6HcwAHAAAMSAAA
 ZMYAAAAAAAgACAAIAAgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0IgWFlaIAfOAAIACQAGADEAAGFj
-c3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAA
+c3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQAAAAM2Rlc2MAAAGEAAAAbHd0
 cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIsAAAAFGJYWVoAAAJAAAAAFGRt
 bmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPUAAAAJGx1bWkAAAP4AAAAFG1l

@@ -17,22 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oie_gvYtmEKCOkhE.png" translatesAutoresizingMaskIntoConstraints="NO" id="moW-LJ-L1Z">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Airplane-in-Flight-Vector-Illustration-Free-PNG-Graphic-Cave" translatesAutoresizingMaskIntoConstraints="NO" id="qIK-PM-U39">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                    <rect key="frame" x="98" y="52" width="605" height="458"/>
                                 </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="moW-LJ-L1Z"/>
+                                <exclude reference="qIK-PM-U39"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
                             <mask key="subviews">
-                                <include reference="moW-LJ-L1Z"/>
+                                <include reference="qIK-PM-U39"/>
                             </mask>
                         </variation>
                     </view>
@@ -43,6 +43,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="oie_gvYtmEKCOkhE.png" width="1200" height="628"/>
+        <image name="Airplane-in-Flight-Vector-Illustration-Free-PNG-Graphic-Cave" width="341" height="178"/>
     </resources>
 </document>

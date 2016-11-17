@@ -74,7 +74,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     let location = CLLocationCoordinate2DMake(latitude, longitude)
                                     let annotation = CustomPointAnnotation()
                                     annotation.coordinate = location
-                                    annotation.pinCustomImageName = UIImage(named: "LightT.png")
+                                    annotation.pinCustomImageName = UIImage(named: "Light")
                                     annotation.title = "PIREP"
                                     annotation.subtitle = turb
                                     self.pirepView.addAnnotation(annotation)
@@ -83,7 +83,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     let location = CLLocationCoordinate2DMake(latitude, longitude)
                                     let annotation = CustomPointAnnotation()
                                     annotation.coordinate = location
-                                    annotation.pinCustomImageName = UIImage(named: "ModerateT.png")
+                                    annotation.pinCustomImageName = UIImage(named: "Moderate-Severe")
                                     annotation.title = "PIREP"
                                     annotation.subtitle = turb
                                     self.pirepView.addAnnotation(annotation)
@@ -92,7 +92,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     let location = CLLocationCoordinate2DMake(latitude, longitude)
                                     let annotation = CustomPointAnnotation()
                                     annotation.coordinate = location
-                                    annotation.pinCustomImageName = UIImage(named: "Nil.png")
+                                    annotation.pinCustomImageName = UIImage(named: "Trace-Light")
                                     annotation.title = "PIREP"
                                     annotation.subtitle = turb
                                     self.pirepView.addAnnotation(annotation)

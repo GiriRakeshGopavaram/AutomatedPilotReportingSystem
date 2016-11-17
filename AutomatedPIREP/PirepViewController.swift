@@ -78,32 +78,38 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             let conditionsInRawOB = rawObservation.componentsSeparatedByString("/")
                             for condition in conditionsInRawOB{
                                 if condition.containsString("TB "){
+                                    switch true {
+                                        
+                                    case  condition.containsString("SMTH") || condition.containsString("SMOOTH"):
+                                        annotation.pinCustomImageName = UIImage(named: "Smooth-LightT")
+                                        break
+                                    case condition.containsString("LGT ") || condition.containsString("LIGHT"):
+                                        annotation.pinCustomImageName = UIImage(named: "LightT")
+                                        break
+                                    case condition.containsString("LGT-MOD") || condition.containsString("LIGHT TO MODERATE"):
+                                        annotation.pinCustomImageName = UIImage(named:"Light-ModerateT" )
+                                        break
+                                    case condition.containsString("MOD") || condition.containsString("MODERATE") || condition.containsString("MDT"):
+                                        annotation.pinCustomImageName = UIImage(named: "ModerateT")
+                                        break
+                                    case condition.containsString("MOD-SEV") || condition.containsString("MODERATE TO SEVERE"):
+                                        annotation.pinCustomImageName = UIImage(named: "Moderate-SevereT")
+                                        break
+                                    case condition.containsString("SEV"):
+                                        annotation.pinCustomImageName = UIImage(named: "SevereT")
+                                        break
+                                    case condition.containsString("EXTRM"):
+                                        annotation.pinCustomImageName = UIImage(named: "ExtremeT")
+                                        break
+                                    case condition.containsString("NEG") || condition.containsString("NEGATIVE"):
+                                        annotation.pinCustomImageName = UIImage(named: "NilT")
+                                        break
+                                    default:
+                                        break
+                                        
+                                    }
                                     
                                     print(condition)
-                                    if condition.containsString("SMTH") || condition.containsString("SMOOTH"){
-                                        annotation.pinCustomImageName = UIImage(named: "Smooth-LightT")
-                                    }
-                                    else if condition.containsString("LGT ") || condition.containsString("LIGHT"){
-                                        annotation.pinCustomImageName = UIImage(named: "LightT")
-                                    }
-                                    else if condition.containsString("LGT-MOD") || condition.containsString("LIGHT TO MODERATE"){
-                                        annotation.pinCustomImageName = UIImage(named:"Light-ModerateT" )
-                                    }
-                                    else if condition.containsString("MOD") || condition.containsString("MODERATE") || condition.containsString("MDT"){
-                                        annotation.pinCustomImageName = UIImage(named: "ModerateT")
-                                    }
-                                    else if condition.containsString("MOD-SEV") || condition.containsString("MODERATE TO SEVERE"){
-                                        annotation.pinCustomImageName = UIImage(named: "Moderate-SevereT")
-                                    }
-                                    else if condition.containsString("SEV"){
-                                        annotation.pinCustomImageName = UIImage(named: "SevereT")
-                                    }
-                                    else if condition.containsString("EXTRM"){
-                                        annotation.pinCustomImageName = UIImage(named: "ExtremeT")
-                                    }
-                                    else if condition.containsString("NEG") || condition.containsString("NEGATIVE"){
-                                        annotation.pinCustomImageName = UIImage(named: "NilT")
-                                    }
                                 }
                             }
                             

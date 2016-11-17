@@ -11,8 +11,8 @@ import MapKit
 import CoreLocation
 
 class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
-
-   @IBOutlet  weak var pirepView: MKMapView!
+    
+    @IBOutlet  weak var pirepView: MKMapView!
     
     let locationManager = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
@@ -34,7 +34,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     
     
     func makeRequest(){
-        let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/PirepJSON.php")
+        let url = NSURL(string: "http://aviationweather.gov/gis/scripts/PirepJSON.php")
         
         // send out the request
         let session = NSURLSession.sharedSession()
@@ -58,49 +58,56 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results{
-                            
                             let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            let encodedPirep:String = properties["rawOb"] as! String
                             var coordinates:[Double] = []
                             var latitude:Double
                             var longitude:Double
                             coordinates = geometry["coordinates"] as! [Double]
                             longitude = (coordinates[0])
                             latitude = (coordinates[1])
-                            if encodedPirep.containsString("TB "){
-                                let turb = encodedPirep
-                                if turb.containsString("SMOOTH") || turb.containsString("LGT-MOD"){
-                                    let location = CLLocationCoordinate2DMake(latitude, longitude)
-                                    let annotation = CustomPointAnnotation()
-                                    annotation.coordinate = location
-                                    annotation.pinCustomImageName = UIImage(named: "Light")
-                                    annotation.title = "PIREP"
-                                    annotation.subtitle = turb
-                                    self.pirepView.addAnnotation(annotation)
+                            let location = CLLocationCoordinate2DMake(latitude, longitude)
+                            
+                            let annotation = CustomPointAnnotation()
+                            annotation.coordinate = location
+                            annotation.title = "PIREP"
+                            annotation.subtitle = "turb"
+                            
+                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+                            let rawObservation:String = properties["rawOb"] as! String
+                            
+                            let conditionsInRawOB = rawObservation.componentsSeparatedByString("/")
+                            for condition in conditionsInRawOB{
+                                if condition.containsString("TB "){
+                                    
+                                    print(condition)
+                                    if condition.containsString("SMTH") || condition.containsString("SMOOTH"){
+                                        annotation.pinCustomImageName = UIImage(named: "Smooth-LightT")
+                                    }
+                                    else if condition.containsString("LGT ") || condition.containsString("LIGHT"){
+                                        annotation.pinCustomImageName = UIImage(named: "LightT")
+                                    }
+                                    else if condition.containsString("LGT-MOD") || condition.containsString("LIGHT TO MODERATE"){
+                                        annotation.pinCustomImageName = UIImage(named:"Light-ModerateT" )
+                                    }
+                                    else if condition.containsString("MOD") || condition.containsString("MODERATE") || condition.containsString("MDT"){
+                                        annotation.pinCustomImageName = UIImage(named: "ModerateT")
+                                    }
+                                    else if condition.containsString("MOD-SEV") || condition.containsString("MODERATE TO SEVERE"){
+                                        annotation.pinCustomImageName = UIImage(named: "Moderate-SevereT")
+                                    }
+                                    else if condition.containsString("SEV"){
+                                        annotation.pinCustomImageName = UIImage(named: "SevereT")
+                                    }
+                                    else if condition.containsString("EXTRM"){
+                                        annotation.pinCustomImageName = UIImage(named: "ExtremeT")
+                                    }
+                                    else if condition.containsString("NEG") || condition.containsString("NEGATIVE"){
+                                        annotation.pinCustomImageName = UIImage(named: "NilT")
+                                    }
                                 }
-                                else if turb.containsString("MOD"){
-                                    let location = CLLocationCoordinate2DMake(latitude, longitude)
-                                    let annotation = CustomPointAnnotation()
-                                    annotation.coordinate = location
-                                    annotation.pinCustomImageName = UIImage(named: "Moderate-Severe")
-                                    annotation.title = "PIREP"
-                                    annotation.subtitle = turb
-                                    self.pirepView.addAnnotation(annotation)
-                                }
-                                else if turb.containsString("LGT"){
-                                    let location = CLLocationCoordinate2DMake(latitude, longitude)
-                                    let annotation = CustomPointAnnotation()
-                                    annotation.coordinate = location
-                                    annotation.pinCustomImageName = UIImage(named: "Trace-Light")
-                                    annotation.title = "PIREP"
-                                    annotation.subtitle = turb
-                                    self.pirepView.addAnnotation(annotation)
-                                }
-                              
-                              
                             }
                             
+                            self.pirepView.addAnnotation(annotation)
                             
                         }
                     })
@@ -142,4 +149,3 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         super.didReceiveMemoryWarning()
     }
 }
-

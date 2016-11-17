@@ -154,7 +154,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
 //                                    
 //                                }
                                 if (windSpeed!) < 1 {
-                                    let windDirectionImage:UIImage = UIImage(named: "Calm1")!
+                                    let windDirectionImage:UIImage = UIImage(named: "Calm")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
                                 }
                                 else if Int(windSpeed!) > 0 && Int(windSpeed!) < 3{

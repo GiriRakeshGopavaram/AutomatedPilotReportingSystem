@@ -108,27 +108,12 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             else{
                                 
                                 let integer = Int(windDirectionAsString)
-                                if integer <= (90){
-                                    windlongitude = (coordinates[0] )
-                                    windlatitude = (coordinates[1])
-                                }
-                                else if integer > 90 && integer < 180{
-                                    windlongitude = (coordinates[0])
-                                    windlatitude = (coordinates[1] )
-                                }
-                                else if integer > 180 && integer < 270{
-                                    windlongitude = (coordinates[0])
-                                    windlatitude = (coordinates[1] )
-                                }
-                                else if integer > 270 && integer < 361{
-                                    windlongitude = (coordinates[0])
-                                    windlatitude = (coordinates[1])
-                                }
+                                windlongitude = (coordinates[0] )
+                                windlatitude = (coordinates[1])
                                 let windImage = UIImage(named: "1-2")
                                 let windlocation = CLLocationCoordinate2DMake(windlatitude, windlongitude)
                                 windAnnotation.coordinate = windlocation
-                                //                                    windAnnotation.layer.anchorPoint = CGPointMake((0.5), (1.0));
-                                windAnnotation.pinCustomImageName = windImage?.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber ) + 90, flip: false)
+                                windAnnotation.pinCustomImageName = windImage?.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber ), flip: false)
                             }
                             windAnnotation.title = windDirectionAsString
                             
@@ -256,12 +241,12 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     let windDirectionImage:UIImage = UIImage(named: "58-62")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
                                 }
-                                else if Int(windSpeed!) > 62 && Int(windSpeed!) < 68{
-                                    let windDirectionImage:UIImage = UIImage(named: "63-67")!
+                                else if Int(windSpeed!) > 97 && Int(windSpeed!) < 103{
+                                    let windDirectionImage:UIImage = UIImage(named: "98-102")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
                                 }
-                                else if Int(windSpeed!) > 67 && Int(windSpeed!) < 73{
-                                    let windDirectionImage:UIImage = UIImage(named: "68-72")!
+                                else if Int(windSpeed!) > 102 && Int(windSpeed!) < 108{
+                                    let windDirectionImage:UIImage = UIImage(named: "103-107")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
                                 }
                             }

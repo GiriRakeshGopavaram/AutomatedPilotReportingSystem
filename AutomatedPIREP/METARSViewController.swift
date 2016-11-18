@@ -11,8 +11,8 @@ import MapKit
 import CoreLocation
 
 class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
-
-
+    
+    
     //var jsonURL:String = "MetarJSON"
     
     @IBAction func metOrBarb(sender: AnyObject) {
@@ -27,7 +27,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
             //jsonURL = "TafJSON"
             makeWindRequest()
             pirepView.removeAnnotations(pirepView.annotations)
-
+            
         }
     }
     @IBOutlet weak var pirepView: MKMapView!
@@ -40,10 +40,10 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         locationManager.requestAlwaysAuthorization()
         //locationManager.startUpdatingLocation()
         pirepView.delegate = self
- 
+        
         
     }
-
+    
     func makeMetarRequest(){
         let url = NSURL(string: "http:/aviationweather.gov/gis/scripts/MetarJSON.php")
         
@@ -73,34 +73,77 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                 // try parse it as array
                 if let results = jsonResult!["features"] as? [NSDictionary] {
                     // get the information of each element in an array, each element is stored in a dictionary
-                
-                        dispatch_async(dispatch_get_main_queue(), {
-                            for eachObject in results{
-                           
-                                let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-                                //let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                                var coordinates:[Double] = []
-                                var latitude:Double
-                                var longitude:Double
-                                coordinates = geometry["coordinates"] as! [Double]
-                                longitude = (coordinates[0])
-                                latitude = (coordinates[1])
-                                let location = CLLocationCoordinate2DMake(latitude, longitude)
-                                let annotation = CustomPointAnnotation()
-                                annotation.coordinate = location
-                                annotation.pinCustomImageName = UIImage(named: "Severe.png")
-                                self.pirepView.addAnnotation(annotation)
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        for eachObject in results{
                             
+                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+                            //let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+                            var coordinates:[Double] = []
+                            var flightlatitude:Double
+                            var flightlongitude:Double
+                            coordinates = geometry["coordinates"] as! [Double]
+                            
+                            flightlongitude = (coordinates[0])
+                            flightlatitude = (coordinates[1])
+                            let flightlocation = CLLocationCoordinate2DMake(flightlatitude, flightlongitude)
+                            let flightAnnotation = CustomPointAnnotation()
+                            flightAnnotation.coordinate = flightlocation
+                            flightAnnotation.pinCustomImageName = UIImage(named: "pin")
+                            self.pirepView.addAnnotation(flightAnnotation)
+                            
+                            
+                            
+                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+                            let windDirection = properties["wdir"]
+                            let windDirectionAsString = String(windDirection)
+                            
+                            var windlongitude:Double!
+                            var windlatitude:Double!
+                            let windAnnotation = CustomPointAnnotation()
+                            
+                            if windDirectionAsString.containsString("nil"){
+                                
                             }
-                        })
-                   
+                            else{
+                                
+                                let integer = Int(windDirectionAsString)
+                                if integer <= (90){
+                                    windlongitude = (coordinates[0] )
+                                    windlatitude = (coordinates[1])
+                                }
+                                else if integer > 90 && integer < 180{
+                                    windlongitude = (coordinates[0])
+                                    windlatitude = (coordinates[1] )
+                                }
+                                else if integer > 180 && integer < 270{
+                                    windlongitude = (coordinates[0])
+                                    windlatitude = (coordinates[1] )
+                                }
+                                else if integer > 270 && integer < 361{
+                                    windlongitude = (coordinates[0])
+                                    windlatitude = (coordinates[1])
+                                }
+                                let windImage = UIImage(named: "1-2")
+                                let windlocation = CLLocationCoordinate2DMake(windlatitude, windlongitude)
+                                windAnnotation.coordinate = windlocation
+                                //                                    windAnnotation.layer.anchorPoint = CGPointMake((0.5), (1.0));
+                                windAnnotation.pinCustomImageName = windImage?.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber ) + 90, flip: false)
+                            }
+                            windAnnotation.title = windDirectionAsString
+                            
+                            self.pirepView.addAnnotation(windAnnotation)
+                            
+                        }
+                    })
+                    
                 }
             }
-            
+                
             else {
                 print("Anything?")
             }
-          
+            
         }
         catch {
             
@@ -150,9 +193,9 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             }
                             else{
                                 
-//                                for speed in 0 ... 18{
-//                                    
-//                                }
+                                //                                for speed in 0 ... 18{
+                                //
+                                //                                }
                                 if (windSpeed!) < 1 {
                                     let windDirectionImage:UIImage = UIImage(named: "Calm")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
@@ -221,7 +264,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     let windDirectionImage:UIImage = UIImage(named: "68-72")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
                                 }
-                                print(windSpeed!)
                             }
                             annotation.title = "FB Winds over \(stationId)"
                             annotation.subtitle = "Winds:\(windDirection!) at \(windSpeed!) kt"
@@ -253,9 +295,11 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         let reuseId = "Location"
         
         var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             anView!.canShowCallout = true
+            anView!.centerOffset = CGPointMake(0, 10)
         }
         else {
             anView!.annotation = annotation
@@ -314,5 +358,3 @@ extension UIImage {
         return newImage
     }
 }
-
-

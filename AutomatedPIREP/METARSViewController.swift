@@ -4,7 +4,8 @@
 //
 //  Created by Gopavaram,Giri Rakesh on 10/13/16.
 //  Copyright © 2016 Gopavaram,Giri Rakesh. All rights reserved.
-//
+// https://www.aviationweather.gov/docs/metar/wxSymbols_anno1.pdf
+//http://www.met.tamu.edu/class/metar/quick-metar.html -- Decoding a METAR
 
 import UIKit
 import MapKit
@@ -73,52 +74,83 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                 // try parse it as array
                 if let results = jsonResult!["features"] as? [NSDictionary] {
                     // get the information of each element in an array, each element is stored in a dictionary
+                    var count = 0
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results{
                             
                             let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-                            //let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            var coordinates:[Double] = []
-                            var flightlatitude:Double
-                            var flightlongitude:Double
-                            coordinates = geometry["coordinates"] as! [Double]
+                            var stationCoordinates:[Double] = []
+                            var stationLatitude:Double
+                            var stationLongitude:Double
+                            stationCoordinates = geometry["coordinates"] as! [Double]
                             
-                            flightlongitude = (coordinates[0])
-                            flightlatitude = (coordinates[1])
-                            let flightlocation = CLLocationCoordinate2DMake(flightlatitude, flightlongitude)
-                            let flightAnnotation = CustomPointAnnotation()
-                            flightAnnotation.coordinate = flightlocation
-                            flightAnnotation.pinCustomImageName = UIImage(named: "pin")
-                            self.pirepView.addAnnotation(flightAnnotation)
+                            stationLongitude = (stationCoordinates[0])
+                            stationLatitude = (stationCoordinates[1])
+                            let stationLocation = CLLocationCoordinate2DMake(stationLatitude, stationLongitude)
+                            let stationAnnotation = CustomPointAnnotation()
+                            stationAnnotation.coordinate = stationLocation
+                            
+                            stationAnnotation.pinCustomImageName = UIImage(named: "pin")
+                            self.pirepView.addAnnotation(stationAnnotation)
                             
                             
                             
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            let windDirection = properties["wdir"]
-                            let windDirectionAsString = String(windDirection)
-                            
-                            var windlongitude:Double!
-                            var windlatitude:Double!
-                            let windAnnotation = CustomPointAnnotation()
-                            
-                            if windDirectionAsString.containsString("nil"){
-                                
+                            let id = properties["id"]
+                            let flightCategory = properties["fltcat"]
+                            let ceiling = properties["ceil"]
+                            let visibilty = properties["visib"]
+                            let flightcatasString = String(flightCategory)
+                            let ceilAsString = String(ceiling)
+                            let visibAsString = String(visibilty)
+                            if flightcatasString.containsString("nil"){
+                                //print(flightcatasString)
+                                if ceilAsString.containsString("nil"){
+                                    if visibAsString.containsString("nil"){
+                                        count += 1
+                                        //print(id)
+                                    }
+                                }
                             }
                             else{
+                                //print(flightcatasString)
+                                switch true{
+                                    
+                                case flightcatasString.containsString("MVFR") : stationAnnotation.pinCustomImageName = UIImage(named: "blue circle transperant")
+                                    break
+                                case flightcatasString.containsString("IFR"):
+                                    stationAnnotation.pinCustomImageName = UIImage(named: "0%")
+                                    break
+                                case flightcatasString.containsString("VFR"):
+                                    stationAnnotation.pinCustomImageName = UIImage(named: "green 0")
+                                    break
+                                case flightcatasString.containsString("LIFR"):
+                                    stationAnnotation.pinCustomImageName = UIImage(named: "LIFR")
+                                    break
+                                default :stationAnnotation.pinCustomImageName = UIImage(named: "pin")
+                                }
                                 
-                                let integer = Int(windDirectionAsString)
-                                windlongitude = (coordinates[0] )
-                                windlatitude = (coordinates[1])
-                                let windImage = UIImage(named: "1-2")
-                                let windlocation = CLLocationCoordinate2DMake(windlatitude, windlongitude)
+                            }
+                            
+                            let windDirection = properties["wdir"]
+                            let windDirectionAsString = String(windDirection)
+                            var windLongitude:Double!
+                            var windLatitude:Double!
+                            let windAnnotation = CustomPointAnnotation()
+                            if windDirectionAsString.containsString("nil"){
+                                print(windDirectionAsString)
+                            }
+                            else{
+                                windLongitude = stationCoordinates[0]
+                                windLatitude = stationCoordinates[1]
+                                let windImage = UIImage(named: "1To2")
+                                let windlocation = CLLocationCoordinate2DMake(windLatitude, windLongitude)
                                 windAnnotation.coordinate = windlocation
                                 windAnnotation.pinCustomImageName = windImage?.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber ), flip: false)
+                                self.pirepView.addAnnotation(windAnnotation)
                             }
-                            windAnnotation.title = windDirectionAsString
-                            
-                            self.pirepView.addAnnotation(windAnnotation)
-                            
+                         
                         }
                     })
                     
@@ -178,9 +210,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             }
                             else{
                                 
-                                //                                for speed in 0 ... 18{
-                                //
-                                //                                }
                                 if (windSpeed!) < 1 {
                                     let windDirectionImage:UIImage = UIImage(named: "Calm")!
                                     annotation.pinCustomImageName = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection!)+90, flip: false)
@@ -252,7 +281,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             }
                             annotation.title = "FB Winds over \(stationId)"
                             annotation.subtitle = "Winds:\(windDirection!) at \(windSpeed!) kt"
-                            //annotation.subtitle = "WindSpeed \(windSpeed!)"
                             self.pirepView.addAnnotation(annotation)
                             
                         }

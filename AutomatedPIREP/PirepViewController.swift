@@ -109,7 +109,6 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                         
                                     }
                                     
-                                    print(condition)
                                 }
                             }
                             

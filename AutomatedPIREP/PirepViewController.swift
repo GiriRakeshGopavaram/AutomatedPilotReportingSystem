@@ -10,10 +10,10 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
+class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet  weak var pirepView: MKMapView!
-    
+    var point:CGPoint!
     let locationManager = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
     //var pointAnnotation:CustomPointAnnotation!
@@ -182,10 +182,35 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         return annotationView
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
+    
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
     {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+      
+        let vc = storyboard.instantiateViewControllerWithIdentifier("popOver")
+        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+       
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        //popover.barButtonItem = sender
+        popover.sourceView = mapView
+       // popover.sourceRect = CGRect(x:0 ,y:0 ,width: 195, height: 195)
+       
+        popover.delegate = self
+        presentViewController(vc, animated: true, completion:nil)
+        
         
     }
+//    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+//        return UIModalPresentationStyle.None
+//    }
+    
+
+    
+    func dismiss() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

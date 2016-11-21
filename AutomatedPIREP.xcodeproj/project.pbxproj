@@ -27,6 +27,7 @@
 		C069F8641DB8604900D9A0A5 /* PIREPLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */; };
 		C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F8621DB8604900D9A0A5 /* METARSViewController.swift */; };
 		C0B0A50E1DE2513200A94955 /* 1To2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B0A50D1DE2513200A94955 /* 1To2.png */; };
+		C0B0A5101DE2727100A94955 /* PopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B0A50F1DE2727100A94955 /* PopOverController.swift */; };
 		C0DE16911DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DE16901DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png */; };
 		CA8556881DE1219D00E24E6E /* blueImages in Resources */ = {isa = PBXBuildFile; fileRef = CA8556851DE1219D00E24E6E /* blueImages */; };
 		CA8556891DE1219D00E24E6E /* greenIMags in Resources */ = {isa = PBXBuildFile; fileRef = CA8556861DE1219D00E24E6E /* greenIMags */; };
@@ -76,6 +77,7 @@
 		C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPLocations.swift; sourceTree = "<group>"; };
 		C069F8621DB8604900D9A0A5 /* METARSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = METARSViewController.swift; sourceTree = "<group>"; };
 		C0B0A50D1DE2513200A94955 /* 1To2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1To2.png; sourceTree = "<group>"; };
+		C0B0A50F1DE2727100A94955 /* PopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverController.swift; sourceTree = "<group>"; };
 		C0DE16901DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oie_gvYtmEKCOkhE.png; sourceTree = "<group>"; };
 		CA8556851DE1219D00E24E6E /* blueImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blueImages; sourceTree = "<group>"; };
 		CA8556861DE1219D00E24E6E /* greenIMags */ = {isa = PBXFileReference; lastKnownFileType = folder; path = greenIMags; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */,
 				C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */,
+				C0B0A50F1DE2727100A94955 /* PopOverController.swift */,
 				4DE3365F1DDE1EEE00E70766 /* Calm1.png */,
 				72DE346F1DC466410085463F /* PIREPSendViewController.swift */,
 				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */,
+				C0B0A5101DE2727100A94955 /* PopOverController.swift in Sources */,
 				C069F8641DB8604900D9A0A5 /* PIREPLocations.swift in Sources */,
 				72DE34681DC40D830085463F /* HazardsViewController.swift in Sources */,
 				72DE34701DC466410085463F /* PIREPSendViewController.swift in Sources */,

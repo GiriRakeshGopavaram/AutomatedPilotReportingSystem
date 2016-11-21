@@ -28,7 +28,6 @@
 		C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F8621DB8604900D9A0A5 /* METARSViewController.swift */; };
 		C0B0A50E1DE2513200A94955 /* 1To2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B0A50D1DE2513200A94955 /* 1To2.png */; };
 		C0DE16911DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DE16901DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png */; };
-		CA8556841DE0EEB000E24E6E /* 102.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8556831DE0EEB000E24E6E /* 102.png */; };
 		CA8556881DE1219D00E24E6E /* blueImages in Resources */ = {isa = PBXBuildFile; fileRef = CA8556851DE1219D00E24E6E /* blueImages */; };
 		CA8556891DE1219D00E24E6E /* greenIMags in Resources */ = {isa = PBXBuildFile; fileRef = CA8556861DE1219D00E24E6E /* greenIMags */; };
 		CA85568A1DE1219D00E24E6E /* red images in Resources */ = {isa = PBXBuildFile; fileRef = CA8556871DE1219D00E24E6E /* red images */; };
@@ -78,7 +77,6 @@
 		C069F8621DB8604900D9A0A5 /* METARSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = METARSViewController.swift; sourceTree = "<group>"; };
 		C0B0A50D1DE2513200A94955 /* 1To2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1To2.png; sourceTree = "<group>"; };
 		C0DE16901DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oie_gvYtmEKCOkhE.png; sourceTree = "<group>"; };
-		CA8556831DE0EEB000E24E6E /* 102.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 102.png; sourceTree = "<group>"; };
 		CA8556851DE1219D00E24E6E /* blueImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blueImages; sourceTree = "<group>"; };
 		CA8556861DE1219D00E24E6E /* greenIMags */ = {isa = PBXFileReference; lastKnownFileType = folder; path = greenIMags; sourceTree = "<group>"; };
 		CA8556871DE1219D00E24E6E /* red images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "red images"; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 		C069F81E1DB85FDA00D9A0A5 = {
 			isa = PBXGroup;
 			children = (
-				CA8556831DE0EEB000E24E6E /* 102.png */,
 				C069F8291DB85FDA00D9A0A5 /* AutomatedPIREP */,
 				C069F8401DB85FDA00D9A0A5 /* AutomatedPIREPTests */,
 				C069F84B1DB85FDA00D9A0A5 /* AutomatedPIREPUITests */,
@@ -297,7 +294,6 @@
 				C069F8371DB85FDA00D9A0A5 /* LaunchScreen.storyboard in Resources */,
 				CA85568A1DE1219D00E24E6E /* red images in Resources */,
 				C0DE16911DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png in Resources */,
-				CA8556841DE0EEB000E24E6E /* 102.png in Resources */,
 				C0B0A50E1DE2513200A94955 /* 1To2.png in Resources */,
 				C062D8681DDCF4DB00CC8131 /* Assets.xcassets in Resources */,
 				72DE34721DC47C640085463F /* Weather.ttf in Resources */,

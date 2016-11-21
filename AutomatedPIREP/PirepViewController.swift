@@ -150,6 +150,11 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         
         return annotationView
     }
+    
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
+    {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

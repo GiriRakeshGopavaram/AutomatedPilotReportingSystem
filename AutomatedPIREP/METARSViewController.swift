@@ -144,7 +144,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             else{
                                 windLongitude = stationCoordinates[0]
                                 windLatitude = stationCoordinates[1]
-                                let windImage = UIImage(named: "1To2")
+                                let windImage = UIImage(named: "3-7")
                                 let windlocation = CLLocationCoordinate2DMake(windLatitude, windLongitude)
                                 windAnnotation.coordinate = windlocation
                                 windAnnotation.pinCustomImageName = windImage?.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber ), flip: false)
@@ -298,8 +298,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         }
     }
     
-    
-    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is CustomPointAnnotation) {
             return nil
@@ -312,7 +310,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             anView!.canShowCallout = true
-            anView!.centerOffset = CGPointMake(0, 10)
         }
         else {
             anView!.annotation = annotation
@@ -370,4 +367,5 @@ extension UIImage {
         
         return newImage
     }
+    
 }

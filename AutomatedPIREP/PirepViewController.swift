@@ -110,6 +110,37 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     }
                                     
                                 }
+                                else if condition.containsString("IC ") {
+                                    print(condition)
+                                    annotation.title = "PIREP"
+                                    annotation.subtitle = "icing"
+
+                                    switch true {
+                                    case condition.containsString("LGT ") || condition.containsString("LT "):
+                                        annotation.pinCustomImageName = UIImage(named:"LightIC")
+                                        break
+                                    case condition.containsString("MOD ") || condition.containsString("MODERATE ") :
+                                        annotation.pinCustomImageName = UIImage(named:"ModerateIC")
+                                        break
+                                    case condition.containsString("LGT-MOD ") :
+                                        annotation.pinCustomImageName = UIImage(named: "Light-ModerateIC ")
+                                        break
+                                    case condition.containsString("TRACE ") :
+                                        annotation.pinCustomImageName = UIImage(named: "TraceIC")
+                                        break
+                                    case condition.containsString("NEG ") :
+                                        annotation.pinCustomImageName = UIImage(named: "NilIC")
+                                        break
+                                    case condition.containsString("SEV ") :
+                                        annotation.pinCustomImageName = UIImage(named: "SevereIC")
+                                        break
+                                    case condition.containsString("MOD-SEV"):
+                                        annotation.pinCustomImageName = UIImage(named: "Moderate-SevereIC")
+                                        break
+                                    default:
+                                        break
+                                    }
+                                }
                             }
                             
                             self.pirepView.addAnnotation(annotation)

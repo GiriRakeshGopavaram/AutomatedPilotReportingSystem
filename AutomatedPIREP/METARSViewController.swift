@@ -104,6 +104,18 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             let flightcatasString = String(flightCategory)
                             let ceilAsString = String(ceiling)
                             let visibAsString = String(visibilty)
+                            let cover1 = (properties["cover"])
+                            let string = String(cover1)
+                            var cover = ""
+                            if string.containsString("nil"){
+                                
+                            }
+                            else{
+                                let myString = (cover1!)
+                                cover = myString as! String
+                            }
+                            
+                            
                             if flightcatasString.containsString("nil"){
                                 //print(flightcatasString)
                                 if ceilAsString.containsString("nil"){
@@ -117,42 +129,218 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 //print(flightcatasString)
                                 switch true{
                                     
-                                case flightcatasString.containsString("MVFR") : stationAnnotation.pinCustomImageName = UIImage(named: "blue circle transperant")
+                                case flightcatasString.containsString("MVFR") :
+                                    switch cover  {
+                                        
+                                    case "CLR" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 0")
+                                        break
+                                    case "FEW" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue half line")
+                                        break
+                                    case "SCT" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 25%")
+                                        break
+                                    case "BKN" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 75%")
+                                        break
+                                    case "OVC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 75%")
+                                        break
+                                    case "IMC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue x")
+                                        break
+                                    default :
+                                        break
+                                        
+                                        
+                                    }
                                     break
                                 case flightcatasString.containsString("IFR"):
-                                    stationAnnotation.pinCustomImageName = UIImage(named: "0%")
+                                    switch cover  {
+                                        
+                                    case "CLR" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 0")
+                                        break
+                                    case "FEW" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red half line")
+                                        break
+                                    case "SCT" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 25%")
+                                        break
+                                    case "BKN" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 75%")
+                                        break
+                                    case "OVC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 75%")
+                                        break
+                                    case "IMC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red x")
+                                        break
+                                    default :
+                                        break
+                                        
+                                        
+                                    }
+                                    
                                     break
                                 case flightcatasString.containsString("VFR"):
-                                    stationAnnotation.pinCustomImageName = UIImage(named: "green 0")
+                                    switch cover  {
+                                        
+                                    case "CLR" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 0")
+                                        break
+                                    case "FEW" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green line")
+                                        break
+                                    case "SCT" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 25%")
+                                        break
+                                    case "BKN" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75%")
+                                        break
+                                    case "OVC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75%")
+                                        break
+                                    case "IMC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green x")
+                                        break
+                                    default :
+                                        break
+                                        
+                                    }
                                     break
                                 case flightcatasString.containsString("LIFR"):
-                                    stationAnnotation.pinCustomImageName = UIImage(named: "LIFR")
+                                    switch cover  {
+                                        
+                                    case "CLR" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 0")
+                                        break
+                                    case "FEW" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta line")
+                                        break
+                                    case "SCT" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 25%")
+                                        break
+                                    case "BKN" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 75%")
+                                        break
+                                    case "OVC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 75%")
+                                        break
+                                    case "IMC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta x")
+                                        break
+                                    default :
+                                        break
+                                        
+                                    }
+                                    
                                     break
                                 default :stationAnnotation.pinCustomImageName = UIImage(named: "pin")
                                 }
                                 
                             }
-                            
+                            var windImage:UIImage!
+                            let windSpeedAsNumber = properties["wspd"]
+                            let windSpeedAsString = "\(windSpeedAsNumber)"
                             let windDirection = properties["wdir"]
                             let windDirectionAsString = String(windDirection)
+                            let windLongitude1:String = String(stationCoordinates[0])
+                            let windLatitude1:String = String(stationCoordinates[1])
+                            
                             var windLongitude:Double!
                             var windLatitude:Double!
                             let windAnnotation = CustomPointAnnotation()
-                            if windDirectionAsString.containsString("nil"){
-                                print(windDirectionAsString)
+                            if windDirectionAsString.containsString("nil") || windSpeedAsString.containsString("nil") || windLongitude1.containsString("nil") || windLatitude1.containsString("nil"){
+                                print("Sorry, I don't want a Nil -- \(windDirectionAsString)")
                             }
                             else{
                                 windLongitude = stationCoordinates[0]
-                                windLatitude = stationCoordinates[1]
-                                let windImage = UIImage(named: "3-7")
+                                 windLatitude = stationCoordinates[1]
+                                
+                            
+                                let windSpeed:Int = Int(windSpeedAsNumber! as! NSNumber)
+                                 print(windSpeed)
+                                if (windSpeed) < 1 {
+                                    
+                                    let windDirectionImage:UIImage = UIImage(named: "Calm")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 0 && Int(windSpeed) < 3{
+                                    let windDirectionImage:UIImage = UIImage(named: "1-2")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 2 && Int(windSpeed) < 8{
+                                    let windDirectionImage:UIImage = UIImage(named: "3-7")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 7 && Int(windSpeed) < 13{
+                                    let windDirectionImage:UIImage = UIImage(named: "8-12")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 12 && Int(windSpeed) < 18{
+                                    let windDirectionImage:UIImage = UIImage(named: "13-17")!
+                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 17 && Int(windSpeed) < 23{
+                                    let windDirectionImage:UIImage = UIImage(named: "18-22")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 22 && Int(windSpeed) < 28{
+                                    let windDirectionImage:UIImage = UIImage(named: "23-27")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    
+                                }
+                                else if Int(windSpeed) > 27 && Int(windSpeed) < 33{
+                                    let windDirectionImage:UIImage = UIImage(named: "28-32")!
+                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 32 && Int(windSpeed) < 38{
+                                    let windDirectionImage:UIImage = UIImage(named: "33-37")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    
+                                }
+                                else if Int(windSpeed) > 37 && Int(windSpeed) < 43{
+                                    let windDirectionImage:UIImage = UIImage(named: "38-42")!
+                                   windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    
+                                }
+                                else if Int(windSpeed) > 42 && Int(windSpeed) < 48{
+                                    let windDirectionImage:UIImage = UIImage(named: "43-47")!
+                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 47 && Int(windSpeed) < 53{
+                                    let windDirectionImage:UIImage = UIImage(named: "48-52")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 52 && Int(windSpeed) < 58{
+                                    let windDirectionImage:UIImage = UIImage(named: "53-57")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 57 && Int(windSpeed) < 63{
+                                    let windDirectionImage:UIImage = UIImage(named: "58-62")!
+                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 97 && Int(windSpeed) < 103{
+                                    let windDirectionImage:UIImage = UIImage(named: "98-102")!
+                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
+                                else if Int(windSpeed) > 102 && Int(windSpeed) < 108{
+                                    let windDirectionImage:UIImage = UIImage(named: "103-107")!
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                }
                                 let windlocation = CLLocationCoordinate2DMake(windLatitude, windLongitude)
                                 windAnnotation.coordinate = windlocation
                                 windAnnotation.pinCustomImageName = windImage?.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber ), flip: false)
                                 self.pirepView.addAnnotation(windAnnotation)
                             }
-                         
+                            
+                            
+                            }
+
                         }
-                    })
+                    )
                     
                 }
             }
@@ -323,7 +511,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         super.didReceiveMemoryWarning()
     }
     
-    
 }
 extension UIImage {
     public func imageRotatedByDegrees(degrees: CGFloat, flip: Bool) -> UIImage {
@@ -367,5 +554,10 @@ extension UIImage {
         
         return newImage
     }
+    
+    
+    
+    
+    
     
 }

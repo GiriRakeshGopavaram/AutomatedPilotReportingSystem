@@ -111,7 +111,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     
                                 }
                                 else if condition.containsString("IC ") {
-                                    print(condition)
+                                   
                                     annotation.title = "PIREP"
                                     annotation.subtitle = "icing"
 

@@ -186,24 +186,39 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
     {
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-      
-        let vc = storyboard.instantiateViewControllerWithIdentifier("popOver")
-        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-       
-        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-        //popover.barButtonItem = sender
-        popover.sourceView = mapView
-       // popover.sourceRect = CGRect(x:0 ,y:0 ,width: 195, height: 195)
-       
-        popover.delegate = self
-        presentViewController(vc, animated: true, completion:nil)
-        
-        
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//      
+//        let vc = storyboard.instantiateViewControllerWithIdentifier("popOver")
+//        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+//       
+//        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+//        //popover.barButtonItem = sender
+//        popover.sourceView = mapView
+//       // popover.sourceRect = CGRect(x:0 ,y:0 ,width: 195, height: 195)
+//       
+//        popover.delegate = self
+//        presentViewController(vc, animated: true, completion:nil)
+//        
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover")
+        popoverVC!.modalPresentationStyle = .Popover
+        // Present it before configuring it
+        presentViewController(popoverVC!, animated: true, completion: nil)
+        // Now the popoverPresentationController has been created
+        if let popoverController = popoverVC!.popoverPresentationController {
+            popoverController.sourceView = view
+           // popoverController.sourceRect = mapView.bounds
+            popoverController.permittedArrowDirections = .Any
+            popoverController.delegate = self
+        }
+    
     }
-//    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-//        return UIModalPresentationStyle.None
-//    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.FullScreen
+    }
     
 
     

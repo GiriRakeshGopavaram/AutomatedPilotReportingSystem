@@ -148,7 +148,6 @@
 				C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */,
 				C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */,
 				C0B0A50F1DE2727100A94955 /* PopOverController.swift */,
-				4DE3365F1DDE1EEE00E70766 /* Calm1.png */,
 				72DE346F1DC466410085463F /* PIREPSendViewController.swift */,
 				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
 				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
@@ -158,6 +157,7 @@
 				C069F8351DB85FDA00D9A0A5 /* LaunchScreen.storyboard */,
 				C069F85A1DB8600700D9A0A5 /* Main.storyboard */,
 				C069F85C1DB8602200D9A0A5 /* Info.plist */,
+				4DE3365F1DDE1EEE00E70766 /* Calm1.png */,
 				C062D8671DDCF4DB00CC8131 /* Assets.xcassets */,
 				CA8556851DE1219D00E24E6E /* blueImages */,
 				CA8556861DE1219D00E24E6E /* greenIMags */,
@@ -475,6 +475,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nwmissouri.edu.AutomatedPIREP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -486,6 +487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nwmissouri.edu.AutomatedPIREP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

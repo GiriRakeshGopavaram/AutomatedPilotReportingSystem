@@ -213,23 +213,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("LIFR"):
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 0")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta clr")
                                         break
                                     case "FEW" :
                                         stationAnnotation.pinCustomImageName = UIImage(named: "magenta half line")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta imc")
                                         break
                                     default :
                                         break

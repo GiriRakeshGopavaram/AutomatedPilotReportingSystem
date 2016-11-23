@@ -32,9 +32,6 @@
 		C0B0A50E1DE2513200A94955 /* 1To2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B0A50D1DE2513200A94955 /* 1To2.png */; };
 		C0B0A5101DE2727100A94955 /* PopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B0A50F1DE2727100A94955 /* PopOverController.swift */; };
 		C0DE16911DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DE16901DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png */; };
-		CA8556881DE1219D00E24E6E /* blueImages in Resources */ = {isa = PBXBuildFile; fileRef = CA8556851DE1219D00E24E6E /* blueImages */; };
-		CA8556891DE1219D00E24E6E /* greenIMags in Resources */ = {isa = PBXBuildFile; fileRef = CA8556861DE1219D00E24E6E /* greenIMags */; };
-		CA85568A1DE1219D00E24E6E /* red images in Resources */ = {isa = PBXBuildFile; fileRef = CA8556871DE1219D00E24E6E /* red images */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,9 +82,6 @@
 		C0B0A50D1DE2513200A94955 /* 1To2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1To2.png; sourceTree = "<group>"; };
 		C0B0A50F1DE2727100A94955 /* PopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverController.swift; sourceTree = "<group>"; };
 		C0DE16901DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oie_gvYtmEKCOkhE.png; sourceTree = "<group>"; };
-		CA8556851DE1219D00E24E6E /* blueImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blueImages; sourceTree = "<group>"; };
-		CA8556861DE1219D00E24E6E /* greenIMags */ = {isa = PBXFileReference; lastKnownFileType = folder; path = greenIMags; sourceTree = "<group>"; };
-		CA8556871DE1219D00E24E6E /* red images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "red images"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,15 +156,13 @@
 				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
 				72DE34671DC40D830085463F /* HazardsViewController.swift */,
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
+				84951FBC1DE521AF00FEACB8 /* Metars_Images */,
 				C0B0A50D1DE2513200A94955 /* 1To2.png */,
 				C069F8351DB85FDA00D9A0A5 /* LaunchScreen.storyboard */,
 				C069F85A1DB8600700D9A0A5 /* Main.storyboard */,
 				C069F85C1DB8602200D9A0A5 /* Info.plist */,
 				4DE3365F1DDE1EEE00E70766 /* Calm1.png */,
 				C062D8671DDCF4DB00CC8131 /* Assets.xcassets */,
-				CA8556851DE1219D00E24E6E /* blueImages */,
-				CA8556861DE1219D00E24E6E /* greenIMags */,
-				CA8556871DE1219D00E24E6E /* red images */,
 				72DE34781DC4FBF50085463F /* Supporting_Files */,
 			);
 			path = AutomatedPIREP;
@@ -298,15 +290,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8556891DE1219D00E24E6E /* greenIMags in Resources */,
 				C069F85D1DB8602200D9A0A5 /* Info.plist in Resources */,
 				84FB89BD1DE41F18006C5BBC /* UpdatedImages in Resources */,
 				C069F85B1DB8600700D9A0A5 /* Main.storyboard in Resources */,
 				4DE336601DDE1EEE00E70766 /* Calm1.png in Resources */,
-				CA8556881DE1219D00E24E6E /* blueImages in Resources */,
 				C069F8371DB85FDA00D9A0A5 /* LaunchScreen.storyboard in Resources */,
-				CA85568A1DE1219D00E24E6E /* red images in Resources */,
 				C0DE16911DD2B6EA005EC20D /* oie_gvYtmEKCOkhE.png in Resources */,
+				84951FBD1DE521AF00FEACB8 /* Metars_Images in Resources */,
 				C0B0A50E1DE2513200A94955 /* 1To2.png in Resources */,
 				C062D8681DDCF4DB00CC8131 /* Assets.xcassets in Resources */,
 				72DE34721DC47C640085463F /* Weather.ttf in Resources */,

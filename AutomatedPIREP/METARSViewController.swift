@@ -132,23 +132,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("MVFR") :
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 0")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue half line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue imc")
                                         break
                                     default :
                                         break
@@ -159,23 +159,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("IFR"):
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 0")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red half line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red imc")
                                         break
                                     default :
                                         break
@@ -187,23 +187,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("VFR"):
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 0")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green imc")
                                         break
                                     default :
                                         break
@@ -213,23 +213,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("LIFR"):
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 0")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta imc")
                                         break
                                     default :
                                         break

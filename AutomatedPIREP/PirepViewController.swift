@@ -13,6 +13,15 @@ import CoreLocation
 class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet  weak var pirepView: MKMapView!
+    var icaoId:String!
+    var obsTime:String!
+    var airepType:String!
+    var aircraftType:String!
+    var windSpeed:String!
+    var windDirection:String!
+    var flightLevel:String!
+    var rawObservation:String!
+    var temperature:String!
     var point:CGPoint!
     let locationManager = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
@@ -30,6 +39,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         pirepView.mapType = MKMapType.Standard
         pirepView.showsUserLocation = true
         makeRequest()
+        
     }
     
     
@@ -73,39 +83,78 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             annotation.subtitle = "turb"
                             
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            let rawObservation:String = properties["rawOb"] as! String
+                            self.icaoId = (properties["icaoId"]) as! String
+                            self.obsTime = properties["obsTime"] as! String
+                            self.airepType = properties["airepType"] as! String
+                            self.aircraftType = properties["acType"] as! String
+                            self.flightLevel = properties["fltlvl"] as! String
+                            let temperatures = properties["temp"]
+                            if String(temperatures).containsString("nil"){
+                                self.temperature = "Unknown"
+                            }
+                            else{
+                                self.temperature = temperatures as! String
+                            }
                             
+                            let windSpeeds = properties["wspd"]
+                            if String(windSpeeds).containsString("nil"){
+                                
+                            }else{
+                              self.windSpeed = windSpeeds as! String
+                            }
+                            let windDirections = properties["wdir"]
+                            if String(windDirections).containsString("nil"){
+                                
+                            }
+                            else{
+                              self.windDirection =  windDirections as! String
+                            }
+                            let rawObservation:String = properties["rawOb"] as! String
+                            self.rawObservation = rawObservation
                             let conditionsInRawOB = rawObservation.componentsSeparatedByString("/")
                             for condition in conditionsInRawOB{
                                 if condition.containsString("TB "){
+                                    print(condition)
                                     switch true {
                                         
                                     case  condition.containsString("SMTH") || condition.containsString("SMOOTH"):
                                         annotation.pinCustomImageName = UIImage(named: "Smooth-LightT")
                                         break
+                                        
                                     case condition.containsString("LGT ") || condition.containsString("LIGHT"):
                                         annotation.pinCustomImageName = UIImage(named: "LightT")
+
                                         break
+
                                     case condition.containsString("LGT-MOD") || condition.containsString("LIGHT TO MODERATE"):
                                         annotation.pinCustomImageName = UIImage(named:"Light-ModerateT" )
+
                                         break
+                                        
+                                        
                                     case condition.containsString("MOD") || condition.containsString("MODERATE") || condition.containsString("MDT"):
                                         annotation.pinCustomImageName = UIImage(named: "ModerateT")
                                         break
+                                        
                                     case condition.containsString("MOD-SEV") || condition.containsString("MODERATE TO SEVERE"):
                                         annotation.pinCustomImageName = UIImage(named: "Moderate-SevereT")
                                         break
+                                        
                                     case condition.containsString("SEV"):
                                         annotation.pinCustomImageName = UIImage(named: "SevereT")
                                         break
+                                        
                                     case condition.containsString("EXTRM"):
                                         annotation.pinCustomImageName = UIImage(named: "ExtremeT")
                                         break
+                                        
                                     case condition.containsString("NEG") || condition.containsString("NEGATIVE"):
                                         annotation.pinCustomImageName = UIImage(named: "NilT")
                                         break
+                                        
                                     default:
-                                        break
+                                         break
+                                        
                                         
                                     }
                                     
@@ -119,26 +168,34 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     case condition.containsString("LGT ") || condition.containsString("LT "):
                                         annotation.pinCustomImageName = UIImage(named:"LightIC")
                                         break
+                                        
                                     case condition.containsString("MOD ") || condition.containsString("MODERATE ") :
                                         annotation.pinCustomImageName = UIImage(named:"ModerateIC")
                                         break
+                                        
                                     case condition.containsString("LGT-MOD ") :
                                         annotation.pinCustomImageName = UIImage(named: "Light-ModerateIC ")
                                         break
+                                        
                                     case condition.containsString("TRACE ") :
                                         annotation.pinCustomImageName = UIImage(named: "TraceIC")
                                         break
+                                        
                                     case condition.containsString("NEG ") :
                                         annotation.pinCustomImageName = UIImage(named: "NilIC")
                                         break
+                                        
                                     case condition.containsString("SEV ") :
                                         annotation.pinCustomImageName = UIImage(named: "SevereIC")
                                         break
+                                        
                                     case condition.containsString("MOD-SEV"):
                                         annotation.pinCustomImageName = UIImage(named: "Moderate-SevereIC")
                                         break
+                                        
                                     default:
-                                        break
+                                         break
+                                        
                                     }
                                 }
                             }
@@ -152,7 +209,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
             }
                 
             else {
-                print("No results???")
+                // No results???")
             }
             
         }
@@ -185,31 +242,29 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
-    {
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//      
-//        let vc = storyboard.instantiateViewControllerWithIdentifier("popOver")
-//        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-//       
-//        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-//        //popover.barButtonItem = sender
-//        popover.sourceView = mapView
-//       // popover.sourceRect = CGRect(x:0 ,y:0 ,width: 195, height: 195)
-//       
-//        popover.delegate = self
-//        presentViewController(vc, animated: true, completion:nil)
-//        
-        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover")
-        popoverVC!.modalPresentationStyle = .Popover
+    {       
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! PIREPDataViewController
+        popoverVC.modalPresentationStyle = .Popover
         // Present it before configuring it
-        presentViewController(popoverVC!, animated: true, completion: nil)
+        presentViewController(popoverVC, animated: true, completion: nil)
         // Now the popoverPresentationController has been created
-        if let popoverController = popoverVC!.popoverPresentationController {
+        if let popoverController = popoverVC.popoverPresentationController {
             popoverController.sourceView = view
            // popoverController.sourceRect = mapView.bounds
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
+            popoverVC.icaoId = self.icaoId
+            popoverVC.obsTime = self.obsTime
+            popoverVC.airepType = self.airepType
+            popoverVC.aircraftType = self.aircraftType
+            popoverVC.windSpeed = self.windSpeed
+            popoverVC.windDirection = self.windDirection
+            popoverVC.flightLevel = self.flightLevel
+            popoverVC.rawObservation = self.rawObservation
+            popoverVC.temperature = self.temperature
         }
+       // performSegueWithIdentifier("codePopover", sender: nil)
+        
     
     }
     
@@ -229,4 +284,14 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-}
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        
+//            let vc = segue.destinationViewController as! PIREPDataViewController
+//            
+//            vc.icoaId = icaoId
+//        }
+    
+    }
+

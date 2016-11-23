@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
+class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate , UIPopoverPresentationControllerDelegate {
     
     
     //var jsonURL:String = "MetarJSON"
@@ -91,7 +91,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             let stationAnnotation = CustomPointAnnotation()
                             stationAnnotation.coordinate = stationLocation
                             
-                            stationAnnotation.pinCustomImageName = UIImage(named: "pin")
+                            stationAnnotation.pinCustomImageName = UIImage(named: "")
                             self.pirepView.addAnnotation(stationAnnotation)
                             
                             
@@ -133,22 +133,22 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     switch cover  {
                                         
                                     case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 0")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue half line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     default :
                                         break
@@ -160,22 +160,22 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     switch cover  {
                                         
                                     case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 0")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red half line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "red x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
                                         break
                                     default :
                                         break
@@ -188,22 +188,22 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     switch cover  {
                                         
                                     case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 0")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 0%")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green line")
-                                        break
-                                    case "SCT" :
                                         stationAnnotation.pinCustomImageName = UIImage(named: "green 25%")
                                         break
+                                    case "SCT" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75% ")
+                                        break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "imageedit_15_5744458101")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green half line ")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green x")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green half line")
                                         break
                                     default :
                                         break
@@ -217,7 +217,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                         stationAnnotation.pinCustomImageName = UIImage(named: "magenta 0")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta half line")
                                         break
                                     case "SCT" :
                                         stationAnnotation.pinCustomImageName = UIImage(named: "magenta 25%")
@@ -237,7 +237,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     }
                                     
                                     break
-                                default :stationAnnotation.pinCustomImageName = UIImage(named: "pin")
+                                default :stationAnnotation.pinCustomImageName = UIImage(named: "")
                                 }
                                 
                             }
@@ -510,7 +510,38 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
+    {
+//        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover")
+//        popoverVC!.modalPresentationStyle = .Popover
+//        // Present it before configuring it
+//        presentViewController(popoverVC!, animated: true, completion: nil)
+//        // Now the popoverPresentationController has been created
+//        if let popoverController = popoverVC!.popoverPresentationController {
+//            popoverController.sourceView = view
+//            // popoverController.sourceRect = mapView.bounds
+//            popoverController.permittedArrowDirections = .Any
+//            popoverController.delegate = self
+//        }
+        
+        
+        
+    }
     
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.FullScreen
+    }
+    
+    
+    
+    func dismiss() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+
 }
 extension UIImage {
     public func imageRotatedByDegrees(degrees: CGFloat, flip: Bool) -> UIImage {

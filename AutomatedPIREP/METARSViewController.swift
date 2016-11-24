@@ -91,7 +91,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             let stationAnnotation = CustomPointAnnotation()
                             stationAnnotation.coordinate = stationLocation
                             
-                            stationAnnotation.pinCustomImageName = UIImage(named: "")
+                            stationAnnotation.pinCustomImageName = UIImage(named: "pin")
                             self.pirepView.addAnnotation(stationAnnotation)
                             
                             
@@ -132,23 +132,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("MVFR") :
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "blue imc")
                                         break
                                     default :
                                         break
@@ -159,23 +159,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("IFR"):
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "red imc")
                                         break
                                     default :
                                         break
@@ -187,23 +187,23 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 case flightcatasString.containsString("VFR"):
                                     switch cover  {
                                         
-                                    case "CLR" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 0%")
+                                    case "CLR" , "SKC" :
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 25%")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green few")
                                         break
                                     case "SCT" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green 75% ")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green sct")
                                         break
                                     case "BKN" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "imageedit_15_5744458101")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green bkn")
                                         break
                                     case "OVC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green half line ")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green ovc")
                                         break
                                     case "IMC" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "green half line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "green imc")
                                         break
                                     default :
                                         break
@@ -217,7 +217,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                         stationAnnotation.pinCustomImageName = UIImage(named: "magenta clr")
                                         break
                                     case "FEW" :
-                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta half line")
+                                        stationAnnotation.pinCustomImageName = UIImage(named: "magenta few")
                                         break
                                     case "SCT" :
                                         stationAnnotation.pinCustomImageName = UIImage(named: "magenta sct")
@@ -237,7 +237,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                     }
                                     
                                     break
-                                default :stationAnnotation.pinCustomImageName = UIImage(named: "")
+                                default :stationAnnotation.pinCustomImageName = UIImage(named: "pin")
                                 }
                                 
                             }
@@ -257,11 +257,11 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             }
                             else{
                                 windLongitude = stationCoordinates[0]
-                                 windLatitude = stationCoordinates[1]
+                                windLatitude = stationCoordinates[1]
                                 
-                            
+                                
                                 let windSpeed:Int = Int(windSpeedAsNumber! as! NSNumber)
-                                 print(windSpeed)
+                                print(windSpeed)
                                 if (windSpeed) < 1 {
                                     
                                     let windDirectionImage:UIImage = UIImage(named: "Calm")!
@@ -281,7 +281,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 }
                                 else if Int(windSpeed) > 12 && Int(windSpeed) < 18{
                                     let windDirectionImage:UIImage = UIImage(named: "13-17")!
-                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
                                 }
                                 else if Int(windSpeed) > 17 && Int(windSpeed) < 23{
                                     let windDirectionImage:UIImage = UIImage(named: "18-22")!
@@ -294,7 +294,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 }
                                 else if Int(windSpeed) > 27 && Int(windSpeed) < 33{
                                     let windDirectionImage:UIImage = UIImage(named: "28-32")!
-                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
                                 }
                                 else if Int(windSpeed) > 32 && Int(windSpeed) < 38{
                                     let windDirectionImage:UIImage = UIImage(named: "33-37")!
@@ -303,12 +303,12 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 }
                                 else if Int(windSpeed) > 37 && Int(windSpeed) < 43{
                                     let windDirectionImage:UIImage = UIImage(named: "38-42")!
-                                   windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
                                     
                                 }
                                 else if Int(windSpeed) > 42 && Int(windSpeed) < 48{
                                     let windDirectionImage:UIImage = UIImage(named: "43-47")!
-                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
                                 }
                                 else if Int(windSpeed) > 47 && Int(windSpeed) < 53{
                                     let windDirectionImage:UIImage = UIImage(named: "48-52")!
@@ -320,11 +320,11 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 }
                                 else if Int(windSpeed) > 57 && Int(windSpeed) < 63{
                                     let windDirectionImage:UIImage = UIImage(named: "58-62")!
-                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
                                 }
                                 else if Int(windSpeed) > 97 && Int(windSpeed) < 103{
                                     let windDirectionImage:UIImage = UIImage(named: "98-102")!
-                                     windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
+                                    windImage = windDirectionImage.imageRotatedByDegrees(CGFloat(windDirection! as! NSNumber)+90, flip: false)
                                 }
                                 else if Int(windSpeed) > 102 && Int(windSpeed) < 108{
                                     let windDirectionImage:UIImage = UIImage(named: "103-107")!
@@ -337,8 +337,8 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             }
                             
                             
-                            }
-
+                        }
+                        
                         }
                     )
                     
@@ -354,7 +354,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
             
         }
     }
-    
     func processWinds(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
         do {
             

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -64,7 +64,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="FD53DF4D-619E-4335-A3AD-A8FB87340C14" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="A7CF7E32-A27A-4901-B5C3-3BC1C2327482" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="pirepView" destination="hn2-Sl-vlO" id="FBu-7z-zXx"/>
                     </connections>
@@ -345,14 +345,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="793F79FD-2FFF-4F5B-8D29-E44FC36706DE" id="gRb-gg-MLS"/>
+                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="CD453FF2-FB06-4841-B6E5-A39E5C8BE011" id="gRb-gg-MLS"/>
                     <connections>
                         <outlet property="mapView" destination="JBP-MN-uBM" id="kAQ-d4-dgo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCK-3C-SH7" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753.75" y="-895"/>
+            <point key="canvasLocation" x="749.25" y="-895"/>
         </scene>
         <!--RadarViewController-->
         <scene sceneID="5DP-Wh-Ooo">
@@ -424,7 +424,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="RADAR" image="first" selectedImage="E31B9C43-4E45-4628-A51F-14662C6B2164" id="Ow6-08-P4C"/>
+                    <tabBarItem key="tabBarItem" title="RADAR" image="first" selectedImage="7D727154-6541-4DDB-8E62-5DF43DD8FD9A" id="Ow6-08-P4C"/>
                     <connections>
                         <outlet property="mapView" destination="GrT-IA-gHz" id="6Zq-2r-V5J"/>
                     </connections>
@@ -500,7 +500,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ICAO ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCc-qU-EqC">
-                                <rect key="frame" x="21" y="59.5" width="88" height="21"/>
+                                <rect key="frame" x="21" y="60" width="88" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -580,7 +580,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="793F79FD-2FFF-4F5B-8D29-E44FC36706DE" width="80" height="80">
+        <image name="7D727154-6541-4DDB-8E62-5DF43DD8FD9A" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1076,7 +1076,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="E31B9C43-4E45-4628-A51F-14662C6B2164" width="80" height="80">
+        <image name="A7CF7E32-A27A-4901-B5C3-3BC1C2327482" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1572,7 +1572,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="FD53DF4D-619E-4335-A3AD-A8FB87340C14" width="80" height="80">
+        <image name="CD453FF2-FB06-4841-B6E5-A39E5C8BE011" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

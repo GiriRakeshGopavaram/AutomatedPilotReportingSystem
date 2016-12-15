@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -64,7 +64,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="A7CF7E32-A27A-4901-B5C3-3BC1C2327482" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="PIREP View" image="map" selectedImage="5D6491A2-C0A6-4A59-823A-703FA3723DB6" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="pirepView" destination="hn2-Sl-vlO" id="FBu-7z-zXx"/>
                     </connections>
@@ -345,7 +345,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="CD453FF2-FB06-4841-B6E5-A39E5C8BE011" id="gRb-gg-MLS"/>
+                    <tabBarItem key="tabBarItem" title="Hazards" image="hazard" selectedImage="21072AE4-EE67-4AC7-BBE2-D6F273C04B30" id="gRb-gg-MLS"/>
                     <connections>
                         <outlet property="mapView" destination="JBP-MN-uBM" id="kAQ-d4-dgo"/>
                     </connections>
@@ -424,7 +424,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="RADAR" image="first" selectedImage="7D727154-6541-4DDB-8E62-5DF43DD8FD9A" id="Ow6-08-P4C"/>
+                    <tabBarItem key="tabBarItem" title="RADAR" image="first" selectedImage="BCD2BF34-B590-46D3-BE16-80B2A5C73CCF" id="Ow6-08-P4C"/>
                     <connections>
                         <outlet property="mapView" destination="GrT-IA-gHz" id="6Zq-2r-V5J"/>
                     </connections>
@@ -580,7 +580,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7D727154-6541-4DDB-8E62-5DF43DD8FD9A" width="80" height="80">
+        <image name="21072AE4-EE67-4AC7-BBE2-D6F273C04B30" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1076,7 +1076,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="A7CF7E32-A27A-4901-B5C3-3BC1C2327482" width="80" height="80">
+        <image name="5D6491A2-C0A6-4A59-823A-703FA3723DB6" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1572,7 +1572,7 @@ oACiAKQApgCoAK0AxADGAMhx2nHfcepx83IGcgpyFXIeciNyK3IucjNyQnJGck1yVXJicmdyaXJrcnBy
 eHJ7coByiHKLcp1yoHKlAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAcqc
 </mutableData>
         </image>
-        <image name="CD453FF2-FB06-4841-B6E5-A39E5C8BE011" width="80" height="80">
+        <image name="BCD2BF34-B590-46D3-BE16-80B2A5C73CCF" width="80" height="80">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

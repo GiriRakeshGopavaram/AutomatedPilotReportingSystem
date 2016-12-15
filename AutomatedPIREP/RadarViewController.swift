@@ -30,7 +30,7 @@ class RadarViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         mapView.mapType = MKMapType.Standard
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType.Satellite;
-        mapView.mapType = MKMapType.Hybrid;
+        //mapView.mapType = MKMapType.Hybrid;
 
         
     }

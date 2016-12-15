@@ -39,10 +39,13 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         pirepView.mapType = MKMapType.Standard
         pirepView.showsUserLocation = true
         makeRequest()
+     
         
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+
+    }
     func makeRequest(){
         let url = NSURL(string: "http://aviationweather.gov/gis/scripts/PirepJSON.php")
         
@@ -201,7 +204,7 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             }
                             
                             self.pirepView.addAnnotation(annotation)
-                            
+                        
                         }
                     })
                     
@@ -239,7 +242,15 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         return annotationView
     }
     
-    
+    func displayAlertWithTitle(title:String, message:String){
+        let alert:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let defaultAction:UIAlertAction =  UIAlertAction(title: "Yes", style: .Default, handler: nil)
+        alert.addAction(defaultAction)
+        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .Cancel, handler: nil)
+        alert.addAction(noAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
     {       

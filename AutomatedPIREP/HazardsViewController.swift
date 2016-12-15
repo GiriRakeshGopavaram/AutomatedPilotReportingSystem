@@ -60,18 +60,15 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                         
                         for eachObject in results {
                             
-                            //print(eachObject["geometry"] as! String)
                             
                             if let geometry = eachObject["geometry"] as? NSDictionary{
                                 if geometry["type"] as! String == "Point"{
                                     let pointCoordinates = geometry["coordinates"]
-                                    print(pointCoordinates)
                                 } else if geometry["type"] as! String == "Polygon" {
                                     
                                     let polygonCoordinate = geometry["coordinates"]
                                     let polygonCoordinates = polygonCoordinate as! [[[Double]]]
                                     
-                                    print(polygonCoordinates.count)
                                     
 //                                    for polygonCordinate in polygonCoordinates {
 //                                    
@@ -83,10 +80,8 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                                     let multiPolygonCoordinate = geometry["coordinates"]
                                     let multiPolygonCoordinates = multiPolygonCoordinate as! [[[[Double]]]]
                                     
-                                    print(multiPolygonCoordinates.count)
                                 } else {
                                     
-                                    print(geometry["type"] as! String)
                                 }
                             }
                             
@@ -135,7 +130,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
             annotationView?.canShowCallout = true
             
         } else {
-            print("full")
             annotationView!.annotation = annotation
         }
         

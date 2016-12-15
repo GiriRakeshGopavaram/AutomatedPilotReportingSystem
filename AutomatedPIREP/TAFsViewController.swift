@@ -55,8 +55,7 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                         for eachObject in results{
                             
                             let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            print(properties)
+//                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                             var coordinates:[Double] = []
                             var latitude:Double
                             var longitude:Double

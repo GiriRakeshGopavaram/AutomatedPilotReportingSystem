@@ -117,16 +117,13 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             
                             
                             if flightcatasString.containsString("nil"){
-                                //print(flightcatasString)
                                 if ceilAsString.containsString("nil"){
                                     if visibAsString.containsString("nil"){
                                         count += 1
-                                        //print(id)
                                     }
                                 }
                             }
                             else{
-                                //print(flightcatasString)
                                 switch true{
                                     
                                 case flightcatasString.containsString("MVFR") :
@@ -253,7 +250,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             var windLatitude:Double!
                             let windAnnotation = CustomPointAnnotation()
                             if windDirectionAsString.containsString("nil") || windSpeedAsString.containsString("nil") || windLongitude1.containsString("nil") || windLatitude1.containsString("nil"){
-                                print("Sorry, I don't want a Nil -- \(windDirectionAsString)")
+                                print("Sorry, I don't want a Nil")
                             }
                             else{
                                 windLongitude = stationCoordinates[0]
@@ -261,7 +258,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                                 
                                 
                                 let windSpeed:Int = Int(windSpeedAsNumber! as! NSNumber)
-                                print(windSpeed)
                                 if (windSpeed) < 1 {
                                     
                                     let windDirectionImage:UIImage = UIImage(named: "Calm")!

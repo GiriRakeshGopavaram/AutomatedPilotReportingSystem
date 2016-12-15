@@ -22,12 +22,9 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     var flightLevel:String!
     var rawObservation:String!
     var temperature:String!
-    var point:CGPoint!
     let locationManager = CLLocationManager()
     let airportLocation = PIREPLocations.storeLocations()
-    //var pointAnnotation:CustomPointAnnotation!
-    //var pinAnnotationView:MKPinAnnotationView!
-    
+    var selectedAnnotationView:[Double]!
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -39,12 +36,12 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         pirepView.mapType = MKMapType.Standard
         pirepView.showsUserLocation = true
         makeRequest()
-     
+        
         
     }
     
     override func viewWillAppear(animated: Bool) {
-
+        
     }
     func makeRequest(){
         let url = NSURL(string: "http://aviationweather.gov/gis/scripts/PirepJSON.php")
@@ -71,51 +68,27 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results{
-                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
                             var coordinates:[Double] = []
                             var latitude:Double
                             var longitude:Double
+                            let annotation = CustomPointAnnotation()
+                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+                            let properties = eachObject["properties"] as! [String:AnyObject]
+                            
                             coordinates = geometry["coordinates"] as! [Double]
                             longitude = (coordinates[0])
                             latitude = (coordinates[1])
                             let location = CLLocationCoordinate2DMake(latitude, longitude)
-                            
-                            let annotation = CustomPointAnnotation()
                             annotation.coordinate = location
-                            annotation.title = "PIREP"
-                            annotation.subtitle = "turb"
                             
-                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            self.icaoId = (properties["icaoId"]) as! String
-                            self.obsTime = properties["obsTime"] as! String
-                            self.airepType = properties["airepType"] as! String
-                            self.aircraftType = properties["acType"] as! String
-                            self.flightLevel = properties["fltlvl"] as! String
+                            
                             let temperatures = properties["temp"]
-                            if String(temperatures).containsString("nil"){
-                                self.temperature = "Unknown"
-                            }
-                            else{
-                                self.temperature = temperatures as! String
-                            }
-                            
                             let windSpeeds = properties["wspd"]
-                            if String(windSpeeds).containsString("nil"){
-                                
-                            }else{
-                              self.windSpeed = windSpeeds as! String
-                            }
                             let windDirections = properties["wdir"]
-                            if String(windDirections).containsString("nil"){
-                                
-                            }
-                            else{
-                              self.windDirection =  windDirections as! String
-                            }
                             let rawObservation:String = properties["rawOb"] as! String
-                            self.rawObservation = rawObservation
                             let conditionsInRawOB = rawObservation.componentsSeparatedByString("/")
                             for condition in conditionsInRawOB{
+                               
                                 if condition.containsString("TB "){
                                     print(condition)
                                     switch true {
@@ -123,18 +96,13 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                     case  condition.containsString("SMTH") || condition.containsString("SMOOTH"):
                                         annotation.pinCustomImageName = UIImage(named: "Smooth-LightT")
                                         break
-                                        
                                     case condition.containsString("LGT ") || condition.containsString("LIGHT"):
+                                        
                                         annotation.pinCustomImageName = UIImage(named: "LightT")
-
                                         break
-
                                     case condition.containsString("LGT-MOD") || condition.containsString("LIGHT TO MODERATE"):
                                         annotation.pinCustomImageName = UIImage(named:"Light-ModerateT" )
-
                                         break
-                                        
-                                        
                                     case condition.containsString("MOD") || condition.containsString("MODERATE") || condition.containsString("MDT"):
                                         annotation.pinCustomImageName = UIImage(named: "ModerateT")
                                         break
@@ -156,17 +124,15 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                         break
                                         
                                     default:
-                                         break
+                                        break
                                         
                                         
                                     }
                                     
                                 }
                                 else if condition.containsString("IC ") {
-                                   
-                                    annotation.title = "PIREP"
-                                    annotation.subtitle = "icing"
-
+                                    
+                                    
                                     switch true {
                                     case condition.containsString("LGT ") || condition.containsString("LT "):
                                         annotation.pinCustomImageName = UIImage(named:"LightIC")
@@ -197,14 +163,47 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                                         break
                                         
                                     default:
-                                         break
+                                        break
                                         
                                     }
                                 }
                             }
                             
+                            if self.selectedAnnotationView != nil{
+                                
+                                if String(annotation.coordinate.latitude) == String(format: "%.2f",self.selectedAnnotationView[0]){
+                                    
+                                    self.icaoId = (properties["icaoId"]) as! String
+                                    self.obsTime = properties["obsTime"] as! String
+                                    self.airepType = properties["airepType"] as! String
+                                    self.aircraftType = properties["acType"] as! String
+                                    self.flightLevel = properties["fltlvl"] as! String
+                                    self.icaoId = rawObservation[rawObservation.startIndex ..< rawObservation.startIndex.advancedBy(3)]
+                                    annotation.title = "\(rawObservation[rawObservation.startIndex ..< rawObservation.startIndex.advancedBy(3)])"
+                                    
+                                    self.rawObservation = rawObservation
+                                    if String(temperatures).containsString("nil"){
+                                        self.temperature = "Unknown"
+                                    }
+                                    else{
+                                        self.temperature = temperatures as! String
+                                    }
+                                    if String(windSpeeds).containsString("nil"){
+                                        self.windSpeed = "Unknown"
+                                    }else{
+                                        self.windSpeed = windSpeeds as! String
+                                    }
+                                    if String(windDirections).containsString("nil"){
+                                        self.windDirection = "Unknown"
+                                    }
+                                    else{
+                                        self.windDirection =  windDirections as! String
+                                    }
+                                    
+                                }
+                            }
                             self.pirepView.addAnnotation(annotation)
-                        
+                            
                         }
                     })
                     
@@ -231,7 +230,6 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            annotationView!.canShowCallout = true
         }
         else {
             annotationView!.annotation = annotation
@@ -253,15 +251,21 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
-    {       
-        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! PIREPDataViewController
+    {
+        
+        let latitude:Double! = mapView.selectedAnnotations.last?.coordinate.latitude
+        let longitude:Double! = mapView.selectedAnnotations.last?.coordinate.longitude
+        selectedAnnotationView = [latitude,longitude]
+        makeRequest()
+        //print("Selected annotation \(selectedAnnotationView)")
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! DisplayPIREPViewController
         popoverVC.modalPresentationStyle = .Popover
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)
         // Now the popoverPresentationController has been created
         if let popoverController = popoverVC.popoverPresentationController {
             popoverController.sourceView = view
-           // popoverController.sourceRect = mapView.bounds
+            // popoverController.sourceRect = mapView.bounds
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
             popoverVC.icaoId = self.icaoId
@@ -274,9 +278,8 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
             popoverVC.rawObservation = self.rawObservation
             popoverVC.temperature = self.temperature
         }
-       // performSegueWithIdentifier("codePopover", sender: nil)
         
-    
+        
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
@@ -286,23 +289,12 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         return UIModalPresentationStyle.FullScreen
     }
     
-
-    
-    func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//        
-//            let vc = segue.destinationViewController as! PIREPDataViewController
-//            
-//            vc.icoaId = icaoId
-//        }
+   
     
-    }
+    
+}
 

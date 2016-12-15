@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PIREPDataViewController: UIViewController {
+class DisplayPIREPViewController: UIViewController {
 
     @IBOutlet weak var icaoIdLBL: UILabel!
     
@@ -43,7 +43,7 @@ class PIREPDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        _ = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(PIREPDataViewController.update), userInfo: nil, repeats: true)
+        _ = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(DisplayPIREPViewController.update), userInfo: nil, repeats: true)
         
         // Do any additional setup after loading the view.
     }

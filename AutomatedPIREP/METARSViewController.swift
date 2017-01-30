@@ -14,7 +14,6 @@ import CoreLocation
 class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate , UIPopoverPresentationControllerDelegate {
     
     
-    //var jsonURL:String = "MetarJSON"
     
     @IBAction func metOrBarb(sender: AnyObject) {
         if sender.selectedSegmentIndex == 0{

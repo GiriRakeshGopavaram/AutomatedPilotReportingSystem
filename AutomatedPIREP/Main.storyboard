@@ -293,6 +293,9 @@
                             </mapView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JBP-MN-uBM">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dc3-lo-YpG" id="WbA-P9-nW1"/>
+                                </connections>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zLt-h1-tgx">
                                 <rect key="frame" x="-60" y="-14" width="121" height="29"/>

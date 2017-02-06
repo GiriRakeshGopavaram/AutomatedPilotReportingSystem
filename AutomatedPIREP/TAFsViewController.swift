@@ -55,7 +55,6 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                         for eachObject in results{
                             
                             let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-//                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                             var coordinates:[Double] = []
                             var latitude:Double
                             var longitude:Double
@@ -65,7 +64,6 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                             let location = CLLocationCoordinate2DMake(latitude, longitude)
                             let annotation = CustomPointAnnotation()
                             annotation.coordinate = location
-                            //annotation.pinCustomImageName = UIImage(named: "")
                             annotation.title = "TAF"
                             annotation.subtitle = "Observed at \(latitude), \(longitude)"
                             self.mapView.addAnnotation(annotation)

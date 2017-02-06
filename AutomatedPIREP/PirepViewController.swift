@@ -90,7 +90,6 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             for condition in conditionsInRawOB{
                                
                                 if condition.containsString("TB "){
-                                    print(condition)
                                     switch true {
                                         
                                     case  condition.containsString("SMTH") || condition.containsString("SMOOTH"):
@@ -257,7 +256,6 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         let longitude:Double! = mapView.selectedAnnotations.last?.coordinate.longitude
         selectedAnnotationView = [latitude,longitude]
         makeRequest()
-        //print("Selected annotation \(selectedAnnotationView)")
         let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! DisplayPIREPViewController
         popoverVC.modalPresentationStyle = .Popover
         // Present it before configuring it

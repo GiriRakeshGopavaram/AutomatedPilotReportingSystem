@@ -14,6 +14,7 @@
 		72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE346D1DC40DC60085463F /* RadarViewController.swift */; };
 		72DE34701DC466410085463F /* PIREPSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE346F1DC466410085463F /* PIREPSendViewController.swift */; };
 		72DE34721DC47C640085463F /* Weather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72DE34711DC47C640085463F /* Weather.ttf */; };
+		84D062BA1E5163C6007CA01D /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D062B91E5163C6007CA01D /* LocationSearchTable.swift */; };
 		84FB89C31DE44011006C5BBC /* DisplayPIREPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */; };
 		C062D8681DDCF4DB00CC8131 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C062D8671DDCF4DB00CC8131 /* Assets.xcassets */; };
 		C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		72DE346D1DC40DC60085463F /* RadarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		72DE346F1DC466410085463F /* PIREPSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendViewController.swift; sourceTree = "<group>"; };
 		72DE34711DC47C640085463F /* Weather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Weather.ttf; path = ../Weather.ttf; sourceTree = "<group>"; };
+		84D062B91E5163C6007CA01D /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPIREPViewController.swift; sourceTree = "<group>"; };
 		C062D8671DDCF4DB00CC8131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C069F8271DB85FDA00D9A0A5 /* AutomatedPIREP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutomatedPIREP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,7 @@
 				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
 				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
 				72DE34671DC40D830085463F /* HazardsViewController.swift */,
+				84D062B91E5163C6007CA01D /* LocationSearchTable.swift */,
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
 				C069F85A1DB8600700D9A0A5 /* Main.storyboard */,
 				C062D8671DDCF4DB00CC8131 /* Assets.xcassets */,
@@ -300,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D062BA1E5163C6007CA01D /* LocationSearchTable.swift in Sources */,
 				C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */,
 				84FB89C31DE44011006C5BBC /* DisplayPIREPViewController.swift in Sources */,
 				C069F8641DB8604900D9A0A5 /* PIREPLocations.swift in Sources */,

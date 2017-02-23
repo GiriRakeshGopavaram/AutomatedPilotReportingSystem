@@ -228,6 +228,9 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if overlay is MKPolygon {

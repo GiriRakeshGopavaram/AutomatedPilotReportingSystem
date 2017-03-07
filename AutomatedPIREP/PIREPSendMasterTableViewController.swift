@@ -41,7 +41,7 @@ class PIREPSendMasterTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PirepSendCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = "Hello"
 
         return cell
     }

@@ -7,9 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7203F59A1E6ECADE004A6AC6 /* PirepSendNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */; };
+		7203F59C1E6ECF6C004A6AC6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F59B1E6ECF6C004A6AC6 /* AudioToolbox.framework */; };
+		7203F5A21E6ECFD8004A6AC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A11E6ECFD8004A6AC6 /* CoreGraphics.framework */; };
+		7203F5A41E6ECFE0004A6AC6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A31E6ECFE0004A6AC6 /* CoreLocation.framework */; };
+		7203F5A61E6ECFFB004A6AC6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A51E6ECFFB004A6AC6 /* QuartzCore.framework */; };
+		7203F5A81E6ED005004A6AC6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A71E6ED005004A6AC6 /* Security.framework */; };
+		7203F5AA1E6ED00F004A6AC6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A91E6ED00F004A6AC6 /* StoreKit.framework */; };
+		7203F5AC1E6ED018004A6AC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5AB1E6ED018004A6AC6 /* SystemConfiguration.framework */; };
+		7203F5AF1E6ED34B004A6AC6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5AE1E6ED34B004A6AC6 /* libz.tbd */; };
+		7203F5B11E6ED358004A6AC6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5B01E6ED358004A6AC6 /* libsqlite3.tbd */; };
+		7203F5B91E6ED3A0004A6AC6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5B81E6ED3A0004A6AC6 /* CFNetwork.framework */; };
+		7203F5BB1E6ED3AD004A6AC6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5BA1E6ED3AD004A6AC6 /* CoreData.framework */; };
+		7203F5CE1E6EDB49004A6AC6 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */; };
 		72167B981E647C88005FD6EA /* PIREPSendMasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */; };
 		72167B9A1E647D42005FD6EA /* PIREPSendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */; };
 		72CBDDD91DC6FA4C00B73554 /* TAFs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CBDDD81DC6FA4C00B73554 /* TAFs.swift */; };
+		72DA76311E6EF82400C74B60 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */; };
+		72DA76341E6EFBEF00C74B60 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76321E6EFBEF00C74B60 /* Bolts.framework */; };
+		72DA76351E6EFBEF00C74B60 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76331E6EFBEF00C74B60 /* Parse.framework */; };
 		72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34611DC3EC4C0085463F /* TAFsViewController.swift */; };
 		72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34631DC3EDD50085463F /* CustomAnnotation.swift */; };
 		72DE34681DC40D830085463F /* HazardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE34671DC40D830085463F /* HazardsViewController.swift */; };
@@ -49,9 +65,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PirepSendNewViewController.swift; sourceTree = "<group>"; };
+		7203F59B1E6ECF6C004A6AC6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7203F5A11E6ECFD8004A6AC6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7203F5A31E6ECFE0004A6AC6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7203F5A51E6ECFFB004A6AC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7203F5A71E6ED005004A6AC6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7203F5A91E6ED00F004A6AC6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7203F5AB1E6ED018004A6AC6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7203F5AE1E6ED34B004A6AC6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7203F5B01E6ED358004A6AC6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		7203F5B81E6ED3A0004A6AC6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7203F5BA1E6ED3AD004A6AC6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7203F5C81E6ED92C004A6AC6 /* AutomatedPIREP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutomatedPIREP-Bridging-Header.h"; sourceTree = "<group>"; };
+		7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendMasterTableViewController.swift; sourceTree = "<group>"; };
 		72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendDetailViewController.swift; sourceTree = "<group>"; };
 		72CBDDD81DC6FA4C00B73554 /* TAFs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFs.swift; sourceTree = "<group>"; };
+		72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		72DA76321E6EFBEF00C74B60 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		72DA76331E6EFBEF00C74B60 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		72DE34611DC3EC4C0085463F /* TAFsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFsViewController.swift; sourceTree = "<group>"; };
 		72DE34631DC3EDD50085463F /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		72DE34671DC40D830085463F /* HazardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HazardsViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +116,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72DA76311E6EF82400C74B60 /* MobileCoreServices.framework in Frameworks */,
+				7203F5BB1E6ED3AD004A6AC6 /* CoreData.framework in Frameworks */,
+				7203F5B91E6ED3A0004A6AC6 /* CFNetwork.framework in Frameworks */,
+				7203F5CE1E6EDB49004A6AC6 /* ParseUI.framework in Frameworks */,
+				72DA76351E6EFBEF00C74B60 /* Parse.framework in Frameworks */,
+				7203F5B11E6ED358004A6AC6 /* libsqlite3.tbd in Frameworks */,
+				7203F5AF1E6ED34B004A6AC6 /* libz.tbd in Frameworks */,
+				7203F5AC1E6ED018004A6AC6 /* SystemConfiguration.framework in Frameworks */,
+				7203F5AA1E6ED00F004A6AC6 /* StoreKit.framework in Frameworks */,
+				7203F5A81E6ED005004A6AC6 /* Security.framework in Frameworks */,
+				7203F5A61E6ECFFB004A6AC6 /* QuartzCore.framework in Frameworks */,
+				7203F5A41E6ECFE0004A6AC6 /* CoreLocation.framework in Frameworks */,
+				7203F5A21E6ECFD8004A6AC6 /* CoreGraphics.framework in Frameworks */,
+				7203F59C1E6ECF6C004A6AC6 /* AudioToolbox.framework in Frameworks */,
+				72DA76341E6EFBEF00C74B60 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +151,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7203F5AD1E6ED332004A6AC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72DA76321E6EFBEF00C74B60 /* Bolts.framework */,
+				72DA76331E6EFBEF00C74B60 /* Parse.framework */,
+				72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */,
+				7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */,
+				7203F5BA1E6ED3AD004A6AC6 /* CoreData.framework */,
+				7203F5B81E6ED3A0004A6AC6 /* CFNetwork.framework */,
+				7203F5B01E6ED358004A6AC6 /* libsqlite3.tbd */,
+				7203F5AE1E6ED34B004A6AC6 /* libz.tbd */,
+				7203F5AB1E6ED018004A6AC6 /* SystemConfiguration.framework */,
+				7203F5A91E6ED00F004A6AC6 /* StoreKit.framework */,
+				7203F5A71E6ED005004A6AC6 /* Security.framework */,
+				7203F5A51E6ECFFB004A6AC6 /* QuartzCore.framework */,
+				7203F5A31E6ECFE0004A6AC6 /* CoreLocation.framework */,
+				7203F5A11E6ECFD8004A6AC6 /* CoreGraphics.framework */,
+				7203F59B1E6ECF6C004A6AC6 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		72DE34781DC4FBF50085463F /* Supporting_Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +190,7 @@
 		C069F81E1DB85FDA00D9A0A5 = {
 			isa = PBXGroup;
 			children = (
+				7203F5AD1E6ED332004A6AC6 /* Frameworks */,
 				C069F8291DB85FDA00D9A0A5 /* AutomatedPIREP */,
 				C069F8401DB85FDA00D9A0A5 /* AutomatedPIREPTests */,
 				C069F84B1DB85FDA00D9A0A5 /* AutomatedPIREPUITests */,
@@ -154,6 +225,8 @@
 				72DE34781DC4FBF50085463F /* Supporting_Files */,
 				72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */,
 				72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */,
+				7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */,
+				7203F5C81E6ED92C004A6AC6 /* AutomatedPIREP-Bridging-Header.h */,
 			);
 			path = AutomatedPIREP;
 			sourceTree = "<group>";
@@ -321,6 +394,7 @@
 				72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */,
 				C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */,
 				72167B981E647C88005FD6EA /* PIREPSendMasterTableViewController.swift in Sources */,
+				7203F59A1E6ECADE004A6AC6 /* PirepSendNewViewController.swift in Sources */,
 				72CBDDD91DC6FA4C00B73554 /* TAFs.swift in Sources */,
 				72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */,
 				72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */,
@@ -459,10 +533,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AutomatedPIREP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nwmissouri.edu.AutomatedPIREP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AutomatedPIREP/AutomatedPIREP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -471,10 +552,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AutomatedPIREP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nwmissouri.edu.AutomatedPIREP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AutomatedPIREP/AutomatedPIREP-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wf7-qh-dWD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--PIREP View-->
@@ -168,6 +169,115 @@
             </objects>
             <point key="canvasLocation" x="93.75" y="1136"/>
         </scene>
+        <!--Pirep Send New View Controller-->
+        <scene sceneID="Br8-o1-tZf">
+            <objects>
+                <viewController id="Wf7-qh-dWD" customClass="PirepSendNewViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BWb-dC-6VC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gvg-v8-07e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7tW-uN-WUq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FbS-RL-Pbe">
+                                <rect key="frame" x="140" y="60" width="320" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="UTe-J9-wpe"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Low ICING"/>
+                                    <segment title="Med ICING"/>
+                                    <segment title="Etrm. ICING"/>
+                                </segments>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="UTe-J9-wpe"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="IcingChanged:" destination="Wf7-qh-dWD" eventType="valueChanged" id="YvC-6F-QFS"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Km7-Lx-Z4b">
+                                <rect key="frame" x="140" y="128" width="320" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="NHT-q2-oOW"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Low TURB"/>
+                                    <segment title="Med TURB"/>
+                                    <segment title="Heavy TURB"/>
+                                </segments>
+                                <connections>
+                                    <action selector="TurbulenceChanged:" destination="Wf7-qh-dWD" eventType="valueChanged" id="CqF-mN-1X9"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSU-fM-jJt">
+                                <rect key="frame" x="280" y="470" width="40" height="30"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="PirepSend:" destination="Wf7-qh-dWD" eventType="touchUpInside" id="04v-wB-3LN"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIREP Here..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXq-Ta-Ijm">
+                                <rect key="frame" x="20" y="284" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZW5-v6-XRD">
+                                <rect key="frame" x="160" y="196" width="281" height="29"/>
+                                <segments>
+                                    <segment title="Low CHOP"/>
+                                    <segment title="Med CHOP"/>
+                                    <segment title="Heavy CHOP"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ChopChanged:" destination="Wf7-qh-dWD" eventType="valueChanged" id="drt-40-omi"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Km7-Lx-Z4b" firstAttribute="leading" secondItem="7tW-uN-WUq" secondAttribute="leadingMargin" constant="120" id="0Dd-Ce-vGf"/>
+                            <constraint firstItem="xXq-Ta-Ijm" firstAttribute="trailing" secondItem="7tW-uN-WUq" secondAttribute="trailingMargin" id="2Fy-OK-azZ"/>
+                            <constraint firstItem="xXq-Ta-Ijm" firstAttribute="leading" secondItem="7tW-uN-WUq" secondAttribute="leadingMargin" id="3Fl-Q8-uso"/>
+                            <constraint firstItem="FbS-RL-Pbe" firstAttribute="centerY" secondItem="7tW-uN-WUq" secondAttribute="centerY" id="46w-5W-88K"/>
+                            <constraint firstItem="FbS-RL-Pbe" firstAttribute="top" secondItem="BWb-dC-6VC" secondAttribute="bottom" constant="40" id="4zD-Wc-sg7"/>
+                            <constraint firstItem="Gvg-v8-07e" firstAttribute="top" secondItem="pSU-fM-jJt" secondAttribute="bottom" constant="100" id="7KS-md-Xel"/>
+                            <constraint firstItem="xXq-Ta-Ijm" firstAttribute="top" secondItem="ZW5-v6-XRD" secondAttribute="bottom" constant="60" id="7SI-s1-ntk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pSU-fM-jJt" secondAttribute="trailing" constant="260" id="9c3-oj-lVe"/>
+                            <constraint firstItem="Km7-Lx-Z4b" firstAttribute="top" secondItem="FbS-RL-Pbe" secondAttribute="bottom" constant="40" id="HVd-Hn-QR6"/>
+                            <constraint firstItem="FbS-RL-Pbe" firstAttribute="centerX" secondItem="7tW-uN-WUq" secondAttribute="centerX" id="Kbc-Z3-W6b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FbS-RL-Pbe" secondAttribute="trailing" constant="120" id="Lc6-lD-KP7"/>
+                            <constraint firstItem="pSU-fM-jJt" firstAttribute="centerX" secondItem="7tW-uN-WUq" secondAttribute="centerX" id="NGo-gm-P9A"/>
+                            <constraint firstItem="ZW5-v6-XRD" firstAttribute="top" secondItem="Km7-Lx-Z4b" secondAttribute="bottom" constant="40" id="PHo-5d-s1q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Km7-Lx-Z4b" secondAttribute="trailing" constant="120" id="RFf-qo-i0I"/>
+                            <constraint firstItem="FbS-RL-Pbe" firstAttribute="centerX" secondItem="7tW-uN-WUq" secondAttribute="centerX" id="Rdn-4J-6sT"/>
+                            <constraint firstItem="ZW5-v6-XRD" firstAttribute="centerX" secondItem="7tW-uN-WUq" secondAttribute="centerX" id="izY-p9-r9k"/>
+                            <constraint firstItem="Km7-Lx-Z4b" firstAttribute="centerX" secondItem="7tW-uN-WUq" secondAttribute="centerX" id="mVI-4o-hBT"/>
+                            <constraint firstItem="xXq-Ta-Ijm" firstAttribute="centerX" secondItem="7tW-uN-WUq" secondAttribute="centerX" id="sH4-W5-bCc"/>
+                            <constraint firstItem="pSU-fM-jJt" firstAttribute="leading" secondItem="7tW-uN-WUq" secondAttribute="leadingMargin" constant="260" id="z7U-NH-Ydd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="46w-5W-88K"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="ChopSegCont" destination="ZW5-v6-XRD" id="1qh-2F-huQ"/>
+                        <outlet property="IcingSegCont" destination="FbS-RL-Pbe" id="UiD-5y-EPH"/>
+                        <outlet property="PirepText" destination="xXq-Ta-Ijm" id="s9q-2Z-q1e"/>
+                        <outlet property="TurbulenceSegCont" destination="Km7-Lx-Z4b" id="6Ir-4S-QEx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CdM-St-qqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-553" y="2796"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="TJB-ln-1vH">
             <objects>
@@ -179,6 +289,12 @@
                     <view key="view" contentMode="scaleToFill" id="EO8-qL-beF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9o-RZ-nda">
+                                <rect key="frame" x="258" y="285" width="85" height="30"/>
+                                <state key="normal" title="Hello World"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -190,29 +306,48 @@
         <scene sceneID="HK1-BJ-A3R">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="Hzq-gM-ku6" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gKj-mB-xDs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gKj-mB-xDs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PirepSendCell" textLabel="ffi-8Z-ffO" style="IBUITableViewCellStyleDefault" id="4T2-y2-fkJ">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4T2-y2-fkJ" id="XDJ-nS-t8n">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ffi-8Z-ffO">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection id="jLz-z0-BsA">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="Lmh-gF-rv2">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lmh-gF-rv2" id="OMd-ma-Zn4">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="bVg-Zw-WlF">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="YBb-8j-0kn">
+                                        <rect key="frame" x="0.0" y="139" width="600" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YBb-8j-0kn" id="7az-fo-XmN">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="scA-Da-tFG">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="x60-eq-JuC">
+                                        <rect key="frame" x="0.0" y="214" width="600" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x60-eq-JuC" id="bSL-TL-lZk">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="Hzq-gM-ku6" id="0j7-y7-0a5"/>
                             <outlet property="delegate" destination="Hzq-gM-ku6" id="sXa-OR-fuH"/>

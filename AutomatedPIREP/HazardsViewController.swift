@@ -29,11 +29,7 @@ protocol HandleMapSearch {
 
 class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
     
-    
-    
-    
-    
-    
+    var appDelegate:AppDelegate!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -49,9 +45,9 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     
     var colorToFill:String = ""
     
-    var startingLoc:CLLocationCoordinate2D!
+    var startingLoc:CLLocation!
     
-    var destinationLoc:CLLocationCoordinate2D!
+    var destinationLoc:CLLocation!
     
     var count = 0
     
@@ -75,11 +71,15 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     
     var dueTo = ""
     
+    var userSourceLocation = CLLocation()
+    var userDestinationLocation = CLLocation()
+    
+    var nearestDistance:CLLocationDistance!
     override func viewDidLoad() {
-       
-        
         
         super.viewDidLoad()
+        
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let locationSearchTable:LocationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
         
@@ -136,11 +136,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
         definesPresentationContext = true
         
         makeRequest()
-        
-        
-        
-        
-        
     }
     
     
@@ -151,146 +146,76 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
         
         if mapView.annotations.count == 0 {
             
-            startingLoc = CLLocationCoordinate2D()
-            
-            startingLoc.latitude = latitude
-            
-            startingLoc.longitude = longitude
-            
+            startingLoc = CLLocation(latitude: latitude, longitude: longitude)
+    
         }
             
         else if mapView.annotations.count == 1{
             
-            
-            
-            destinationLoc = CLLocationCoordinate2D()
-            
-            destinationLoc.latitude = latitude
-            
-            destinationLoc.longitude = longitude
-            
+            destinationLoc = CLLocation(latitude: latitude, longitude: longitude)
+  
         }
-        
-        
+       
         
         if startingLoc != nil && destinationLoc != nil{
+            userSourceLocation = startingLoc
+            userDestinationLocation = destinationLoc
             
+            var coordinates = [startingLoc.coordinate, destinationLoc.coordinate]
+            let geodesicPolyline = MKGeodesicPolyline(coordinates: &coordinates, count: 2)
+            mapView.addOverlay(geodesicPolyline)
             
+            for airport in appDelegate.nearestAirports(startingLoc, destination: destinationLoc) {
+                var coordinates = [startingLoc.coordinate, airport.coordinate, destinationLoc.coordinate]
+                let geodesicPolyline = MKGeodesicPolyline(coordinates: &coordinates, count: 3)
+                mapView.addOverlay(geodesicPolyline)
+            }
             
-            let sourceLocation:CLLocationCoordinate2D! = startingLoc
-            
-            let destinationLocation:CLLocationCoordinate2D! = destinationLoc
-            
-            // 3.
-            
-            let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-            
-            let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-            
-            
-            
-            // 4.
-            
-            let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-            
-            let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-            
-            
-            
-            // 5.
-            
+//            for count in 0 ..< geodesicPolyline.pointCount{
+//                userInsidePolygon(MKCoordinateForMapPoint(geodesicPolyline.points()[count]))
+//                }
+
             let sourceAnnotation = MKPointAnnotation()
-            
-            
-            
-            if let location = sourcePlacemark.location {
-                
-                sourceAnnotation.coordinate = location.coordinate
-                
-            }
-            
-            
-            
-            
-            
             let destinationAnnotation = MKPointAnnotation()
-            
-            
-            
-            if let location = destinationPlacemark.location {
-                
-                destinationAnnotation.coordinate = location.coordinate
-                
-            }
-            
-            
-            
-            // 6.
+ 
             
             self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
-            
-            
-            
-            // 7.
-            
-            let directionRequest = MKDirectionsRequest()
-            
-            directionRequest.source = sourceMapItem
-            
-            directionRequest.destination = destinationMapItem
-            
-            directionRequest.transportType = .Automobile
-            
-            
-            
-            // Calculate the direction
-            
-            let directions = MKDirections(request: directionRequest)
-            
-            
-            
-            // 8.
-            
-            directions.calculateDirectionsWithCompletionHandler {
-                
-                (response, error) -> Void in
-                
-                
-                
-                guard let response = response else {
-                    
-                    if let error = error {
-                        
-                        print("Error: \(error)")
-                        
-                    }
-                    
-                    
-                    
-                    return
-                    
-                }
-                
-                
-                
-                let route = response.routes[0]
-                
-                self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
-                
-                
-                
-                let rect = route.polyline.boundingMapRect
-                
-                self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-                
-            }
-            
-            
             
         }
         
     }
     
+    func userInsidePolygon(userlocation: CLLocationCoordinate2D ) -> Bool{
+        // get every overlay on the map
+        let o = self.mapView.overlays
+        // loop every overlay on map
+        for overlay in o {
+            // handle only polygon
+            if overlay is MKPolygon{
+                let polygon:MKPolygon =  overlay as! MKPolygon
+                let polygonPath:CGMutablePathRef  = CGPathCreateMutable()
+                // get points of polygon
+                let arrPoints = polygon.points()
+                // create cgpath
+                for i in 0 ..< polygon.pointCount{
+                    let polygonMapPoint: MKMapPoint = arrPoints[i]
+                    let polygonCoordinate = MKCoordinateForMapPoint(polygonMapPoint)
+                    let polygonPoint = self.mapView.convertCoordinate(polygonCoordinate, toPointToView: self.mapView)
+                    
+                    if (i == 0){
+                        CGPathMoveToPoint(polygonPath, nil, polygonPoint.x, polygonPoint.y)
+                    }
+                    else{
+                        CGPathAddLineToPoint(polygonPath, nil, polygonPoint.x, polygonPoint.y)
+                    }
+                }
+                let mapPointAsCGP:CGPoint = self.mapView.convertCoordinate(userlocation, toPointToView: self.mapView)
+                print(CGPathContainsPoint(polygonPath , nil, mapPointAsCGP, false))
+                
+            }
+        }
+        return false
+    }
     
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -307,11 +232,11 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if let location = locations.first {
-            
-            
-            
-        }
+//        if let location = locations.first {
+//            
+//            
+//            
+//        }
         
     }
     
@@ -339,7 +264,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
         
         
     }
-    
     
     
     func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
@@ -519,7 +443,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
                                         let polyline = MKPolyline(coordinates: &points, count: points.count)
                                         
                                         
-                                        
                                         self.mapView.addOverlay(polyline)
                                         
                                     }
@@ -573,8 +496,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     }
     
     
-    
-    func mapView(_ mapView: MKMapView!, rendererFor overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         if overlay is MKPolygon {
             
@@ -600,68 +522,50 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
                 
             } else if self.hazard == "TURB-HI"{
                 
-                
-                
                 polygonView.strokeColor = UIColor.orangeColor()
                 
                 polygonView.fillColor = UIColor.orangeColor()
                 
+                
             } else if self.hazard == "TURB-LO" {
                 
                 polygonView.strokeColor = UIColor.redColor()
-                
                 polygonView.fillColor = UIColor.redColor()
                 
             } else if self.hazard == "MT_OBSC" {
-                
                 // We should plot pink color here
                 
                 polygonView.strokeColor = UIColor.redColor()
-                
                 polygonView.fillColor = UIColor.redColor()
-                
-                
                 
             } else if self.hazard == "IFR" {
                 
                 polygonView.strokeColor = UIColor.purpleColor()
-                
                 polygonView.fillColor = UIColor.purpleColor()
                 
             } else if self.hazard == "LLWS" {
                 
                 polygonView.strokeColor = UIColor.brownColor()
-                
                 polygonView.fillColor = UIColor.brownColor()
                 
             }
-            
+            polygonView.alpha = 0.5
             return polygonView
-            
         }
             
         else{
+            guard let polyline = overlay as? MKPolyline else {
+                return MKOverlayRenderer()
+            }
             
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.lineWidth = 3.0
+            renderer.alpha = 0.5
             renderer.strokeColor = UIColor.blueColor()
             
-            renderer.lineWidth = 5.0
-            
-            
-            
             return renderer
-            
         }
-        
-        
-        
-        return nil
-        
     }
-    
-    
-    
 }
 
 
@@ -924,6 +828,13 @@ extension HazardsViewController: HandleMapSearch {
         
     }
     
+}
+
+extension Double {
+    
+    var roundedTwoDigits:Double {
+        return Double(round(100*self/100))
+    }
 }
 
 

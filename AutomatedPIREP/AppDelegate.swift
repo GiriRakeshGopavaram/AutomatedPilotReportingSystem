@@ -33,46 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initializeWithConfiguration(configuration)
         
         self.makeAnotherRequest()
-        //makeRequest()
         
         return true
     }
     
-//    func makeRequest() {
-//        
-//        let url = NSURL(string: "http://aviationweather.gov/gis/scripts/AirportJSON.php")
-//        
-//        // send out the request
-//        
-//        let session = NSURLSession.sharedSession()
-//        
-//        // implement completion handler
-//        
-//        session.dataTaskWithURL(url!, completionHandler: getResults).resume()
-//        
-//    }
-//    
-//    func getResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void{
-//        do{
-//            var jsonResult:NSDictionary?
-//            try jsonResult =  NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
-//            if jsonResult != nil{
-//                if let results = jsonResult!["features"] as? [NSDictionary]{
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        for eachObject in results{
-//                            print(eachObject)
-//                        }
-//                        
-//                    })
-//                }
-//                
-//            }
-//            
-//        }
-//        catch{
-//            print("Sorry")
-//        }
-//    }
+
     
     func distanceBetweenTwoLocations(source:CLLocation,destination:CLLocation) -> Double{
         
@@ -86,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func nearestAirports(source:CLLocation, destination:CLLocation) -> Array<CLLocation> {
         
-        print("Number of nearest airports \(self.airportLocations.count)")
         
         if self.airportLocations.count > 0 {
             self.airportLocations.sortInPlace({ distanceBetweenTwoLocations($0,destination:source) < distanceBetweenTwoLocations($1, destination: source) })

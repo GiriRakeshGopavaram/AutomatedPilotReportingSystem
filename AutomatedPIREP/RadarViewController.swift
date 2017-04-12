@@ -62,7 +62,6 @@ class RadarViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
             annotationView?.canShowCallout = true
             
         } else {
-            print("full")
             annotationView!.annotation = annotation
         }
         

@@ -27,15 +27,28 @@ protocol HandleMapSearch {
     
 }
 
-class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
+class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate,UIPopoverPresentationControllerDelegate {
     
     var appDelegate:AppDelegate!
+    
+    
+    var tafResults:[NSDictionary]!
+    
+    var selectedAnnotationView:[Double]!
     
     var tafLocations:[CLLocationCoordinate2D]! = []
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var icaoID:String!
+    var icaoID:String! = ""
+    
+    var validTimeTo:String = ""
+    
+    var cover:String =  ""
+    
+    var fltcat: String = ""
+    
+    var rawTAF: String = ""
     
     var resultSearchController:UISearchController? = nil
     
@@ -75,18 +88,16 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     
     var dueTo = ""
     
+    
     var userSourceLocation = CLLocation()
     var userDestinationLocation = CLLocation()
+    
+    var tafLocation:[CLLocationCoordinate2D]! = []
     
     var nearestDistance:CLLocationDistance!
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-//        let g = Geotification(coordinate: location.1, radius: CLLocationDistance(8046.72), note: "test", eventType: EventType.OnEntry)
-//        startMonitoringGeotification(g)
-        
-        
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let locationSearchTable:LocationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
@@ -102,8 +113,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
         searchBar.placeholder = "Search for places"
         
         navigationItem.titleView = resultSearchController?.searchBar
-        
-        
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         
@@ -125,26 +134,64 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        locationManager.requestWhenInUseAuthorization()
         
         locationManager.requestLocation()
         
-        
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            locationManager.requestAlwaysAuthorization()
+        }
         
         mapView.delegate = self
         
         mapView.mapType = MKMapType.Standard
         
-        //mapView.showsUserLocation = true
+        mapView.showsUserLocation = true
         
         
         
         locationSearchTable.handleMapSearchDelegate = self
         
         definesPresentationContext = true
+        
         getRequest()
         makeRequest()
     }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.FullScreen
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        if status == .AuthorizedWhenInUse {
+            
+            locationManager.requestLocation()
+            
+        }
+        
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+        print("error:: \(error) xyz")
+        
+    }
+    
+    
+    
+    
+    // 1. user enter region
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        //showAlert("enter \(region.identifier)")
+    }
+    
     
     func displayAlertWithTitle(title:String, message:String){
         let alert:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -158,46 +205,45 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     
     //This function helps in drawing the lines across the mapview with respect to latitude and longitude.
     
-    func drawLines(latitude:Double, longitude:Double){
-        
-        if mapView.annotations.count == 0 {
-            
-            startingLoc = CLLocation(latitude: latitude, longitude: longitude)
-            
-        }
-            
-        else if mapView.annotations.count == 1{
-            
-            destinationLoc = CLLocation(latitude: latitude, longitude: longitude)
-            
-        }
-        
-        
-        if startingLoc != nil && destinationLoc != nil{
-            userSourceLocation = startingLoc
-            userDestinationLocation = destinationLoc
-            
-            var coordinates = [startingLoc.coordinate, destinationLoc.coordinate]
-            let geodesicPolyline = MKGeodesicPolyline(coordinates: &coordinates, count: 2)
-            for count in 0 ..< geodesicPolyline.pointCount{
-            }
-            mapView.addOverlay(geodesicPolyline)
-            
-            for airport in appDelegate.nearestAirports(startingLoc, destination: destinationLoc) {
-                var coordinates = [startingLoc.coordinate, airport.coordinate, destinationLoc.coordinate]
-                let geodesicPolyline = MKGeodesicPolyline(coordinates: &coordinates, count: 3)
-                mapView.addOverlay(geodesicPolyline)
-            }
-            
-            let sourceAnnotation = MKPointAnnotation()
-            let destinationAnnotation = MKPointAnnotation()
-            
-            
-            self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
-            
-        }
-        
-    }
+    //    func drawLines(latitude:Double, longitude:Double){
+    //
+    //        if mapView.annotations.count == 0 {
+    //
+    //            startingLoc = CLLocation(latitude: latitude, longitude: longitude)
+    //
+    //        }
+    //
+    //        else if mapView.annotations.count == 1{
+    //
+    //            destinationLoc = CLLocation(latitude: latitude, longitude: longitude)
+    //
+    //        }
+    //
+    //
+    //        if startingLoc != nil && destinationLoc != nil{
+    //            userSourceLocation = startingLoc
+    //            userDestinationLocation = destinationLoc
+    //
+    //            var coordinates = [startingLoc.coordinate, destinationLoc.coordinate]
+    //            let geodesicPolyline = MKGeodesicPolyline(coordinates: &coordinates, count: 2)
+    //
+    //            mapView.addOverlay(geodesicPolyline)
+    //
+    ////            for airport in appDelegate.nearestAirports(startingLoc, destination: destinationLoc) {
+    ////                var coordinates = [startingLoc.coordinate, airport.coordinate, destinationLoc.coordinate]
+    ////                let geodesicPolyline = MKGeodesicPolyline(coordinates: &coordinates, count: 3)
+    ////                mapView.addOverlay(geodesicPolyline)
+    ////            }
+    ////
+    ////            let sourceAnnotation = MKPointAnnotation()
+    ////            let destinationAnnotation = MKPointAnnotation()
+    ////
+    ////
+    ////            self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+    ////
+    //        }
+    //
+    //    }
     
     func userInsidePolygon(userlocation: CLLocationCoordinate2D ) -> Bool{
         // get every overlay on the map
@@ -231,39 +277,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     }
     
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        
-        if status == .AuthorizedWhenInUse {
-            
-            locationManager.requestLocation()
-            
-        }
-        
-    }
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
-    }
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print("error:: \(error)")
-        
-    }
-    
- 
-    
-    
-    // 1. user enter region
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        //showAlert("enter \(region.identifier)")
-    }
-    
     
     
     func getRequest(){
@@ -288,33 +301,33 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
                 // try parse it as array
                 if let results = jsonResult!["features"] as? [NSDictionary] {
                     // get the information of each element in an array, each element is stored in a dictionary
-                    
+                    tafResults = results
                     dispatch_async(dispatch_get_main_queue(), {
-                        
+                        var properties:[String:AnyObject] = [:]
+                        var geometry:[String:AnyObject] = [:]
                         for eachObject in results{
-                            
-                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
-                            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            self.icaoID = properties["id"] as! String
+                            geometry = eachObject["geometry"] as! [String:AnyObject]
+                            properties = eachObject["properties"] as! [String:AnyObject]
                             var coordinates:[Double] = []
                             var latitude:Double
                             var longitude:Double
                             coordinates = geometry["coordinates"] as! [Double]
                             longitude = (coordinates[0])
                             latitude = (coordinates[1])
-                            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                            let location = CLLocationCoordinate2D(latitude: latitude, longitude:  longitude)
                             self.tafLocations.append(location)
                             let annotation = MKPointAnnotation()
                             annotation.coordinate = location
                             annotation.title = "TAF"
                             annotation.subtitle = "Observed at \(latitude), \(longitude)"
-                            
-                            
+                            self.tafLocations.append(location)
                             // 3. setup region
-                        
+                            
                             
                             
                         }
+                        
+                        
                     })
                     
                 }
@@ -333,27 +346,33 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
     func checkForTafs(icaoID:String, userSourceLocation:CLLocation, userDestinationLocation:CLLocation){
         var locations = [userSourceLocation.coordinate, userDestinationLocation.coordinate]
         let geodesicPolyline = MKGeodesicPolyline(coordinates: &locations, count: 2)
-        var annotations:[MKAnnotation] = []
+        mapView.addOverlay(geodesicPolyline)
         for count in 0 ..< geodesicPolyline.pointCount{
             if count != 10{
                 let location:CLLocationCoordinate2D = MKCoordinateForMapPoint(geodesicPolyline.points()[count])
-                let regionradius = CLLocationDistance(40233.6/25)
+                let regionradius = CLLocationDistance(40233.6)
                 let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: location.latitude,
                     longitude: location.longitude), radius: regionradius, identifier: icaoID )
                 self.locationManager.startMonitoringForRegion(region)
                 for everyLocation in tafLocations{
                     if region.containsCoordinate(everyLocation){
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = everyLocation
-                        annotations.append(annotation)
-                        self.mapView.addAnnotation(annotation)
-                        
+                        tafLocation.append(everyLocation)
                     }
                 }
                 self.locationManager.stopMonitoringForRegion(region)
             }
         }
-        //self.mapView.showAnnotations(annotations, animated: true)
+        plotTafs(tafLocation)
+    }
+    
+    func plotTafs(tafLocation:[CLLocationCoordinate2D]){
+        
+        for location in tafLocation{
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            mapView.addAnnotation(annotation)
+            
+        }
     }
     func makeRequest(){
         
@@ -660,6 +679,53 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
             return renderer
         }
     }
+    
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
+        var propertiesToDisplay:[String:AnyObject] = [:]
+        if let annotation = view.annotation {
+            let selectedLocation:CLLocationCoordinate2D = annotation.coordinate
+            for eachObject in tafResults{
+                let tafGeometry: [String:AnyObject]! = eachObject["geometry"] as! [String:AnyObject]
+                let tafProperties:[String:AnyObject]! = eachObject["properties"] as! [String: AnyObject]
+                var coordinates:[Double] = []
+                var latitude:Double
+                var longitude:Double
+                coordinates = tafGeometry["coordinates"] as! [Double]
+                longitude = (coordinates[0])
+                latitude = (coordinates[1])
+                let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                if location.latitude == selectedLocation.latitude && location.longitude == selectedLocation.longitude{
+                    propertiesToDisplay = tafProperties
+                }
+            }
+            
+        }
+        
+        let latitude:Double! = mapView.selectedAnnotations.last?.coordinate.latitude
+        let longitude:Double! = mapView.selectedAnnotations.last?.coordinate.longitude
+        selectedAnnotationView = [latitude,longitude]
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("displayTaf") as! DisplayTAFViewController
+        popoverVC.modalPresentationStyle = .Popover
+        //Configure the width, height of the pop over
+        popoverVC.preferredContentSize = CGSizeMake(550, 300)
+        // Present it before configuring it
+        presentViewController(popoverVC, animated: true, completion: nil)
+        // Now the popoverPresentationController has been created
+        if let popoverController = popoverVC.popoverPresentationController {
+            popoverController.sourceView = view
+            popoverController.permittedArrowDirections = .Any
+            popoverController.delegate = self
+            popoverVC.properties = propertiesToDisplay
+        }
+        
+    }
+    
+    func popoverPresentationControllerShouldDismissPopover(popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        print("clicked")
+        return true
+    }
 }
 
 
@@ -687,39 +753,30 @@ extension HazardsViewController: HandleMapSearch {
             
             annotation.subtitle = "\(city) \(state) -- Destination"
             
-            drawLines(annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             
         }
         
         mapView.addAnnotation(annotation)
         if count == 1{
             userSourceLocation = location
+            let span = MKCoordinateSpanMake(10, 10)
+            
+            let region = MKCoordinateRegionMake(placemark.coordinate, span)
+            
+            mapView.setRegion(region, animated: true)
         }
         else if count == 2{
             userDestinationLocation = location
             checkForTafs(icaoID,userSourceLocation: userSourceLocation, userDestinationLocation: userDestinationLocation)
+            let span = MKCoordinateSpanMake(30, 30)
+            
+            let region = MKCoordinateRegionMake(placemark.coordinate, span)
+            
+            mapView.setRegion(region, animated: true)
         }
         
         
-        let span = MKCoordinateSpanMake(35, 35)
         
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        
-        mapView.setRegion(region, animated: true)
-        
-        
-        
-        let alert:UIAlertController = UIAlertController(title: "Do you want to use this as your destination location?", message: "" , preferredStyle: .Alert)
-        
-        let defaultAction:UIAlertAction =  UIAlertAction(title: "Yes", style: .Default, handler: nil)
-        
-        alert.addAction(defaultAction)
-        
-        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .Cancel, handler: nil)
-        
-        alert.addAction(noAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
         
         
         

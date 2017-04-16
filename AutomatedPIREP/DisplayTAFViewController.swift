@@ -17,23 +17,23 @@ class DisplayTAFViewController: UIViewController {
     @IBOutlet weak var fltCatLBL: UILabel!
     
     @IBOutlet weak var rawTafTV: UITextView!
+    
     var properties:[String:AnyObject]! = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(DisplayPIREPViewController.update), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
-        
+    }
+    override func viewWillAppear(animated: Bool) {
+        update()
     }
     
-    
     func update(){
-        dispatch_async(dispatch_get_main_queue(), {
             let icoaID:String = self.properties["id"] as! String
             let validTimeTo = self.properties["validTimeTo"]
             let fltcat:String = self.properties["fltcat"] as! String
@@ -42,8 +42,6 @@ class DisplayTAFViewController: UIViewController {
             self.validTimeToLBL.text = validTimeTo as? String
             self.fltCatLBL.text = fltcat
             self.rawTafTV.text = rawTAF
-            
-        })
     }
     
 }

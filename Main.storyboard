@@ -77,7 +77,7 @@
         <!--PIREP Send-->
         <scene sceneID="OAi-lO-ry7">
             <objects>
-                <viewController id="toc-W8-DK6" customClass="PIREPSendViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="toc-W8-DK6" customClass="PSendViewController" customModule="AutomatedPIREP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="te7-Tl-5OS"/>
                         <viewControllerLayoutGuide type="bottom" id="QWK-Wz-gfC"/>
@@ -86,33 +86,471 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="m9F-DF-0Lo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SendPirepBack" translatesAutoresizingMaskIntoConstraints="NO" id="7aK-Rc-h3H">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="551"/>
                                 </variation>
-                            </mapView>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="751"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MTNWV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1S-S4-DUY">
+                                <rect key="frame" x="617" y="105" width="113" height="39"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                                <color key="textColor" red="0.066666670139999995" green="0.55686277149999996" blue="0.85098046059999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="667" y="28" width="113" height="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ICING" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofs-6J-GXh">
+                                <rect key="frame" x="46" y="105" width="88" height="39"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                                <color key="textColor" red="0.066666670139999995" green="0.55686277149999996" blue="0.85098046059999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="28" width="81" height="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TURB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsb-bG-6dm">
+                                <rect key="frame" x="260" y="105" width="88" height="39"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                                <color key="textColor" red="0.066666670139999995" green="0.55686277149999996" blue="0.85098046059999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="235" y="28" width="75" height="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHOP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JtH-oH-Y1K">
+                                <rect key="frame" x="446" y="104" width="88" height="38"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                                <color key="textColor" red="0.066666670139999995" green="0.55686277149999996" blue="0.85098046059999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="443" y="28" width="83" height="39"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cateogory" translatesAutoresizingMaskIntoConstraints="NO" id="QND-gA-zgK">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="55" width="290" height="66"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="74" width="290" height="66"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5E-6m-c51">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="clear"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="40" y="80" width="70" height="36"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="40" y="99" width="70" height="36"/>
+                                </variation>
+                                <connections>
+                                    <action selector="clear:" destination="toc-W8-DK6" eventType="touchUpInside" id="PqA-QH-2Zy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQz-C5-YQP">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="rime"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="128" y="80" width="70" height="36"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="128" y="99" width="70" height="36"/>
+                                </variation>
+                                <connections>
+                                    <action selector="RIME:" destination="toc-W8-DK6" eventType="touchUpInside" id="eV5-kg-8Pr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAa-k0-c8U">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="mixed"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="214" y="80" width="70" height="36"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="214" y="99" width="70" height="36"/>
+                                </variation>
+                                <connections>
+                                    <action selector="MIXED:" destination="toc-W8-DK6" eventType="touchUpInside" id="gc2-ih-NGp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5b0-oJ-qi6">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="negative"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="47" y="134" width="90" height="45"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="25" y="209" width="90" height="45"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="Tdm-39-jYc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNd-xn-tYg">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="light"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="48" y="338" width="90" height="45"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="26" y="345" width="90" height="45"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="DRT-Qs-txh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6s-TA-xeF">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="74" y="273" width="39" height="38"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="51" y="300" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcX-KE-nAX">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="48" y="401" width="39" height="38"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingLightModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="pdx-tC-4zJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHF-Hu-VXs">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="48" y="502" width="39" height="38"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingModerateSevere:" destination="toc-W8-DK6" eventType="touchUpInside" id="haz-HJ-W3s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmk-U3-Vjt">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="moderate"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="21" y="446" width="91" height="46"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="vwS-gW-S0B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXM-Bp-Gnz">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="severe"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="550" width="91" height="46"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingSevere:" destination="toc-W8-DK6" eventType="touchUpInside" id="B0c-sM-XjG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBs-mO-JwX">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="negative"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="227" y="209" width="90" height="45"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="BKE-rQ-eMt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teX-S7-Zha">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="negative"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="439" y="209" width="90" height="45"/>
+                                </variation>
+                                <connections>
+                                    <action selector="chopNEG:" destination="toc-W8-DK6" eventType="touchUpInside" id="fO4-l8-zfh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ4-1Q-5Xe">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="469" y="301" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0R-OA-ED9">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="light"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="227" y="345" width="90" height="45"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbLGT:" destination="toc-W8-DK6" eventType="touchUpInside" id="KY3-MQ-yQa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqR-Ed-Imt">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="253" y="399" width="39" height="38"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbLightModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="WfD-Dx-noa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfX-cZ-Pts">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="253" y="502" width="39" height="38"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbModSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="hZY-zA-Wvg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A82-CZ-0g9">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="moderate"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="226" y="446" width="91" height="46"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="JSb-EG-FMx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LpF-XA-cVO">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="severe"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="225" y="550" width="91" height="46"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="bZU-jG-aTO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owq-7A-ocz">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="light"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="443" y="345" width="90" height="45"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnF-0t-gOm">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="469" y="399" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsb-gL-Ew4">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="469" y="502" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3U-DC-7y6">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="moderate"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="442" y="446" width="91" height="46"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPx-0Z-PRD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="severe"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="441" y="550" width="91" height="46"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbv-zv-hpD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="253" y="301" width="39" height="38"/>
+                                </variation>
+                                <connections>
+                                    <action selector="turbNegLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="yKC-y9-7xd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-lk-d7q">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="negative"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="668" y="209" width="90" height="45"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AG8-Js-W5y">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="695" y="301" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDf-qc-mrt">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="light"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="669" y="345" width="90" height="45"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYg-r4-ymn">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="695" y="399" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsv-a8-0W7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="add"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="695" y="502" width="39" height="38"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8U-Dy-o9y">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="moderate"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="668" y="446" width="91" height="46"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYj-sA-UUo">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="severe"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="667" y="550" width="91" height="46"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoe-6h-DVA">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="trace"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="48" y="214" width="90" height="45"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="26" y="262" width="84" height="34"/>
+                                </variation>
+                                <connections>
+                                    <action selector="icingTrace:" destination="toc-W8-DK6" eventType="touchUpInside" id="A4J-eu-6az"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encoded Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSZ-wn-gkH">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="214" y="665" width="407" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="m9F-DF-0Lo"/>
+                                <exclude reference="7aK-Rc-h3H"/>
+                                <exclude reference="B1S-S4-DUY"/>
+                                <exclude reference="Ofs-6J-GXh"/>
+                                <exclude reference="Nsb-bG-6dm"/>
+                                <exclude reference="JtH-oH-Y1K"/>
+                                <exclude reference="QND-gA-zgK"/>
+                                <exclude reference="S5E-6m-c51"/>
+                                <exclude reference="CQz-C5-YQP"/>
+                                <exclude reference="QAa-k0-c8U"/>
+                                <exclude reference="5b0-oJ-qi6"/>
+                                <exclude reference="jNd-xn-tYg"/>
+                                <exclude reference="r6s-TA-xeF"/>
+                                <exclude reference="DcX-KE-nAX"/>
+                                <exclude reference="eHF-Hu-VXs"/>
+                                <exclude reference="Tmk-U3-Vjt"/>
+                                <exclude reference="xXM-Bp-Gnz"/>
+                                <exclude reference="kBs-mO-JwX"/>
+                                <exclude reference="teX-S7-Zha"/>
+                                <exclude reference="jJ4-1Q-5Xe"/>
+                                <exclude reference="e0R-OA-ED9"/>
+                                <exclude reference="aqR-Ed-Imt"/>
+                                <exclude reference="IfX-cZ-Pts"/>
+                                <exclude reference="A82-CZ-0g9"/>
+                                <exclude reference="LpF-XA-cVO"/>
+                                <exclude reference="Owq-7A-ocz"/>
+                                <exclude reference="AnF-0t-gOm"/>
+                                <exclude reference="tsb-gL-Ew4"/>
+                                <exclude reference="k3U-DC-7y6"/>
+                                <exclude reference="gPx-0Z-PRD"/>
+                                <exclude reference="cbv-zv-hpD"/>
+                                <exclude reference="cEL-lk-d7q"/>
+                                <exclude reference="AG8-Js-W5y"/>
+                                <exclude reference="SDf-qc-mrt"/>
+                                <exclude reference="GYg-r4-ymn"/>
+                                <exclude reference="Bsv-a8-0W7"/>
+                                <exclude reference="b8U-Dy-o9y"/>
+                                <exclude reference="XYj-sA-UUo"/>
+                                <exclude reference="Hoe-6h-DVA"/>
+                                <exclude reference="NSZ-wn-gkH"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
                             <mask key="subviews">
-                                <include reference="m9F-DF-0Lo"/>
+                                <include reference="7aK-Rc-h3H"/>
+                                <include reference="B1S-S4-DUY"/>
+                                <include reference="Ofs-6J-GXh"/>
+                                <include reference="Nsb-bG-6dm"/>
+                                <include reference="JtH-oH-Y1K"/>
+                                <include reference="QND-gA-zgK"/>
+                                <include reference="S5E-6m-c51"/>
+                                <include reference="CQz-C5-YQP"/>
+                                <include reference="QAa-k0-c8U"/>
+                                <include reference="5b0-oJ-qi6"/>
+                                <include reference="jNd-xn-tYg"/>
+                                <include reference="r6s-TA-xeF"/>
+                                <include reference="Hoe-6h-DVA"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="DcX-KE-nAX"/>
+                                <include reference="eHF-Hu-VXs"/>
+                                <include reference="Tmk-U3-Vjt"/>
+                                <include reference="xXM-Bp-Gnz"/>
+                                <include reference="kBs-mO-JwX"/>
+                                <include reference="teX-S7-Zha"/>
+                                <include reference="jJ4-1Q-5Xe"/>
+                                <include reference="e0R-OA-ED9"/>
+                                <include reference="aqR-Ed-Imt"/>
+                                <include reference="IfX-cZ-Pts"/>
+                                <include reference="A82-CZ-0g9"/>
+                                <include reference="LpF-XA-cVO"/>
+                                <include reference="Owq-7A-ocz"/>
+                                <include reference="AnF-0t-gOm"/>
+                                <include reference="tsb-gL-Ew4"/>
+                                <include reference="k3U-DC-7y6"/>
+                                <include reference="gPx-0Z-PRD"/>
+                                <include reference="cbv-zv-hpD"/>
+                                <include reference="cEL-lk-d7q"/>
+                                <include reference="AG8-Js-W5y"/>
+                                <include reference="SDf-qc-mrt"/>
+                                <include reference="GYg-r4-ymn"/>
+                                <include reference="Bsv-a8-0W7"/>
+                                <include reference="b8U-Dy-o9y"/>
+                                <include reference="XYj-sA-UUo"/>
+                                <include reference="NSZ-wn-gkH"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="PIREP Send" image="PIREPSend" selectedImage="PIREPSend" id="Rno-vm-cWP"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="800" height="1024"/>
                     <connections>
-                        <outlet property="pirepView" destination="m9F-DF-0Lo" id="90S-wc-ncl"/>
+                        <outlet property="encodedMessage" destination="NSZ-wn-gkH" id="qO2-HV-YEW"/>
+                        <outlet property="icingLight" destination="jNd-xn-tYg" id="jhc-YK-V2o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNK-Fm-EMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113.25" y="-236"/>
+            <point key="canvasLocation" x="183.75" y="-206.25"/>
         </scene>
         <!--TAFsViewController-->
         <scene sceneID="wg7-f3-ORb">
@@ -357,7 +795,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TI0-Yg-y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="955" y="1904"/>
+            <point key="canvasLocation" x="1217.25" y="2091"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3ec-gk-SDn">
@@ -400,7 +838,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="toc-W8-DK6" kind="relationship" relationship="viewControllers" id="T92-Op-Uc3"/>
+                        <segue destination="toc-W8-DK6" kind="relationship" relationship="viewControllers" id="IMu-xB-ZoB"/>
                         <segue destination="Vqu-Ac-qHg" kind="relationship" relationship="viewControllers" id="TUZ-1C-1h3"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="ePp-am-Uf8" kind="relationship" relationship="viewControllers" id="zXX-Bg-txZ"/>
@@ -485,6 +923,7 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="METARS" image="METARS" selectedImage="METARS" id="Ggt-yL-vLA"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="800" height="1024"/>
                     <connections>
                         <outlet property="pirepView" destination="IBW-g2-z9D" id="HAH-3p-gov"/>
                     </connections>
@@ -904,21 +1343,6 @@
                                     <rect key="frame" x="149" y="122" width="400" height="21"/>
                                 </variation>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Raw observation" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-Jj-WaP">
-                                <rect key="frame" x="173" y="146" width="287" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Raw Observation" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2OB-Gg-bce">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.91975333121827407" green="0.91975333121827407" blue="0.91975333121827407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="149" y="161" width="337" height="103"/>
-                                </variation>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj4-LU-dFv">
                                 <rect key="frame" x="173" y="28" width="287" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -928,29 +1352,46 @@
                                     <rect key="frame" x="149" y="44" width="400" height="21"/>
                                 </variation>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Unknown" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mos-dh-0vH">
+                                <rect key="frame" x="173" y="146" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="149" y="151" width="400" height="128"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="2OB-Gg-bce"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="2OB-Gg-bce"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="fltCatLBL" destination="2DX-ko-UxR" id="0jo-QS-Htb"/>
                         <outlet property="icaoIdLBL" destination="Gj4-LU-dFv" id="NMw-cI-uwT"/>
-                        <outlet property="rawTafTV" destination="f5b-Jj-WaP" id="Xge-ng-OUu"/>
+                        <outlet property="rawTafTV" destination="mos-dh-0vH" id="4OW-pP-jWD"/>
                         <outlet property="validTimeToLBL" destination="Zdw-WQ-uvj" id="kIW-CZ-SBp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MT5-Om-68Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="1066"/>
+            <point key="canvasLocation" x="747.75" y="1066"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aaM-ZT-GFQ">
+            <objects>
+                <viewController id="g4s-Kg-EoR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qtI-CT-i85"/>
+                        <viewControllerLayoutGuide type="bottom" id="mE9-1N-27N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F8f-7a-Ywq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AYu-Lc-rjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747.75" y="1708"/>
         </scene>
         <!--Hazards-->
         <scene sceneID="t9M-ZE-gkN">
@@ -977,7 +1418,18 @@
         <image name="METARS" width="30" height="30"/>
         <image name="PIREPSend" width="29" height="29"/>
         <image name="Radar" width="29" height="29"/>
+        <image name="SendPirepBack" width="256" height="334"/>
+        <image name="add" width="78" height="78"/>
+        <image name="cateogory" width="221" height="50"/>
+        <image name="clear" width="172" height="100"/>
+        <image name="light" width="400" height="200"/>
         <image name="map" width="30" height="30"/>
+        <image name="mixed" width="172" height="100"/>
+        <image name="moderate" width="400" height="200"/>
+        <image name="negative" width="400" height="200"/>
         <image name="pin" width="30" height="30"/>
+        <image name="rime" width="172" height="100"/>
+        <image name="severe" width="400" height="200"/>
+        <image name="trace" width="344" height="200"/>
     </resources>
 </document>

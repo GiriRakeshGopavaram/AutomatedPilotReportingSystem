@@ -710,6 +710,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
         popoverVC.modalPresentationStyle = .Popover
         //Configure the width, height of the pop over
         popoverVC.preferredContentSize = CGSizeMake(550, 300)
+        popoverVC.properties = propertiesToDisplay
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)
         // Now the popoverPresentationController has been created
@@ -717,7 +718,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate, CLLocationManag
             popoverController.sourceView = view
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
-            popoverVC.properties = propertiesToDisplay
+            
         }
         
     }

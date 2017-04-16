@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // implement completion handler
         
-        session.dataTaskWithURL(url!, completionHandler: getResults).resume()
+       // session.dataTaskWithURL(url!, completionHandler: getResults).resume()
         
         
         

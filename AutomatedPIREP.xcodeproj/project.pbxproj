@@ -34,7 +34,7 @@
 		8433199D1E9F28BC00458EE5 /* PSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433199C1E9F28BC00458EE5 /* PSendViewController.swift */; };
 		847C3A581E9EC268008925DA /* DisplayHazardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C3A571E9EC268008925DA /* DisplayHazardViewController.swift */; };
 		847C3A5A1E9EC275008925DA /* DisplayTAFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C3A591E9EC275008925DA /* DisplayTAFViewController.swift */; };
-		847C3A5C1E9EC481008925DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847C3A5B1E9EC481008925DA /* Main.storyboard */; };
+		84C3B0371EA5FBAF00ED76A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C3B0361EA5FBAF00ED76A5 /* Main.storyboard */; };
 		84D062BA1E5163C6007CA01D /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D062B91E5163C6007CA01D /* LocationSearchTable.swift */; };
 		84FB89C31DE44011006C5BBC /* DisplayPIREPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */; };
 		C062D8681DDCF4DB00CC8131 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C062D8671DDCF4DB00CC8131 /* Assets.xcassets */; };
@@ -93,7 +93,7 @@
 		8433199C1E9F28BC00458EE5 /* PSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PSendViewController.swift; path = ../PSendViewController.swift; sourceTree = "<group>"; };
 		847C3A571E9EC268008925DA /* DisplayHazardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayHazardViewController.swift; sourceTree = "<group>"; };
 		847C3A591E9EC275008925DA /* DisplayTAFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTAFViewController.swift; sourceTree = "<group>"; };
-		847C3A5B1E9EC481008925DA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
+		84C3B0361EA5FBAF00ED76A5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		84D062B91E5163C6007CA01D /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPIREPViewController.swift; sourceTree = "<group>"; };
 		C062D8671DDCF4DB00CC8131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -210,6 +210,7 @@
 		C069F8291DB85FDA00D9A0A5 /* AutomatedPIREP */ = {
 			isa = PBXGroup;
 			children = (
+				84C3B0361EA5FBAF00ED76A5 /* Main.storyboard */,
 				C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */,
 				C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */,
 				84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */,
@@ -221,7 +222,6 @@
 				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
 				72DE34671DC40D830085463F /* HazardsViewController.swift */,
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
-				847C3A5B1E9EC481008925DA /* Main.storyboard */,
 				C062D8671DDCF4DB00CC8131 /* Assets.xcassets */,
 				72DE34781DC4FBF50085463F /* Supporting_Files */,
 				72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */,
@@ -355,7 +355,7 @@
 			files = (
 				C069F85D1DB8602200D9A0A5 /* Info.plist in Resources */,
 				C069F8371DB85FDA00D9A0A5 /* LaunchScreen.storyboard in Resources */,
-				847C3A5C1E9EC481008925DA /* Main.storyboard in Resources */,
+				84C3B0371EA5FBAF00ED76A5 /* Main.storyboard in Resources */,
 				C062D8681DDCF4DB00CC8131 /* Assets.xcassets in Resources */,
 				72DE34721DC47C640085463F /* Weather.ttf in Resources */,
 			);

@@ -30,10 +30,27 @@ protocol HandleMapSearch {
 class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate, UIGestureRecognizerDelegate {
     
     var appDelegate:AppDelegate!
-    
     var selectedAnnotation:MKAnnotation!
-    
     var tafResults:[NSDictionary]!
+    var allProperties:[[String:AnyObject]]! = []
+    var icingProperties:[[String:AnyObject]]!  = []
+    var turbulenceProperties:[[String:AnyObject]]! = []
+    var ifrProperties:[[String:AnyObject]]! = []
+    var mtnObstractionProperties:[[String:AnyObject]]! = []
+    var llwsProperties:[[String:AnyObject]]! = []
+    var allFeatures:[[String:AnyObject]]! = []
+    var icingFeatures:[[String:AnyObject]]!  = []
+    var turbulenceFeatures:[[String:AnyObject]]! = []
+    var ifrPFeatures:[[String:AnyObject]]! = []
+    var mtnObstractionFeatures:[[String:AnyObject]]! = []
+    var llwsFeatures:[[String:AnyObject]]! = []
+    
+    var icingResults:[NSDictionary]! = []
+    var allResults: [NSDictionary]! = []
+    var turbulenceResults:[NSDictionary]! = []
+    var ifrResults:[NSDictionary]! = []
+    var mtnObstractionResults:[NSDictionary]! = []
+    var llwsResults:[NSDictionary]! = []
     
     var selectedAnnotationView:MKAnnotationView! = MKAnnotationView()
     
@@ -99,6 +116,8 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     
     var dueTo = ""
     
+    var arrayIndex = 0
+    
     
     
     var userSourceLocation = CLLocation()
@@ -111,55 +130,28 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         
         super.viewDidLoad()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         let locationSearchTable:LocationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
-        
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        
         resultSearchController?.searchResultsUpdater = locationSearchTable
-        
         let searchBar = resultSearchController!.searchBar
-        
         searchBar.sizeToFit()
-        
         searchBar.placeholder = "Search for places"
-        
         navigationItem.titleView = resultSearchController?.searchBar
-        
         resultSearchController?.hidesNavigationBarDuringPresentation = false
-        
         resultSearchController?.dimsBackgroundDuringPresentation = true
-        
         definesPresentationContext = true
-        
-        
-        
         locationSearchTable.mapView = mapView
-        
         locationSearchTable.handleMapSearchDelegate = self
-        
         mapView.delegate = self
         locationManager.delegate = self
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        
         locationManager.requestLocation()
-        
         locationManager.requestAlwaysAuthorization()
-        
         mapView.delegate = self
-        
         mapView.mapType = MKMapType.Standard
-        
         mapView.showsUserLocation = true
-        
-        
-        
         locationSearchTable.handleMapSearchDelegate = self
-        
         definesPresentationContext = true
-        
         getRequest()
         makeRequest()
     }
@@ -180,22 +172,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         }
     }
     
-    // 1. user enter region
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        //showAlert("enter \(region.identifier)")
-    }
-    
-    
-    func displayAlertWithTitle(title:String, message:String){
-        let alert:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let defaultAction:UIAlertAction =  UIAlertAction(title: "Yes", style: .Default, handler: nil)
-        alert.addAction(defaultAction)
-        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .Cancel, handler: nil)
-        alert.addAction(noAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
-    
     func getRequest(){
         let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/TafJSON.php")
         
@@ -206,6 +182,39 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         
     }
     
+    @IBAction func segmentedControl(sender: AnyObject) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(allResults)
+            
+        }
+        else if sender.selectedSegmentIndex == 1 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(icingResults)
+            self.hazard = "ICE"
+        }
+        else if sender.selectedSegmentIndex == 2 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(turbulenceResults)
+            
+        }
+        else if sender.selectedSegmentIndex == 3 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(ifrResults)
+        }
+        else {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(mtnObstractionResults)
+            
+        }
+        
+    }
     func getResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
         do {
             
@@ -304,7 +313,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         let tappedCoordinates = mapView.convertPoint(tappedPoint, toCoordinateFromView: tappedMapView)
         let mapPoint = MKMapPointForCoordinate(tappedCoordinates)
         let mapRect = MKMapRectMake(mapPoint.x, mapPoint.y, 0.0001, 0.0001)
-
+        
         for overlay in mapView.overlays{
             if overlay is MKPolygon{
                 if overlay.intersectsMapRect!(mapRect).boolValue == true{
@@ -317,7 +326,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                     let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("hazardPopover") as! DisplayHazardViewController
                     popoverVC.modalPresentationStyle = .Popover
                     //Configure the width, height of the pop over
-                    popoverVC.preferredContentSize = CGSizeMake(550, 300)
+                    popoverVC.preferredContentSize = CGSizeMake(400, 350)
                     popoverVC.properties = hazardPropertiesToDisplay
                     // Present it before configuring it
                     presentViewController(popoverVC, animated: true, completion: nil)
@@ -350,6 +359,11 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                             self.product = properties["product"] as! String
                             self.hazard = properties["hazard"] as! String
+                            
+                            
+                            
+                            
+                            
                             if properties["level"]  != nil {
                                 self.level = properties["level"] as! String
                             }
@@ -432,6 +446,29 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                             else{
                                 print("I don't want a single location coordinate")
                             }
+                            
+                            self.allFeatures.append(geometry)
+                            self.allProperties.append(properties)
+                            self.allResults.append(eachObject)
+                            if self.hazard == "ICE" {
+                                self.icingResults.append(eachObject)
+                                
+                            } else if self.hazard == "TURB-HI" || self.hazard == "TURB-LO" {
+                                self.turbulenceResults.append(eachObject)
+                            } else if self.hazard == "MT_OBSC" {
+                                self.mtnObstractionResults.append(eachObject)
+                                
+                            } else if self.hazard == "IFR"{
+                                self.ifrResults.append(eachObject)
+                                
+                            }
+                                
+                            else  {
+                                self.llwsProperties.append(properties)
+                                self.llwsFeatures.append(geometry)
+                                self.llwsResults.append(eachObject)
+                                
+                            }
                         }
                     })
                 }
@@ -446,6 +483,89 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         super.didReceiveMemoryWarning()
     }
     
+    func hazardOverlay (results:[NSDictionary]) {
+        
+        for eachObject in results{
+            let feature:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+            self.product = properties["product"] as! String
+            self.hazard = properties["hazard"] as! String
+            if properties["level"]  != nil {
+                self.level = properties["level"] as! String
+            }
+            self.validTime = properties["validTime"] as! String
+            if properties["top"] != nil {
+                self.top = properties["top"] as! String
+            }
+            if properties["base"] != nil {
+                self.base = properties["base"] as! String
+            }
+            if properties["severity"] != nil {
+                self.severity = properties["severity"] as! String
+            }
+            if properties["fzlbase"] != nil {
+                self.fzlbase = properties["fzlbase"] as! String
+            }
+            if properties["fzltop"] != nil {
+                self.fzltop = properties["fzltop"] as! String
+            }
+            if properties["dueTo"] != nil {
+                self.dueTo = properties["dueTo"] as! String
+            }
+            if let color = properties["color"]{
+                let colorAsString : String = "\(color)"
+                self.colorToFill = colorAsString
+            }
+            
+            let type = feature["type"] as! NSString
+            let coordinates = feature["coordinates"] as! NSArray
+            var pointsToPlot:[CLLocationCoordinate2D] = []
+            if type != "Point"{
+                if type == "Polygon" {
+                    if coordinates[0][0] as! NSArray! != nil{
+                        let cast = coordinates[0][0][0][0] as! NSNumber!
+                        var count = 0
+                        if cast != nil{
+                            for location in  0 ..< coordinates[0][0].count{
+                                let latitude = coordinates[0][0][location][1] as! Double
+                                let longitude = coordinates[0][0][location][0] as! Double
+                                pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+                                count += 1
+                            }
+                            let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+                            self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+                            self.mapView.addOverlay(self.overlayToShow)
+                        }
+                        else{
+                            for location in  0 ..< coordinates[0].count{
+                                let latitude = coordinates[0][location][1] as! Double
+                                let longitude = coordinates[0][location][0] as! Double
+                                pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+                                count += 1
+                            }
+                            let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+                            self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+                            self.mapView.addOverlay(self.overlayToShow)
+                        }
+                    }
+                    else{
+                        print("Ooops!")
+                    }
+                }else {
+                    var points: [CLLocationCoordinate2D] = []
+                    for coordinate in coordinates {
+                        let latitude = coordinate[1] as! Double
+                        let longitude = coordinate[0] as! Double
+                        points.append(CLLocationCoordinate2DMake(latitude,longitude))
+                        let polyline = MKPolyline(coordinates: &points, count: points.count)
+                        self.mapView.addOverlay(polyline)
+                    }
+                }}
+            else{
+                print("I don't want a single location coordinate")
+            }
+        }
+    }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
@@ -464,9 +584,10 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                 polygonView.strokeColor = UIColor.redColor()
                 polygonView.fillColor = UIColor.redColor()
             } else if self.hazard == "MT_OBSC" {
-                // We should plot pink color here
-                polygonView.strokeColor = UIColor.redColor()
-                polygonView.fillColor = UIColor.redColor()
+                // Used RGB values
+                polygonView.strokeColor = UIColor(rgb: 0xFF00FF)
+                
+                polygonView.fillColor = UIColor(rgb: 0xFF00FF)
             } else if self.hazard == "IFR"{
                 polygonView.strokeColor = UIColor.purpleColor()
                 polygonView.fillColor = UIColor.purpleColor()
@@ -490,6 +611,15 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
             
             return renderer
         }
+    }
+    
+    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
     
     
@@ -519,7 +649,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("displayTaf") as! DisplayTAFViewController
         popoverVC.modalPresentationStyle = .Popover
         //Configure the width, height of the pop over
-        popoverVC.preferredContentSize = CGSizeMake(550, 300)
+        popoverVC.preferredContentSize = CGSizeMake(300, 450)
         popoverVC.properties = tafPropertiesToDisplay
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)
@@ -580,6 +710,23 @@ extension HazardsViewController: HandleMapSearch {
     
 }
 
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
+}
 
 
 extension Double {

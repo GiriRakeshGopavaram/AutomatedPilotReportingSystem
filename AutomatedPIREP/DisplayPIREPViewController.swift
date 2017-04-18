@@ -34,7 +34,6 @@ class DisplayPIREPViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         //:Set timer to call the update function
         update()
         

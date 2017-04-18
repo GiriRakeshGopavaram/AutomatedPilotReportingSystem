@@ -35,7 +35,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         locationManager.requestAlwaysAuthorization()
         //locationManager.startUpdatingLocation()
         pirepView.delegate = self
-        
+        makeMetarRequest()
         
     }
     

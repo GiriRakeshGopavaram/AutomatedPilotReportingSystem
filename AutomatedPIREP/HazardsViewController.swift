@@ -27,7 +27,7 @@ protocol HandleMapSearch {
     
 }
 
-class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
+class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate, UIGestureRecognizerDelegate {
     
     var appDelegate:AppDelegate!
     
@@ -39,8 +39,15 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     
     var tafLocations:[CLLocationCoordinate2D]! = []
     
-    var propertiesToDisplay:[String:AnyObject] = [:]
-
+    var tafPropertiesToDisplay:[String:AnyObject] = [:]
+    
+    var overlays:[Int:MKOverlay] = [:]
+    
+    var hazardJSONResults:[Int:[String:AnyObject]] = [:]
+    
+    var hazardPropertiesToDisplay:[String:AnyObject] = [:]
+    
+    var overlayCount:Int = 0
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -93,6 +100,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     var dueTo = ""
     
     
+    
     var userSourceLocation = CLLocation()
     var userDestinationLocation = CLLocation()
     
@@ -131,9 +139,6 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         locationSearchTable.handleMapSearchDelegate = self
         
         mapView.delegate = self
-        
-        
-        
         locationManager.delegate = self
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -141,9 +146,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         
         locationManager.requestLocation()
         
-        if CLLocationManager.authorizationStatus() == .NotDetermined {
-            locationManager.requestAlwaysAuthorization()
-        }
+        locationManager.requestAlwaysAuthorization()
         
         mapView.delegate = self
         
@@ -165,7 +168,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         print("Updated")
     }
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Something gone wrong")
+        print("Something gone wrong + \(error)")
     }
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.FullScreen
@@ -192,7 +195,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         self.presentViewController(alert, animated: true, completion: nil)
         
     }
-
+    
     func getRequest(){
         let url = NSURL(string: "https://new.aviationweather.gov/gis/scripts/TafJSON.php")
         
@@ -291,13 +294,44 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         // send out the request
         let session = NSURLSession.sharedSession()
         // implement completion handler
-        
         session.dataTaskWithURL(url!, completionHandler: processResults).resume()
-        
-        
-        
     }
     
+    func handleTap(gestureRecognizer: UIGestureRecognizer){
+        
+        let tappedMapView = gestureRecognizer.view
+        let tappedPoint = gestureRecognizer.locationInView(tappedMapView)
+        let tappedCoordinates = mapView.convertPoint(tappedPoint, toCoordinateFromView: tappedMapView)
+        let mapPoint = MKMapPointForCoordinate(tappedCoordinates)
+        let mapRect = MKMapRectMake(mapPoint.x, mapPoint.y, 0.0001, 0.0001)
+
+        for overlay in mapView.overlays{
+            if overlay is MKPolygon{
+                if overlay.intersectsMapRect!(mapRect).boolValue == true{
+                    let tappedOverlay = overlay
+                    for (key,value) in overlays{
+                        if tappedOverlay.isEqual(value){
+                            hazardPropertiesToDisplay = hazardJSONResults[key]!
+                        }
+                    }
+                    let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("hazardPopover") as! DisplayHazardViewController
+                    popoverVC.modalPresentationStyle = .Popover
+                    //Configure the width, height of the pop over
+                    popoverVC.preferredContentSize = CGSizeMake(550, 300)
+                    popoverVC.properties = hazardPropertiesToDisplay
+                    // Present it before configuring it
+                    presentViewController(popoverVC, animated: true, completion: nil)
+                    // Now the popoverPresentationController has been created
+                    if let popoverController = popoverVC.popoverPresentationController {
+                        popoverController.sourceView = view
+                        popoverController.permittedArrowDirections = .Any
+                        popoverController.delegate = self
+                    }
+                }
+            }
+        }
+        //userInsidePolygon(mapPoint)
+    }
     
     func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
         
@@ -310,7 +344,9 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                 if let results = jsonResult!["features"] as? [NSDictionary] {
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results {
-                            let feature:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+                            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HazardsViewController.handleTap(_:)))
+                            gestureRecognizer.delegate = self
+                            let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                             self.product = properties["product"] as! String
                             self.hazard = properties["hazard"] as! String
@@ -340,8 +376,8 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                                 let colorAsString : String = "\(color)"
                                 self.colorToFill = colorAsString
                             }
-                            let type = feature["type"] as! NSString
-                            let coordinates = feature["coordinates"] as! NSArray
+                            let type = geometry["type"] as! NSString
+                            let coordinates = geometry["coordinates"] as! NSArray
                             var pointsToPlot:[CLLocationCoordinate2D] = []
                             if type != "Point"{
                                 if type == "Polygon" {
@@ -358,6 +394,11 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                                             let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
                                             self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
                                             self.mapView.addOverlay(self.overlayToShow)
+                                            self.mapView.addGestureRecognizer(gestureRecognizer)
+                                            self.overlayCount += 1
+                                            self.overlays[self.overlayCount] = self.overlayToShow
+                                            self.hazardJSONResults[self.overlayCount] = properties
+                                            
                                         }
                                         else{
                                             for location in  0 ..< coordinates[0].count{
@@ -369,6 +410,10 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                                             let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
                                             self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
                                             self.mapView.addOverlay(self.overlayToShow)
+                                            self.mapView.addGestureRecognizer(gestureRecognizer)
+                                            self.overlayCount += 1
+                                            self.overlays[self.overlayCount] = self.overlayToShow
+                                            self.hazardJSONResults[self.overlayCount] = properties
                                         }
                                     }
                                     else{
@@ -404,7 +449,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
-
+            
             let polygonView = MKPolygonRenderer(overlay: overlay)
             if self.hazard == "ICE" {
                 polygonView.strokeColor = UIColor.blueColor()
@@ -452,7 +497,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         self.mapView.selectedAnnotations.append(view.annotation!)
         selectedAnnotation = view.annotation
         print(selectedAnnotation.coordinate)
-
+        
         //for item in self.mapView.selectedAnnotations {
         if let annotation = view.annotation {
             let selectedLocation:CLLocationCoordinate2D = annotation.coordinate
@@ -467,7 +512,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                 latitude = (coordinates[1])
                 let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 if location.latitude == selectedLocation.latitude && location.longitude == selectedLocation.longitude{
-                    propertiesToDisplay = tafProperties
+                    tafPropertiesToDisplay = tafProperties
                 }
             }
         }
@@ -475,7 +520,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         popoverVC.modalPresentationStyle = .Popover
         //Configure the width, height of the pop over
         popoverVC.preferredContentSize = CGSizeMake(550, 300)
-        popoverVC.properties = propertiesToDisplay
+        popoverVC.properties = tafPropertiesToDisplay
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)
         // Now the popoverPresentationController has been created
@@ -487,9 +532,9 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     }
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         self.mapView.deselectAnnotation(selectedAnnotation, animated: true)
-
+        
     }
-
+    
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
         //self.mapView.selectAnnotation(selectedAnnotation, animated: true)
     }
@@ -530,7 +575,7 @@ extension HazardsViewController: HandleMapSearch {
             
             mapView.setRegion(region, animated: true)
         }
-   
+        
     }
     
 }

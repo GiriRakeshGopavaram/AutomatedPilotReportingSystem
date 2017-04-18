@@ -9,7 +9,7 @@
 import UIKit
 
 class DisplayPIREPViewController: UIViewController {
-
+    
     //: Below variables and outlets are used in this view controller
     @IBOutlet weak var icaoIdLBL: UILabel!
     @IBOutlet weak var obsTimeLBL: UILabel!
@@ -29,29 +29,42 @@ class DisplayPIREPViewController: UIViewController {
     var windDirection:String!
     var flightLevel:String!
     var rawObservation:String!
-    var temperature:String!
-    var propertiesToDisplay:[String:AnyObject]!
-
+    var properties:[String:AnyObject]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         //:Set timer to call the update function
-        _ = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(DisplayPIREPViewController.update), userInfo: nil, repeats: true)
+        update()
         
     }
     //: Function to update the PIREP view properties and display in a pop-over
     func update(){
-        dispatch_async(dispatch_get_main_queue(), {
-            self.icaoIdLBL.text = self.icaoId
-            self.obsTimeLBL.text = self.obsTime
-            self.airepTypeLBL.text = self.airepType
-            self.aircraftTypeLBL.text = self.aircraftType
-            self.windSpeedLBL.text = self.windSpeed
-            self.windDirectionLBL.text = self.windDirection
-            self.flightLevelLBL.text = self.flightLevel
-            self.temperatureLBL.text = self.temperature
-            self.rawObservationTV.text = self.rawObservation
-        })
+        
+        let icaoID:String = self.properties["icaoId"] as! String
+        let obsTimeLBL:String = self.properties["obsTime"] as! String
+        let airepType:String = self.properties["airepType"] as! String
+        let airCraftType:String = self.properties["acType"] as! String
+        var windSpeed:String? = String(self.properties["wspd"])
+        var windDirection:String? = String(self.properties["wdir"])
+        let flightLevel:String! = self.properties["fltlvl"] as! String
+        let rawObservation:String = properties["rawOb"] as! String
+        if windSpeed!.containsString("nil"){
+            windSpeed = "Unknown"
+        }
+        if windDirection!.containsString("nil"){
+            windDirection = "Unknown"
+        }
+
+        self.icaoIdLBL.text = icaoID
+        self.obsTimeLBL.text = obsTimeLBL
+        self.airepTypeLBL.text = airepType
+        self.aircraftTypeLBL.text = airCraftType
+        self.windSpeedLBL.text! = "\(windSpeed!) knots"
+        self.windDirectionLBL.text! = "\(windDirection!) degrees"
+        self.flightLevelLBL.text! = "\(Int(flightLevel)! * 100) feet"
+        self.rawObservationTV.text = rawObservation
+        
     }
 }

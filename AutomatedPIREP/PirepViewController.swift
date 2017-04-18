@@ -26,6 +26,7 @@ class PirepViewController: UIViewController,CLLocationManagerDelegate, UIPopover
     let locationManager = CLLocationManager()
     var selectedAnnotationView:[Double]!
     var propertiesToDisplay:[String:AnyObject]!
+    var pirepJSONProperties : [NSDictionary]!
 
     override func viewDidLoad() {
         
@@ -71,7 +72,7 @@ class PirepViewController: UIViewController,CLLocationManagerDelegate, UIPopover
                 // try parse it as array
                 if let results = jsonResult!["features"] as? [NSDictionary] {
                     // get the information of each element in an array, each element is stored in a dictionary
-                    
+                    pirepJSONProperties = results
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results{
                             var coordinates:[Double] = []
@@ -172,40 +173,6 @@ class PirepViewController: UIViewController,CLLocationManagerDelegate, UIPopover
                                     }
                                 }
                             }
-                            
-                            if self.selectedAnnotationView != nil{
-                                
-                                if String(annotation.coordinate.latitude) == String(format: "%.2f",self.selectedAnnotationView[0]){
-                                    
-                                    self.icaoId = (properties["icaoId"]) as! String
-                                    self.obsTime = properties["obsTime"] as! String
-                                    self.airepType = properties["airepType"] as! String
-                                    self.aircraftType = properties["acType"] as! String
-                                    self.flightLevel = properties["fltlvl"] as! String
-                                    self.icaoId = rawObservation[rawObservation.startIndex ..< rawObservation.startIndex.advancedBy(3)]
-                                    annotation.title = "\(rawObservation[rawObservation.startIndex ..< rawObservation.startIndex.advancedBy(3)])"
-                                    
-                                    self.rawObservation = rawObservation
-                                    if String(temperatures).containsString("nil"){
-                                        self.temperature = "Unknown"
-                                    }
-                                    else{
-                                        self.temperature = temperatures as! String
-                                    }
-                                    if String(windSpeeds).containsString("nil"){
-                                        self.windSpeed = "Unknown"
-                                    }else{
-                                        self.windSpeed = windSpeeds as! String
-                                    }
-                                    if String(windDirections).containsString("nil"){
-                                        self.windDirection = "Unknown"
-                                    }
-                                    else{
-                                        self.windDirection =  windDirections as! String
-                                    }
-                                    
-                                }
-                            }
                             self.pirepView.addAnnotation(annotation)
                             
                         }
@@ -258,13 +225,27 @@ extension PirepViewController : MKMapViewDelegate{
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
     {
         
-        let latitude:Double! = mapView.selectedAnnotations.last?.coordinate.latitude
-        let longitude:Double! = mapView.selectedAnnotations.last?.coordinate.longitude
-        selectedAnnotationView = [latitude,longitude]
-        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! DisplayTAFViewController
+            if let annotation = view.annotation {
+            let selectedLocation:CLLocationCoordinate2D = annotation.coordinate
+            for eachObject in pirepJSONProperties{
+                let pirepGeometry: [String:AnyObject]! = eachObject["geometry"] as! [String:AnyObject]
+                let pirepProperties:[String:AnyObject]! = eachObject["properties"] as! [String: AnyObject]
+                var coordinates:[Double] = []
+                var latitude:Double
+                var longitude:Double
+                coordinates = pirepGeometry["coordinates"] as! [Double]
+                longitude = (coordinates[0])
+                latitude = (coordinates[1])
+                let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                if location.latitude == selectedLocation.latitude && location.longitude == selectedLocation.longitude{
+                    propertiesToDisplay = pirepProperties
+                }
+            }
+        }
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! DisplayPIREPViewController
         popoverVC.modalPresentationStyle = .Popover
         //Configure the width, height of the pop over
-        popoverVC.preferredContentSize = CGSizeMake(550, 300)
+        popoverVC.preferredContentSize = CGSizeMake(500, 550)
         popoverVC.properties = propertiesToDisplay
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)
@@ -274,7 +255,6 @@ extension PirepViewController : MKMapViewDelegate{
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
         }
-        
         
     }
     

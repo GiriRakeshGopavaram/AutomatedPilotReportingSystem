@@ -10,11 +10,13 @@
 import UIKit
 import MapKit
 
-class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
+class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate , UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    
+    var tafResults:[NSDictionary]!
+    var propertiesToDisplay:[String:AnyObject] = [:]
+
         override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -51,7 +53,7 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                 // try parse it as array
                 if let results = jsonResult!["features"] as? [NSDictionary] {
                     // get the information of each element in an array, each element is stored in a dictionary
-                    
+                    tafResults = results
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results{
                             
@@ -84,6 +86,48 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
         }
     }
     
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+ 
+        //for item in self.mapView.selectedAnnotations {
+        if let annotation = view.annotation {
+            let selectedLocation:CLLocationCoordinate2D = annotation.coordinate
+            for eachObject in tafResults{
+                let tafGeometry: [String:AnyObject]! = eachObject["geometry"] as! [String:AnyObject]
+                let tafProperties:[String:AnyObject]! = eachObject["properties"] as! [String: AnyObject]
+                var coordinates:[Double] = []
+                var latitude:Double
+                var longitude:Double
+                coordinates = tafGeometry["coordinates"] as! [Double]
+                longitude = (coordinates[0])
+                latitude = (coordinates[1])
+                let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                if location.latitude == selectedLocation.latitude && location.longitude == selectedLocation.longitude{
+                    propertiesToDisplay = tafProperties
+                }
+            }
+        }
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("displayTaf") as! DisplayTAFViewController
+        popoverVC.modalPresentationStyle = .Popover
+        //Configure the width, height of the pop over
+        popoverVC.preferredContentSize = CGSizeMake(550, 300)
+        popoverVC.properties = propertiesToDisplay
+        // Present it before configuring it
+        presentViewController(popoverVC, animated: true, completion: nil)
+        // Now the popoverPresentationController has been created
+        if let popoverController = popoverVC.popoverPresentationController {
+            popoverController.sourceView = view
+            popoverController.permittedArrowDirections = .Any
+            popoverController.delegate = self
+        }
+    }
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.FullScreen
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        //self.mapView.selectAnnotation(selectedAnnotation, animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

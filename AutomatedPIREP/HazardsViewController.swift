@@ -419,7 +419,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                 polygonView.strokeColor = UIColor.redColor()
                 polygonView.fillColor = UIColor.redColor()
             } else if self.hazard == "MT_OBSC" {
-                // Used RGB values 
+                // Used RGB values
                 polygonView.strokeColor = UIColor(rgb: 0xFF00FF)
                 
                 polygonView.fillColor = UIColor(rgb: 0xFF00FF)

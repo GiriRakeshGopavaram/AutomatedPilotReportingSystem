@@ -34,6 +34,25 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     var selectedAnnotation:MKAnnotation!
     
     var tafResults:[NSDictionary]!
+    var allProperties:[[String:AnyObject]]! = []
+    var icingProperties:[[String:AnyObject]]!  = []
+    var turbulenceProperties:[[String:AnyObject]]! = []
+    var ifrProperties:[[String:AnyObject]]! = []
+    var mtnObstractionProperties:[[String:AnyObject]]! = []
+    var llwsProperties:[[String:AnyObject]]! = []
+    var allFeatures:[[String:AnyObject]]! = []
+    var icingFeatures:[[String:AnyObject]]!  = []
+    var turbulenceFeatures:[[String:AnyObject]]! = []
+    var ifrPFeatures:[[String:AnyObject]]! = []
+    var mtnObstractionFeatures:[[String:AnyObject]]! = []
+    var llwsFeatures:[[String:AnyObject]]! = []
+    var icingResults:[NSDictionary]! = []
+    var allResults: [NSDictionary]! = []
+    var turbulenceResults:[NSDictionary]! = []
+    var ifrResults:[NSDictionary]! = []
+    var mtnObstractionResults:[NSDictionary]! = []
+    var llwsResults:[NSDictionary]! = []
+   
     
     var selectedAnnotationView:MKAnnotationView! = MKAnnotationView()
     
@@ -91,6 +110,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     var severity = ""
     
     var dueTo = ""
+    var arrayIndex = 0
     
     
     var userSourceLocation = CLLocation()
@@ -203,6 +223,43 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         
     }
     
+    
+    
+    @IBAction func segmentedControl(sender: AnyObject) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            
+            hazardOverlay(allResults)
+        
+        }
+        else if sender.selectedSegmentIndex == 1 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(icingResults)
+            self.hazard = "ICE"
+        }
+        else if sender.selectedSegmentIndex == 2 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(turbulenceResults)
+        
+        }
+        else if sender.selectedSegmentIndex == 3 {
+            mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+
+            hazardOverlay(ifrResults)
+        }
+        else {
+           mapView.removeOverlays(mapView.overlays)
+            arrayIndex = 0
+            hazardOverlay(mtnObstractionResults)
+        
+        }
+        
+    }
     func getResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
         do {
             
@@ -314,6 +371,11 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
                             self.product = properties["product"] as! String
                             self.hazard = properties["hazard"] as! String
+                            
+                            
+                      
+
+                            
                             if properties["level"]  != nil {
                                 self.level = properties["level"] as! String
                             }
@@ -340,53 +402,88 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                                 let colorAsString : String = "\(color)"
                                 self.colorToFill = colorAsString
                             }
+                            
+                            self.allFeatures.append(feature)
+                            self.allProperties.append(properties)
+                            self.allResults.append(eachObject)
+                            if self.hazard == "ICE" {
+                                
+                                self.icingProperties.append(properties)
+                                self.icingFeatures.append(feature)
+                                self.icingResults.append(eachObject)
+                                
+                            } else if self.hazard == "M_FZLVL" {
+                               // self.mtnObstractionFeatures.append(feature)
+                            } else if self.hazard == "TURB-HI" || self.hazard == "TURB-LO" {
+                                self.turbulenceProperties.append(properties)
+                                self.turbulenceFeatures.append(feature)
+                                self.turbulenceResults.append(eachObject)
+                                
+                            } else if self.hazard == "MT_OBSC" {
+                                self.mtnObstractionProperties.append(properties)
+                                self.mtnObstractionFeatures.append(feature)
+                                self.mtnObstractionResults.append(feature)
+                                
+                            } else if self.hazard == "IFR"{
+                                self.ifrProperties.append(properties)
+                                self.ifrResults.append(feature)
+                                self.ifrResults.append(eachObject)
+                                
+                            }
+                            
+                            else  {
+                                self.llwsProperties.append(properties)
+                                self.llwsFeatures.append(feature)
+                                self.llwsResults.append(eachObject)
+                                
+                            }
                             let type = feature["type"] as! NSString
                             let coordinates = feature["coordinates"] as! NSArray
                             var pointsToPlot:[CLLocationCoordinate2D] = []
-                            if type != "Point"{
-                                if type == "Polygon" {
-                                    if coordinates[0][0] as! NSArray! != nil{
-                                        let cast = coordinates[0][0][0][0] as! NSNumber!
-                                        var count = 0
-                                        if cast != nil{
-                                            for location in  0 ..< coordinates[0][0].count{
-                                                let latitude = coordinates[0][0][location][1] as! Double
-                                                let longitude = coordinates[0][0][location][0] as! Double
-                                                pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
-                                                count += 1
-                                            }
-                                            let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
-                                            self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
-                                            self.mapView.addOverlay(self.overlayToShow)
-                                        }
-                                        else{
-                                            for location in  0 ..< coordinates[0].count{
-                                                let latitude = coordinates[0][location][1] as! Double
-                                                let longitude = coordinates[0][location][0] as! Double
-                                                pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
-                                                count += 1
-                                            }
-                                            let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
-                                            self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
-                                            self.mapView.addOverlay(self.overlayToShow)
-                                        }
-                                    }
-                                    else{
-                                        print("Ooops!")
-                                    }
-                                }else {
-                                    var points: [CLLocationCoordinate2D] = []
-                                    for coordinate in coordinates {
-                                        let latitude = coordinate[1] as! Double
-                                        let longitude = coordinate[0] as! Double
-                                        points.append(CLLocationCoordinate2DMake(latitude,longitude))
-                                        let polyline = MKPolyline(coordinates: &points, count: points.count)
-                                        self.mapView.addOverlay(polyline)
-                                    }
-                                }}
-                            else{
-                                print("I don't want a single location coordinate")
-                            }
+//                            if type != "Point"{
+//                                if type == "Polygon" {
+//                                    if coordinates[0][0] as! NSArray! != nil{
+//                                        let cast = coordinates[0][0][0][0] as! NSNumber!
+//                                        var count = 0
+//                                        if cast != nil{
+//                                            for location in  0 ..< coordinates[0][0].count{
+//                                                let latitude = coordinates[0][0][location][1] as! Double
+//                                                let longitude = coordinates[0][0][location][0] as! Double
+//                                                pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+//                                                count += 1
+//                                            }
+//                                            let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+//                                            self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+//                                            self.mapView.addOverlay(self.overlayToShow)
+//                                        }
+//                                        else{
+//                                            for location in  0 ..< coordinates[0].count{
+//                                                let latitude = coordinates[0][location][1] as! Double
+//                                                let longitude = coordinates[0][location][0] as! Double
+//                                                pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+//                                                count += 1
+//                                            }
+//                                            let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+//                                            self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+//                                            self.mapView.addOverlay(self.overlayToShow)
+//                                        }
+//                                    }
+//                                    else{
+//                                        print("Ooops!")
+//                                    }
+//                                }else {
+//                                    var points: [CLLocationCoordinate2D] = []
+//                                    for coordinate in coordinates {
+//                                        let latitude = coordinate[1] as! Double
+//                                        let longitude = coordinate[0] as! Double
+//                                        points.append(CLLocationCoordinate2DMake(latitude,longitude))
+//                                        let polyline = MKPolyline(coordinates: &points, count: points.count)
+//                                        self.mapView.addOverlay(polyline)
+//                                    }
+//                                }}
+//                            else{
+//                                print("I don't want a single location coordinate")
+//                            }
                         }
                     })
                 }
@@ -401,6 +498,139 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         super.didReceiveMemoryWarning()
     }
     
+    func hazardOverlay (results:[NSDictionary]) {
+        
+        for eachObject in results{
+            let feature:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
+            let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
+            self.product = properties["product"] as! String
+            self.hazard = properties["hazard"] as! String
+            if properties["level"]  != nil {
+                self.level = properties["level"] as! String
+            }
+            self.validTime = properties["validTime"] as! String
+            if properties["top"] != nil {
+                self.top = properties["top"] as! String
+            }
+            if properties["base"] != nil {
+                self.base = properties["base"] as! String
+            }
+            if properties["severity"] != nil {
+                self.severity = properties["severity"] as! String
+            }
+            if properties["fzlbase"] != nil {
+                self.fzlbase = properties["fzlbase"] as! String
+            }
+            if properties["fzltop"] != nil {
+                self.fzltop = properties["fzltop"] as! String
+            }
+            if properties["dueTo"] != nil {
+                self.dueTo = properties["dueTo"] as! String
+            }
+            if let color = properties["color"]{
+                let colorAsString : String = "\(color)"
+                self.colorToFill = colorAsString
+            }
+            
+            let type = feature["type"] as! NSString
+            let coordinates = feature["coordinates"] as! NSArray
+            var pointsToPlot:[CLLocationCoordinate2D] = []
+                                        if type != "Point"{
+                                            if type == "Polygon" {
+                                                if coordinates[0][0] as! NSArray! != nil{
+                                                    let cast = coordinates[0][0][0][0] as! NSNumber!
+                                                    var count = 0
+                                                    if cast != nil{
+                                                        for location in  0 ..< coordinates[0][0].count{
+                                                            let latitude = coordinates[0][0][location][1] as! Double
+                                                            let longitude = coordinates[0][0][location][0] as! Double
+                                                            pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+                                                            count += 1
+                                                        }
+                                                        let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+                                                        self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+                                                        self.mapView.addOverlay(self.overlayToShow)
+                                                    }
+                                                    else{
+                                                        for location in  0 ..< coordinates[0].count{
+                                                            let latitude = coordinates[0][location][1] as! Double
+                                                            let longitude = coordinates[0][location][0] as! Double
+                                                            pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+                                                            count += 1
+                                                        }
+                                                        let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+                                                        self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+                                                        self.mapView.addOverlay(self.overlayToShow)
+                                                    }
+                                                }
+                                                else{
+                                                    print("Ooops!")
+                                                }
+                                            }else {
+                                                var points: [CLLocationCoordinate2D] = []
+                                                for coordinate in coordinates {
+                                                    let latitude = coordinate[1] as! Double
+                                                    let longitude = coordinate[0] as! Double
+                                                    points.append(CLLocationCoordinate2DMake(latitude,longitude))
+                                                    let polyline = MKPolyline(coordinates: &points, count: points.count)
+                                                    self.mapView.addOverlay(polyline)
+                                                }
+                                            }}
+                                        else{
+                                            print("I don't want a single location coordinate")
+                                        }
+        
+        
+//
+//        for feature in features {
+//        let type = feature["type"] as! NSString
+//        let coordinates = feature["coordinates"] as! NSArray
+//        var pointsToPlot:[CLLocationCoordinate2D] = []
+//
+//
+//        if type != "Point"{
+//            if type == "Polygon" {
+//                if coordinates[0][0] as! NSArray! != nil{
+//                    let cast = coordinates[0][0][0][0] as! NSNumber!
+//                    var count = 0
+//                    if cast != nil{
+//                        for location in  0 ..< coordinates[0][0].count{
+//                            let latitude = coordinates[0][0][location][1] as! Double
+//                            let longitude = coordinates[0][0][location][0] as! Double
+//                            pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+//                            count += 1
+//                        }
+//                        let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+//                        self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+//                        self.mapView.addOverlay(self.overlayToShow)
+//                    }
+//                    else{
+//                        for location in  0 ..< coordinates[0].count{
+//                            let latitude = coordinates[0][location][1] as! Double
+//                            let longitude = coordinates[0][location][0] as! Double
+//                            pointsToPlot.append(CLLocationCoordinate2DMake(latitude,longitude))
+//                            count += 1
+//                        }
+//                        let mutablePointsToPlot: UnsafeMutablePointer<CLLocationCoordinate2D> = UnsafeMutablePointer(pointsToPlot)
+//                        self.overlayToShow = MKPolygon(coordinates: mutablePointsToPlot, count: count)
+//                        self.mapView.addOverlay(self.overlayToShow)
+//                    }
+//                }
+//                else{
+//                    print("Ooops!")
+//                }
+//            }else {
+//                var points: [CLLocationCoordinate2D] = []
+//                for coordinate in coordinates {
+//                    let latitude = coordinate[1] as! Double
+//                    let longitude = coordinate[0] as! Double
+//                    points.append(CLLocationCoordinate2DMake(latitude,longitude))
+//                    let polyline = MKPolyline(coordinates: &points, count: points.count)
+//                    self.mapView.addOverlay(polyline)
+//                }
+//            }}
+        }
+    }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {

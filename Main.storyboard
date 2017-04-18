@@ -692,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93.75" y="1136"/>
+            <point key="canvasLocation" x="86.25" y="1310.25"/>
         </scene>
         <!--Pirep Send New View Controller-->
         <scene sceneID="Br8-o1-tZf">
@@ -1031,17 +1031,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EPc-0d-nNL">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="551"/>
-                                </variation>
-                            </mapView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JBP-MN-uBM">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <connections>
                                     <outlet property="delegate" destination="dc3-lo-YpG" id="WbA-P9-nW1"/>
                                 </connections>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-Wa-2sG">
+                                <rect key="frame" x="-60" y="-14" width="121" height="29"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="ICING"/>
+                                    <segment title="Turbulence"/>
+                                    <segment title="IFR"/>
+                                    <segment title="Mountain Obstraction"/>
+                                </segments>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="58" y="118" width="703" height="29"/>
+                                </variation>
+                                <connections>
+                                    <action selector="segmentedControl:" destination="dc3-lo-YpG" eventType="valueChanged" id="kEq-D1-Xic"/>
+                                </connections>
+                            </segmentedControl>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EPc-0d-nNL">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="551"/>
+                                </variation>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1053,8 +1069,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="EPc-0d-nNL"/>
                                 <exclude reference="JBP-MN-uBM"/>
+                                <exclude reference="ZzG-Wa-2sG"/>
+                                <exclude reference="EPc-0d-nNL"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="09S-uj-DTl"/>
@@ -1079,6 +1096,11 @@
                                 <include reference="HYB-oC-0zP"/>
                             </mask>
                         </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="ZzG-Wa-2sG"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="r37-Sx-B1y"/>
                     <connections>
@@ -1087,7 +1109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCK-3C-SH7" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508.25" y="-895"/>
+            <point key="canvasLocation" x="1508.25" y="-895.5"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="rLN-6E-uL3">
@@ -1217,7 +1239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apM-0B-Kd0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508.25" y="-249"/>
+            <point key="canvasLocation" x="1519.5" y="-182.25"/>
         </scene>
         <!--DisplayPIREP View Controller-->
         <scene sceneID="VHE-56-HkT">

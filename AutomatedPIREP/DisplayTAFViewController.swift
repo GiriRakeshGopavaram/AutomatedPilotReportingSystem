@@ -9,15 +9,12 @@
 import UIKit
 
 class DisplayTAFViewController: UIViewController {
-    
+
+    //: Below variables and outlets are used in this view controller
     @IBOutlet weak var icaoIdLBL: UILabel!
-    
     @IBOutlet weak var validTimeToLBL: UILabel!
-    
     @IBOutlet weak var fltCatLBL: UILabel!
-    
     @IBOutlet weak var rawTafTV: UITextView!
-    
     var properties:[String:AnyObject]! = [:]
     
     override func viewDidLoad() {
@@ -30,9 +27,11 @@ class DisplayTAFViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
+        //:Displays the TAF properties requested by the user in a pop-over
         update()
     }
-    
+
+    //: Function to update the TAF view properties and display in a pop-over
     func update(){
             let icoaID:String = self.properties["id"] as! String
             let validTimeTo = self.properties["validTimeTo"]

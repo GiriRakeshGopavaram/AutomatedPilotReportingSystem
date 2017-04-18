@@ -13,18 +13,13 @@ import CoreLocation
 
 class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate , UIPopoverPresentationControllerDelegate {
     
-    
-    
-    @IBAction func metOrBarb(sender: AnyObject) {
+        @IBAction func metOrBarb(sender: AnyObject) {
         if sender.selectedSegmentIndex == 0{
-            
-            //jsonURL = "MetarJSON"
             makeMetarRequest()
             pirepView.removeAnnotations(pirepView.annotations)
             
         }
         else if sender.selectedSegmentIndex == 1{
-            //jsonURL = "TafJSON"
             makeWindRequest()
             pirepView.removeAnnotations(pirepView.annotations)
             
@@ -96,7 +91,6 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                             
                             
                             let properties:[String:AnyObject] = eachObject["properties"] as! [String:AnyObject]
-                            let id = properties["id"]
                             let flightCategory = properties["fltcat"]
                             let ceiling = properties["ceil"]
                             let visibilty = properties["visib"]
@@ -506,19 +500,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     }
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
     {
-//        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover")
-//        popoverVC!.modalPresentationStyle = .Popover
-//        // Present it before configuring it
-//        presentViewController(popoverVC!, animated: true, completion: nil)
-//        // Now the popoverPresentationController has been created
-//        if let popoverController = popoverVC!.popoverPresentationController {
-//            popoverController.sourceView = view
-//            // popoverController.sourceRect = mapView.bounds
-//            popoverController.permittedArrowDirections = .Any
-//            popoverController.delegate = self
-//        }
-        
-        
+  
         
     }
     
@@ -528,9 +510,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.FullScreen
     }
-    
-    
-    
+        
     func dismiss() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -539,7 +519,7 @@ class METARSViewController: UIViewController,MKMapViewDelegate,CLLocationManager
 }
 extension UIImage {
     public func imageRotatedByDegrees(degrees: CGFloat, flip: Bool) -> UIImage {
-        let radiansToDegrees: (CGFloat) -> CGFloat = {
+        let _: (CGFloat) -> CGFloat = {
             return $0 * (180.0 / CGFloat(M_PI))
         }
         let degreesToRadians: (CGFloat) -> CGFloat = {

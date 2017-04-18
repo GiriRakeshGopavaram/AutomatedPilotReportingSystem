@@ -22,7 +22,6 @@
 		7203F5CE1E6EDB49004A6AC6 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */; };
 		72167B981E647C88005FD6EA /* PIREPSendMasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */; };
 		72167B9A1E647D42005FD6EA /* PIREPSendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */; };
-		72CBDDD91DC6FA4C00B73554 /* TAFs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CBDDD81DC6FA4C00B73554 /* TAFs.swift */; };
 		72DA76311E6EF82400C74B60 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */; };
 		72DA76341E6EFBEF00C74B60 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76321E6EFBEF00C74B60 /* Bolts.framework */; };
 		72DA76351E6EFBEF00C74B60 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76331E6EFBEF00C74B60 /* Parse.framework */; };
@@ -45,8 +44,6 @@
 		C069F84D1DB85FDA00D9A0A5 /* AutomatedPIREPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F84C1DB85FDA00D9A0A5 /* AutomatedPIREPUITests.swift */; };
 		C069F85D1DB8602200D9A0A5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C069F85C1DB8602200D9A0A5 /* Info.plist */; };
 		C069F85F1DB8602B00D9A0A5 /* PirepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */; };
-		C069F8631DB8604900D9A0A5 /* locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F8601DB8604900D9A0A5 /* locations.swift */; };
-		C069F8641DB8604900D9A0A5 /* PIREPLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */; };
 		C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069F8621DB8604900D9A0A5 /* METARSViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +81,6 @@
 		7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendMasterTableViewController.swift; sourceTree = "<group>"; };
 		72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendDetailViewController.swift; sourceTree = "<group>"; };
-		72CBDDD81DC6FA4C00B73554 /* TAFs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAFs.swift; sourceTree = "<group>"; };
 		72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		72DA76321E6EFBEF00C74B60 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		72DA76331E6EFBEF00C74B60 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -112,8 +108,6 @@
 		C069F84E1DB85FDB00D9A0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C069F85C1DB8602200D9A0A5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PirepViewController.swift; sourceTree = "<group>"; };
-		C069F8601DB8604900D9A0A5 /* locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locations.swift; sourceTree = "<group>"; };
-		C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPLocations.swift; sourceTree = "<group>"; };
 		C069F8621DB8604900D9A0A5 /* METARSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = METARSViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,12 +177,11 @@
 			isa = PBXGroup;
 			children = (
 				C069F8351DB85FDA00D9A0A5 /* LaunchScreen.storyboard */,
-				C069F85C1DB8602200D9A0A5 /* Info.plist */,
-				C069F8611DB8604900D9A0A5 /* PIREPLocations.swift */,
+				84D062B91E5163C6007CA01D /* LocationSearchTable.swift */,
 				72DE34631DC3EDD50085463F /* CustomAnnotation.swift */,
-				72CBDDD81DC6FA4C00B73554 /* TAFs.swift */,
-				C069F8601DB8604900D9A0A5 /* locations.swift */,
+				7203F5C81E6ED92C004A6AC6 /* AutomatedPIREP-Bridging-Header.h */,
 				72DE34711DC47C640085463F /* Weather.ttf */,
+				C069F85C1DB8602200D9A0A5 /* Info.plist */,
 			);
 			name = Supporting_Files;
 			sourceTree = "<group>";
@@ -217,25 +210,23 @@
 		C069F8291DB85FDA00D9A0A5 /* AutomatedPIREP */ = {
 			isa = PBXGroup;
 			children = (
-				8433199C1E9F28BC00458EE5 /* PSendViewController.swift */,
 				C069F82A1DB85FDA00D9A0A5 /* AppDelegate.swift */,
 				C069F85E1DB8602B00D9A0A5 /* PirepViewController.swift */,
 				84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */,
 				847C3A571E9EC268008925DA /* DisplayHazardViewController.swift */,
 				847C3A591E9EC275008925DA /* DisplayTAFViewController.swift */,
+				8433199C1E9F28BC00458EE5 /* PSendViewController.swift */,
 				72DE346F1DC466410085463F /* PIREPSendViewController.swift */,
 				C069F8621DB8604900D9A0A5 /* METARSViewController.swift */,
 				72DE34611DC3EC4C0085463F /* TAFsViewController.swift */,
 				72DE34671DC40D830085463F /* HazardsViewController.swift */,
-				84D062B91E5163C6007CA01D /* LocationSearchTable.swift */,
-				847C3A5B1E9EC481008925DA /* Main.storyboard */,
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
+				847C3A5B1E9EC481008925DA /* Main.storyboard */,
 				C062D8671DDCF4DB00CC8131 /* Assets.xcassets */,
 				72DE34781DC4FBF50085463F /* Supporting_Files */,
 				72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */,
 				72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */,
 				7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */,
-				7203F5C81E6ED92C004A6AC6 /* AutomatedPIREP-Bridging-Header.h */,
 			);
 			path = AutomatedPIREP;
 			sourceTree = "<group>";
@@ -396,16 +387,13 @@
 				C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */,
 				84FB89C31DE44011006C5BBC /* DisplayPIREPViewController.swift in Sources */,
 				847C3A581E9EC268008925DA /* DisplayHazardViewController.swift in Sources */,
-				C069F8641DB8604900D9A0A5 /* PIREPLocations.swift in Sources */,
 				72DE34681DC40D830085463F /* HazardsViewController.swift in Sources */,
 				72DE34701DC466410085463F /* PIREPSendViewController.swift in Sources */,
 				C069F85F1DB8602B00D9A0A5 /* PirepViewController.swift in Sources */,
-				C069F8631DB8604900D9A0A5 /* locations.swift in Sources */,
 				72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */,
 				C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */,
 				72167B981E647C88005FD6EA /* PIREPSendMasterTableViewController.swift in Sources */,
 				7203F59A1E6ECADE004A6AC6 /* PirepSendNewViewController.swift in Sources */,
-				72CBDDD91DC6FA4C00B73554 /* TAFs.swift in Sources */,
 				72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */,
 				8433199D1E9F28BC00458EE5 /* PSendViewController.swift in Sources */,
 				72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */,

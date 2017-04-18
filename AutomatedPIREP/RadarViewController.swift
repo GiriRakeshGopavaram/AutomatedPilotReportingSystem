@@ -15,7 +15,6 @@ class RadarViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-    let airportLocation = PIREPLocations.storeLocations()
     var pointAnnotation:CustomPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     
@@ -30,47 +29,12 @@ class RadarViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         mapView.mapType = MKMapType.Standard
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType.Satellite;
-        //mapView.mapType = MKMapType.Hybrid;
+    }
 
-        
-    }
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-
-        
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print(error.localizedDescription)
-    }
-    
-    
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if (annotation is MKUserLocation){
-            return nil
-        }
-        
-        let reuseIdentifier = "pin"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.image = UIImage(named: "pin.png")
-            annotationView?.canShowCallout = true
-            
-        } else {
-            annotationView!.annotation = annotation
-        }
-        
-        return annotationView
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
     
 }

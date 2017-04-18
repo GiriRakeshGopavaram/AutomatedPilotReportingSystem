@@ -10,8 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
+class PirepViewController: UIViewController,CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
+    //: Below variables and outlets are used in this view controller
     @IBOutlet  weak var pirepView: MKMapView!
     var icaoId:String!
     var obsTime:String!
@@ -23,15 +24,17 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     var rawObservation:String!
     var temperature:String!
     let locationManager = CLLocationManager()
-    let airportLocation = PIREPLocations.storeLocations()
     var selectedAnnotationView:[Double]!
+    var propertiesToDisplay:[String:AnyObject]!
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        
         pirepView.delegate = self
         pirepView.mapType = MKMapType.Standard
         pirepView.showsUserLocation = true
@@ -40,19 +43,22 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
     }
+    
     func makeRequest(){
         let url = NSURL(string: "http://aviationweather.gov/gis/scripts/PirepJSON.php")
-        
         // send out the request
         let session = NSURLSession.sharedSession()
         // implement completion handler
         session.dataTaskWithURL(url!, completionHandler: processResults).resume()
         
     }
-    
+    //Fetch JSO
     func processResults(data:NSData?,response:NSURLResponse?,error:NSError?)->Void {
         do {
             
@@ -80,7 +86,6 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
                             latitude = (coordinates[1])
                             let location = CLLocationCoordinate2DMake(latitude, longitude)
                             annotation.coordinate = location
-                            
                             
                             let temperatures = properties["temp"]
                             let windSpeeds = properties["wspd"]
@@ -210,15 +215,26 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
             }
                 
             else {
-                // No results???")
+                print("What happened?")
             }
             
         }
         catch {
-            
+            print("Couldn't perofrm the operation")
         }
     }
     
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.FullScreen
+    }
+
+    
+    
+}
+
+//: Extension with all the map view delegate methods.
+extension PirepViewController : MKMapViewDelegate{
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is CustomPointAnnotation) {
             return nil
@@ -239,42 +255,24 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
         return annotationView
     }
     
-    func displayAlertWithTitle(title:String, message:String){
-        let alert:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let defaultAction:UIAlertAction =  UIAlertAction(title: "Yes", style: .Default, handler: nil)
-        alert.addAction(defaultAction)
-        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .Cancel, handler: nil)
-        alert.addAction(noAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
-    
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
     {
         
         let latitude:Double! = mapView.selectedAnnotations.last?.coordinate.latitude
         let longitude:Double! = mapView.selectedAnnotations.last?.coordinate.longitude
         selectedAnnotationView = [latitude,longitude]
-        makeRequest()
-        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! DisplayPIREPViewController
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("codePopover") as! DisplayTAFViewController
         popoverVC.modalPresentationStyle = .Popover
+        //Configure the width, height of the pop over
+        popoverVC.preferredContentSize = CGSizeMake(550, 300)
+        popoverVC.properties = propertiesToDisplay
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)
         // Now the popoverPresentationController has been created
         if let popoverController = popoverVC.popoverPresentationController {
             popoverController.sourceView = view
-            // popoverController.sourceRect = mapView.bounds
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
-            popoverVC.icaoId = self.icaoId
-            popoverVC.obsTime = self.obsTime
-            popoverVC.airepType = self.airepType
-            popoverVC.aircraftType = self.aircraftType
-            popoverVC.windSpeed = self.windSpeed
-            popoverVC.windDirection = self.windDirection
-            popoverVC.flightLevel = self.flightLevel
-            popoverVC.rawObservation = self.rawObservation
-            popoverVC.temperature = self.temperature
         }
         
         
@@ -283,16 +281,4 @@ class PirepViewController: UIViewController,MKMapViewDelegate,CLLocationManagerD
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.FullScreen
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-   
-    
-    
 }
-

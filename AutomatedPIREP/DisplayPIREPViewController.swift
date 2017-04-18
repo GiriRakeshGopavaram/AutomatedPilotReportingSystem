@@ -10,26 +10,17 @@ import UIKit
 
 class DisplayPIREPViewController: UIViewController {
 
+    //: Below variables and outlets are used in this view controller
     @IBOutlet weak var icaoIdLBL: UILabel!
-    
     @IBOutlet weak var obsTimeLBL: UILabel!
-    
-    
     @IBOutlet weak var airepTypeLBL: UILabel!
-    
     @IBOutlet weak var aircraftTypeLBL: UILabel!
-    
     @IBOutlet weak var windSpeedLBL: UILabel!
-    
-    
     @IBOutlet weak var windDirectionLBL: UILabel!
-    
-    
     @IBOutlet weak var flightLevelLBL: UILabel!
-    
-    
     @IBOutlet weak var rawObservationTV: UITextView!
     @IBOutlet weak var temperatureLBL: UILabel!
+    
     var icaoId:String!
     var obsTime:String!
     var airepType:String!
@@ -39,19 +30,17 @@ class DisplayPIREPViewController: UIViewController {
     var flightLevel:String!
     var rawObservation:String!
     var temperature:String!
+    var propertiesToDisplay:[String:AnyObject]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Do any additional setup after loading the view.
+        
+        //:Set timer to call the update function
         _ = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(DisplayPIREPViewController.update), userInfo: nil, repeats: true)
         
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //: Function to update the PIREP view properties and display in a pop-over
     func update(){
         dispatch_async(dispatch_get_main_queue(), {
             self.icaoIdLBL.text = self.icaoId
@@ -65,6 +54,4 @@ class DisplayPIREPViewController: UIViewController {
             self.rawObservationTV.text = self.rawObservation
         })
     }
-
-
 }

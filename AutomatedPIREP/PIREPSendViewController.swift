@@ -16,7 +16,6 @@ class PIREPSendViewController: UIViewController,MKMapViewDelegate,CLLocationMana
     
    
     let locationManager = CLLocationManager()
-    let airportLocation = PIREPLocations.storeLocations()
 
     
     override func viewDidLoad() {
@@ -48,30 +47,7 @@ class PIREPSendViewController: UIViewController,MKMapViewDelegate,CLLocationMana
             locationManager.requestWhenInUseAuthorization()
         }
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        for airport in airportLocation{
-            let latitude = airport.latitude
-            let longitude = airport.longitude
-            let location = CLLocationCoordinate2DMake(latitude, longitude)
-            let annotation = CustomPointAnnotation()
-            annotation.coordinate = location
-            annotation.title = "PIREP"
-            annotation.subtitle = "Extreme Turbulence at \(latitude), \(longitude)"
-            annotation.pinCustomImageName = UIImage(named: "pin.png")
-            pirepView.addAnnotation(annotation)
-            
-        }
-    }
-    
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print(error.localizedDescription)
-    }
-    
-    
+   
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is CustomPointAnnotation) {
             return nil

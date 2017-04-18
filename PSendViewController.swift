@@ -13,6 +13,7 @@ class PSendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor.lightGrayColor()
         // Do any additional setup after loading the view.
     }
     var clearRimeMixedInd = ""

@@ -45,6 +45,8 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
     var mtnObstractionFeatures:[[String:AnyObject]]! = []
     var llwsFeatures:[[String:AnyObject]]! = []
     
+    var searchBar:UISearchBar!
+    
     var icingResults:[NSDictionary]! = []
     var allResults: [NSDictionary]! = []
     var turbulenceResults:[NSDictionary]! = []
@@ -133,9 +135,9 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         let locationSearchTable:LocationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
-        let searchBar = resultSearchController!.searchBar
+        searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "Enter departure location.."
         navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
@@ -695,6 +697,8 @@ extension HazardsViewController: HandleMapSearch {
             let region = MKCoordinateRegionMake(placemark.coordinate, span)
             
             mapView.setRegion(region, animated: true)
+            
+            searchBar.placeholder = "Enter arrival location.."
         }
         else if count == 2{
             userDestinationLocation = location

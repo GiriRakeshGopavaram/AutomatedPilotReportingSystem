@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -92,7 +92,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="551"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="886"/>
+                                    <rect key="frame" x="0.0" y="4" width="800" height="886"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MTNWV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1S-S4-DUY">
@@ -153,7 +153,7 @@
                                     <rect key="frame" x="40" y="99" width="70" height="36"/>
                                 </variation>
                                 <connections>
-                                    <action selector="clear:" destination="toc-W8-DK6" eventType="touchUpInside" id="PqA-QH-2Zy"/>
+                                    <action selector="clear:" destination="toc-W8-DK6" eventType="touchUpInside" id="HXP-vG-4B5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQz-C5-YQP">
@@ -166,7 +166,7 @@
                                     <rect key="frame" x="128" y="99" width="70" height="36"/>
                                 </variation>
                                 <connections>
-                                    <action selector="RIME:" destination="toc-W8-DK6" eventType="touchUpInside" id="eV5-kg-8Pr"/>
+                                    <action selector="RIME:" destination="toc-W8-DK6" eventType="touchUpInside" id="yYA-08-a7h"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAa-k0-c8U">
@@ -179,7 +179,7 @@
                                     <rect key="frame" x="214" y="99" width="70" height="36"/>
                                 </variation>
                                 <connections>
-                                    <action selector="MIXED:" destination="toc-W8-DK6" eventType="touchUpInside" id="gc2-ih-NGp"/>
+                                    <action selector="MIXED:" destination="toc-W8-DK6" eventType="touchUpInside" id="QVi-Uz-RSf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5b0-oJ-qi6">
@@ -189,10 +189,10 @@
                                     <rect key="frame" x="47" y="134" width="90" height="45"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="25" y="209" width="90" height="45"/>
+                                    <rect key="frame" x="25" y="227" width="90" height="45"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="Tdm-39-jYc"/>
+                                    <action selector="icingNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="xGg-37-K5u"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNd-xn-tYg">
@@ -202,10 +202,10 @@
                                     <rect key="frame" x="48" y="338" width="90" height="45"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="26" y="345" width="90" height="45"/>
+                                    <rect key="frame" x="25" y="370" width="90" height="45"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="DRT-Qs-txh"/>
+                                    <action selector="icingLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="34v-Aq-9UK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6s-TA-xeF">
@@ -215,219 +215,261 @@
                                     <rect key="frame" x="74" y="273" width="39" height="38"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="51" y="300" width="39" height="38"/>
+                                    <rect key="frame" x="51" y="319" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="icTraceLgt:" destination="toc-W8-DK6" eventType="touchUpInside" id="dbM-P3-7o3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcX-KE-nAX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="48" y="401" width="39" height="38"/>
+                                    <rect key="frame" x="48" y="441" width="39" height="38"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingLightModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="pdx-tC-4zJ"/>
+                                    <action selector="icingLightModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="rx4-3R-1ty"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHF-Hu-VXs">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="48" y="502" width="39" height="38"/>
+                                    <rect key="frame" x="48" y="575" width="39" height="38"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingModerateSevere:" destination="toc-W8-DK6" eventType="touchUpInside" id="haz-HJ-W3s"/>
+                                    <action selector="icingModerateSevere:" destination="toc-W8-DK6" eventType="touchUpInside" id="E0w-Hl-TzG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmk-U3-Vjt">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="moderate"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="21" y="446" width="91" height="46"/>
+                                    <rect key="frame" x="21" y="506" width="91" height="46"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="vwS-gW-S0B"/>
+                                    <action selector="icingModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="BFD-41-H4d"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXM-Bp-Gnz">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="severe"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="550" width="91" height="46"/>
+                                    <rect key="frame" x="20" y="633" width="91" height="46"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingSevere:" destination="toc-W8-DK6" eventType="touchUpInside" id="B0c-sM-XjG"/>
+                                    <action selector="icingSevere:" destination="toc-W8-DK6" eventType="touchUpInside" id="yNg-yp-C6w"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBs-mO-JwX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="negative"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="227" y="209" width="90" height="45"/>
+                                    <rect key="frame" x="227" y="227" width="90" height="45"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="BKE-rQ-eMt"/>
+                                    <action selector="turbNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="iVI-6n-rI4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teX-S7-Zha">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="negative"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="439" y="209" width="90" height="45"/>
+                                    <rect key="frame" x="439" y="227" width="90" height="45"/>
                                 </variation>
                                 <connections>
-                                    <action selector="chopNEG:" destination="toc-W8-DK6" eventType="touchUpInside" id="fO4-l8-zfh"/>
+                                    <action selector="chopNEG:" destination="toc-W8-DK6" eventType="touchUpInside" id="iiD-ms-EHQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ4-1Q-5Xe">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="469" y="301" width="39" height="38"/>
+                                    <rect key="frame" x="469" y="320" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="chopNegLgt:" destination="toc-W8-DK6" eventType="touchUpInside" id="hKf-my-5vg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0R-OA-ED9">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="light"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="227" y="345" width="90" height="45"/>
+                                    <rect key="frame" x="226" y="370" width="90" height="45"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbLGT:" destination="toc-W8-DK6" eventType="touchUpInside" id="KY3-MQ-yQa"/>
+                                    <action selector="turbLGT:" destination="toc-W8-DK6" eventType="touchUpInside" id="xZy-7T-7yP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqR-Ed-Imt">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="253" y="399" width="39" height="38"/>
+                                    <rect key="frame" x="253" y="439" width="39" height="38"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbLightModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="WfD-Dx-noa"/>
+                                    <action selector="turbLightModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="G0L-8s-iiV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfX-cZ-Pts">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="253" y="502" width="39" height="38"/>
+                                    <rect key="frame" x="253" y="575" width="39" height="38"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbModSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="hZY-zA-Wvg"/>
+                                    <action selector="turbModSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="ZwH-NR-luq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A82-CZ-0g9">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="moderate"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="226" y="446" width="91" height="46"/>
+                                    <rect key="frame" x="226" y="506" width="91" height="46"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="JSb-EG-FMx"/>
+                                    <action selector="turbModerate:" destination="toc-W8-DK6" eventType="touchUpInside" id="hhA-ff-KNV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LpF-XA-cVO">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="severe"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="225" y="550" width="91" height="46"/>
+                                    <rect key="frame" x="225" y="633" width="91" height="46"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="bZU-jG-aTO"/>
+                                    <action selector="turbSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="c4y-gu-EST"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owq-7A-ocz">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="light"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="443" y="345" width="90" height="45"/>
+                                    <rect key="frame" x="442" y="370" width="90" height="45"/>
                                 </variation>
+                                <connections>
+                                    <action selector="chopLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="WEH-eY-OmG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnF-0t-gOm">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="469" y="399" width="39" height="38"/>
+                                    <rect key="frame" x="469" y="439" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="chopLgtMod:" destination="toc-W8-DK6" eventType="touchUpInside" id="VZh-nC-OK7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsb-gL-Ew4">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="469" y="502" width="39" height="38"/>
+                                    <rect key="frame" x="469" y="575" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="chopModSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="Iov-cz-2hS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3U-DC-7y6">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="moderate"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="442" y="446" width="91" height="46"/>
+                                    <rect key="frame" x="442" y="506" width="91" height="46"/>
                                 </variation>
+                                <connections>
+                                    <action selector="chopMod:" destination="toc-W8-DK6" eventType="touchUpInside" id="VvU-ba-F4f"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPx-0Z-PRD">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="severe"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="441" y="550" width="91" height="46"/>
+                                    <rect key="frame" x="441" y="633" width="91" height="46"/>
                                 </variation>
+                                <connections>
+                                    <action selector="chopSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="oJS-HY-BXd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbv-zv-hpD">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="253" y="301" width="39" height="38"/>
+                                    <rect key="frame" x="253" y="320" width="39" height="38"/>
                                 </variation>
                                 <connections>
-                                    <action selector="turbNegLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="yKC-y9-7xd"/>
+                                    <action selector="turbNegLight:" destination="toc-W8-DK6" eventType="touchUpInside" id="bgF-wp-Daz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-lk-d7q">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="negative"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="668" y="209" width="90" height="45"/>
+                                    <rect key="frame" x="668" y="227" width="90" height="45"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvNeg:" destination="toc-W8-DK6" eventType="touchUpInside" id="LIf-BV-hGf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AG8-Js-W5y">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="695" y="301" width="39" height="38"/>
+                                    <rect key="frame" x="695" y="320" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvNegLgt:" destination="toc-W8-DK6" eventType="touchUpInside" id="i7B-ZP-Xha"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDf-qc-mrt">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="light"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="669" y="345" width="90" height="45"/>
+                                    <rect key="frame" x="668" y="370" width="90" height="45"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvmtnWvLgt:" destination="toc-W8-DK6" eventType="touchUpInside" id="SaR-5J-VnU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYg-r4-ymn">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="695" y="399" width="39" height="38"/>
+                                    <rect key="frame" x="695" y="439" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvLgtMod:" destination="toc-W8-DK6" eventType="touchUpInside" id="cEU-QK-1fA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsv-a8-0W7">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="add"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="695" y="502" width="39" height="38"/>
+                                    <rect key="frame" x="695" y="575" width="39" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvModSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="Efn-1F-c0K"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8U-Dy-o9y">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="moderate"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="668" y="446" width="91" height="46"/>
+                                    <rect key="frame" x="668" y="506" width="91" height="46"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvMod:" destination="toc-W8-DK6" eventType="touchUpInside" id="2QL-cs-mAm"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYj-sA-UUo">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="severe"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="667" y="550" width="91" height="46"/>
+                                    <rect key="frame" x="667" y="633" width="91" height="46"/>
                                 </variation>
+                                <connections>
+                                    <action selector="mtnWvSev:" destination="toc-W8-DK6" eventType="touchUpInside" id="7qe-0o-CgV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoe-6h-DVA">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -436,10 +478,10 @@
                                     <rect key="frame" x="48" y="214" width="90" height="45"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="26" y="262" width="84" height="34"/>
+                                    <rect key="frame" x="26" y="280" width="84" height="34"/>
                                 </variation>
                                 <connections>
-                                    <action selector="icingTrace:" destination="toc-W8-DK6" eventType="touchUpInside" id="A4J-eu-6az"/>
+                                    <action selector="icingTrace:" destination="toc-W8-DK6" eventType="touchUpInside" id="TGy-Ho-37g"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encoded Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSZ-wn-gkH">
@@ -448,9 +490,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="214" y="665" width="407" height="21"/>
+                                    <rect key="frame" x="214" y="715" width="407" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0S-Ac-Lin">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="cancel1"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="443" y="789" width="106" height="44"/>
+                                </variation>
+                                <connections>
+                                    <action selector="PirepSendCancelBTN:" destination="toc-W8-DK6" eventType="touchUpInside" id="poO-Br-pcN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58n-Pu-1ry">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="send1"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="235" y="788" width="111" height="45"/>
+                                </variation>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -494,6 +553,8 @@
                                 <exclude reference="XYj-sA-UUo"/>
                                 <exclude reference="Hoe-6h-DVA"/>
                                 <exclude reference="NSZ-wn-gkH"/>
+                                <exclude reference="U0S-Ac-Lin"/>
+                                <exclude reference="58n-Pu-1ry"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -541,14 +602,37 @@
                                 <include reference="b8U-Dy-o9y"/>
                                 <include reference="XYj-sA-UUo"/>
                                 <include reference="NSZ-wn-gkH"/>
+                                <include reference="U0S-Ac-Lin"/>
+                                <include reference="58n-Pu-1ry"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="PIREP Send" image="PIREPSend" selectedImage="PIREPSend" id="Rno-vm-cWP"/>
                     <value key="contentSizeForViewInPopover" type="size" width="800" height="1024"/>
                     <connections>
-                        <outlet property="encodedMessage" destination="NSZ-wn-gkH" id="qO2-HV-YEW"/>
-                        <outlet property="icingLight" destination="jNd-xn-tYg" id="jhc-YK-V2o"/>
+                        <outlet property="chopLgtBTN" destination="Owq-7A-ocz" id="s9W-Ge-hVB"/>
+                        <outlet property="chopLgtModBTN" destination="AnF-0t-gOm" id="o0X-Pe-hFo"/>
+                        <outlet property="chopModBTN" destination="k3U-DC-7y6" id="YJE-OD-qdG"/>
+                        <outlet property="chopModSevBTN" destination="tsb-gL-Ew4" id="rZA-9a-f1R"/>
+                        <outlet property="chopNegBTN" destination="teX-S7-Zha" id="sGR-NN-BaP"/>
+                        <outlet property="chopNegLgtBTN" destination="jJ4-1Q-5Xe" id="2Tv-Cl-SFo"/>
+                        <outlet property="chopSevBTN" destination="gPx-0Z-PRD" id="7V7-iU-g1B"/>
+                        <outlet property="encodedMessage" destination="NSZ-wn-gkH" id="eu2-mG-U9e"/>
+                        <outlet property="icLgtBTN" destination="jNd-xn-tYg" id="5px-nN-CYk"/>
+                        <outlet property="icLgtModBtn" destination="DcX-KE-nAX" id="lpn-Ip-o1A"/>
+                        <outlet property="icModBtn" destination="Tmk-U3-Vjt" id="X6c-16-pTd"/>
+                        <outlet property="icModSevBTN" destination="eHF-Hu-VXs" id="w5e-lI-wfa"/>
+                        <outlet property="icNegBTN" destination="5b0-oJ-qi6" id="54h-Hw-Ukw"/>
+                        <outlet property="icSevBTN" destination="xXM-Bp-Gnz" id="Gw6-ls-7F7"/>
+                        <outlet property="icTraceBTN" destination="Hoe-6h-DVA" id="Mgc-sN-N3h"/>
+                        <outlet property="icTraceLgtBTN" destination="r6s-TA-xeF" id="JNJ-vJ-pwy"/>
+                        <outlet property="tbLgtBTN" destination="e0R-OA-ED9" id="mYg-vv-VJB"/>
+                        <outlet property="tbLgtModBTN" destination="aqR-Ed-Imt" id="una-ll-0Kz"/>
+                        <outlet property="tbModBTN" destination="A82-CZ-0g9" id="uzI-oQ-OvM"/>
+                        <outlet property="tbModSevBTN" destination="IfX-cZ-Pts" id="Scw-Z0-j0I"/>
+                        <outlet property="tbNegBTN" destination="kBs-mO-JwX" id="Qdd-2w-IvE"/>
+                        <outlet property="tbNegLgtBTN" destination="cbv-zv-hpD" id="dPY-6v-9T7"/>
+                        <outlet property="tbSevBTN" destination="LpF-XA-cVO" id="Iok-mQ-Opu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNK-Fm-EMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1423,6 +1507,7 @@
         <image name="Radar" width="29" height="29"/>
         <image name="SendPirepBack" width="256" height="334"/>
         <image name="add" width="78" height="78"/>
+        <image name="cancel1" width="276" height="100"/>
         <image name="cateogory" width="221" height="50"/>
         <image name="clear" width="172" height="100"/>
         <image name="light" width="400" height="200"/>
@@ -1432,6 +1517,7 @@
         <image name="negative" width="400" height="200"/>
         <image name="pin" width="30" height="30"/>
         <image name="rime" width="172" height="100"/>
+        <image name="send1" width="276" height="100"/>
         <image name="severe" width="400" height="200"/>
         <image name="trace" width="344" height="200"/>
     </resources>

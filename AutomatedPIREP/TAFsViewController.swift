@@ -10,13 +10,15 @@
 import UIKit
 import MapKit
 
-class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate , UIPopoverPresentationControllerDelegate{
+class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate , UIPopoverPresentationControllerDelegate, UIGestureRecognizerDelegate{
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var tafResults:[NSDictionary]!
     var propertiesToDisplay:[String:AnyObject] = [:]
+    let tappedAnnotation:MKPointAnnotation = MKPointAnnotation()
 
+    var count = 0
         override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -56,7 +58,8 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                     tafResults = results
                     dispatch_async(dispatch_get_main_queue(), {
                         for eachObject in results{
-                            
+                            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TAFsViewController.handleTap(_:)))
+                            gestureRecognizer.delegate = self
                             let geometry:[String:AnyObject] = eachObject["geometry"] as! [String:AnyObject]
                             var coordinates:[Double] = []
                             var latitude:Double
@@ -67,9 +70,12 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                             let location = CLLocationCoordinate2DMake(latitude, longitude)
                             let annotation = CustomPointAnnotation()
                             annotation.coordinate = location
-                            annotation.title = "TAF"
-                            annotation.subtitle = "Observed at \(latitude), \(longitude)"
+                            //annotation.title = "TAF"
+                            //annotation.subtitle = "Observed at \(latitude), \(longitude)"
                             self.mapView.addAnnotation(annotation)
+                            self.mapView.addGestureRecognizer(gestureRecognizer)
+
+                            
                         }
                     })
                     
@@ -85,11 +91,13 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
             
         }
     }
-    
+    func handleTap(gestureRecognizer: UIGestureRecognizer){
+
+        
+    }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
  
-        //for item in self.mapView.selectedAnnotations {
         if let annotation = view.annotation {
             let selectedLocation:CLLocationCoordinate2D = annotation.coordinate
             for eachObject in tafResults{
@@ -106,6 +114,7 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
                     propertiesToDisplay = tafProperties
                 }
             }
+            mapView.deselectAnnotation(view.annotation, animated: false)
         }
         let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("displayTaf") as! DisplayTAFViewController
         popoverVC.modalPresentationStyle = .Popover
@@ -120,13 +129,17 @@ class TAFsViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDe
             popoverController.permittedArrowDirections = .Any
             popoverController.delegate = self
         }
+        
     }
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.FullScreen
     }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        //self.mapView.selectAnnotation(selectedAnnotation, animated: true)
+        //handleTap(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>)
+        //mapView.addAnnotation(tappedAnnotation)
+        //mapView.selectAnnotation(tappedAnnotation, animated: true)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7203F59A1E6ECADE004A6AC6 /* PirepSendNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */; };
 		7203F59C1E6ECF6C004A6AC6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F59B1E6ECF6C004A6AC6 /* AudioToolbox.framework */; };
 		7203F5A21E6ECFD8004A6AC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A11E6ECFD8004A6AC6 /* CoreGraphics.framework */; };
 		7203F5A41E6ECFE0004A6AC6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5A31E6ECFE0004A6AC6 /* CoreLocation.framework */; };
@@ -20,8 +19,6 @@
 		7203F5B91E6ED3A0004A6AC6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5B81E6ED3A0004A6AC6 /* CFNetwork.framework */; };
 		7203F5BB1E6ED3AD004A6AC6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5BA1E6ED3AD004A6AC6 /* CoreData.framework */; };
 		7203F5CE1E6EDB49004A6AC6 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */; };
-		72167B981E647C88005FD6EA /* PIREPSendMasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */; };
-		72167B9A1E647D42005FD6EA /* PIREPSendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */; };
 		72DA76311E6EF82400C74B60 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */; };
 		72DA76341E6EFBEF00C74B60 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76321E6EFBEF00C74B60 /* Bolts.framework */; };
 		72DA76351E6EFBEF00C74B60 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DA76331E6EFBEF00C74B60 /* Parse.framework */; };
@@ -35,6 +32,7 @@
 		847C3A581E9EC268008925DA /* DisplayHazardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C3A571E9EC268008925DA /* DisplayHazardViewController.swift */; };
 		847C3A5A1E9EC275008925DA /* DisplayTAFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C3A591E9EC275008925DA /* DisplayTAFViewController.swift */; };
 		84C3B0371EA5FBAF00ED76A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C3B0361EA5FBAF00ED76A5 /* Main.storyboard */; };
+		84CF07D31EA71AFB00EF67AB /* SendPIREP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF07D21EA71AFA00EF67AB /* SendPIREP.swift */; };
 		84D062BA1E5163C6007CA01D /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D062B91E5163C6007CA01D /* LocationSearchTable.swift */; };
 		84FB89C31DE44011006C5BBC /* DisplayPIREPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */; };
 		C062D8681DDCF4DB00CC8131 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C062D8671DDCF4DB00CC8131 /* Assets.xcassets */; };
@@ -65,7 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PirepSendNewViewController.swift; sourceTree = "<group>"; };
 		7203F59B1E6ECF6C004A6AC6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7203F5A11E6ECFD8004A6AC6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7203F5A31E6ECFE0004A6AC6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -79,8 +76,6 @@
 		7203F5BA1E6ED3AD004A6AC6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7203F5C81E6ED92C004A6AC6 /* AutomatedPIREP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutomatedPIREP-Bridging-Header.h"; sourceTree = "<group>"; };
 		7203F5CB1E6EDB49004A6AC6 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendMasterTableViewController.swift; sourceTree = "<group>"; };
-		72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIREPSendDetailViewController.swift; sourceTree = "<group>"; };
 		72DA76301E6EF82400C74B60 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		72DA76321E6EFBEF00C74B60 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		72DA76331E6EFBEF00C74B60 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -94,6 +89,7 @@
 		847C3A571E9EC268008925DA /* DisplayHazardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayHazardViewController.swift; sourceTree = "<group>"; };
 		847C3A591E9EC275008925DA /* DisplayTAFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTAFViewController.swift; sourceTree = "<group>"; };
 		84C3B0361EA5FBAF00ED76A5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		84CF07D21EA71AFA00EF67AB /* SendPIREP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SendPIREP.swift; path = ../SendPIREP.swift; sourceTree = "<group>"; };
 		84D062B91E5163C6007CA01D /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		84FB89C21DE44011006C5BBC /* DisplayPIREPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPIREPViewController.swift; sourceTree = "<group>"; };
 		C062D8671DDCF4DB00CC8131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,6 +174,7 @@
 			children = (
 				C069F8351DB85FDA00D9A0A5 /* LaunchScreen.storyboard */,
 				84D062B91E5163C6007CA01D /* LocationSearchTable.swift */,
+				84CF07D21EA71AFA00EF67AB /* SendPIREP.swift */,
 				72DE34631DC3EDD50085463F /* CustomAnnotation.swift */,
 				7203F5C81E6ED92C004A6AC6 /* AutomatedPIREP-Bridging-Header.h */,
 				72DE34711DC47C640085463F /* Weather.ttf */,
@@ -224,9 +221,6 @@
 				72DE346D1DC40DC60085463F /* RadarViewController.swift */,
 				C062D8671DDCF4DB00CC8131 /* Assets.xcassets */,
 				72DE34781DC4FBF50085463F /* Supporting_Files */,
-				72167B971E647C88005FD6EA /* PIREPSendMasterTableViewController.swift */,
-				72167B991E647D42005FD6EA /* PIREPSendDetailViewController.swift */,
-				7203F5991E6ECADE004A6AC6 /* PirepSendNewViewController.swift */,
 			);
 			path = AutomatedPIREP;
 			sourceTree = "<group>";
@@ -382,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72167B9A1E647D42005FD6EA /* PIREPSendDetailViewController.swift in Sources */,
+				84CF07D31EA71AFB00EF67AB /* SendPIREP.swift in Sources */,
 				84D062BA1E5163C6007CA01D /* LocationSearchTable.swift in Sources */,
 				C069F8651DB8604900D9A0A5 /* METARSViewController.swift in Sources */,
 				84FB89C31DE44011006C5BBC /* DisplayPIREPViewController.swift in Sources */,
@@ -392,8 +386,6 @@
 				C069F85F1DB8602B00D9A0A5 /* PirepViewController.swift in Sources */,
 				72DE34621DC3EC4C0085463F /* TAFsViewController.swift in Sources */,
 				C069F82B1DB85FDA00D9A0A5 /* AppDelegate.swift in Sources */,
-				72167B981E647C88005FD6EA /* PIREPSendMasterTableViewController.swift in Sources */,
-				7203F59A1E6ECADE004A6AC6 /* PirepSendNewViewController.swift in Sources */,
 				72DE34641DC3EDD50085463F /* CustomAnnotation.swift in Sources */,
 				8433199D1E9F28BC00458EE5 /* PSendViewController.swift in Sources */,
 				72DE346E1DC40DC60085463F /* RadarViewController.swift in Sources */,

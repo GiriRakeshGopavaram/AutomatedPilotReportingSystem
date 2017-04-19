@@ -245,8 +245,8 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
                             let location = CLLocationCoordinate2D(latitude: latitude, longitude:  longitude)
                             let annotation = MKPointAnnotation()
                             annotation.coordinate = location
-                            annotation.title = "TAF"
-                            annotation.subtitle = "Observed at \(latitude), \(longitude)"
+                            //annotation.title = "TAF"
+                            //annotation.subtitle = "Observed at \(latitude), \(longitude)"
                             self.tafLocations.append(location)
                             
                             
@@ -651,7 +651,7 @@ class HazardsViewController: UIViewController,MKMapViewDelegate,CLLocationManage
         let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("displayTaf") as! DisplayTAFViewController
         popoverVC.modalPresentationStyle = .Popover
         //Configure the width, height of the pop over
-        popoverVC.preferredContentSize = CGSizeMake(300, 450)
+        popoverVC.preferredContentSize = CGSizeMake(300, 600)
         popoverVC.properties = tafPropertiesToDisplay
         // Present it before configuring it
         presentViewController(popoverVC, animated: true, completion: nil)

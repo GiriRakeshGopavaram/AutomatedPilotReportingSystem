@@ -482,6 +482,48 @@ class PSendViewController: UIViewController {
     }
     
     
+    @IBAction func pirepSendBTN(sender: AnyObject) {
+        
+        let pirepString = SendPIREP(pirep: encodedMessage.text!)
+        pirepString.saveInBackgroundWithBlock({ (success, error) -> Void in
+            if success {
+                self.displayAlertWithTitle("Success", message: "PIREP has been sent successfully")
+                print("Successfully sent PIREP")
+                self.encodedMessage.text = ""
+                self.icTraceBTN.enabled = false
+                self.icTraceLgtBTN.enabled = false
+                self.icLgtBTN.enabled = false
+                self.icLgtModBtn.enabled = false
+                self.icModBtn.enabled = false
+                self.icModSevBTN.enabled = false
+                self.icSevBTN.enabled = false
+                self.icingCondition = ""
+                self.turbCondition = ""
+                self.chopCondition = ""
+                self.mtnWvCondition = ""
+                self.clearRimeMixedInd = ""
+                self.tbNegBTN.enabled = true
+                self.tbNegLgtBTN.enabled = true
+                self.tbLgtBTN.enabled = true
+                self.tbLgtModBTN.enabled = true
+                self.tbModBTN.enabled = true
+                self.tbModSevBTN.enabled = true
+                self.tbSevBTN.enabled = true
+                self.chopNegBTN.enabled = true
+                self.chopNegLgtBTN.enabled = true
+                self.chopLgtBTN.enabled = true
+                self.chopLgtModBTN.enabled = true
+                self.chopModBTN.enabled = true
+                self.chopModSevBTN.enabled = true
+                self.chopSevBTN.enabled = true
+            } else {
+                
+                if let error = error {
+                    print("Something terrible happened. Something like \(error.localizedDescription)")
+                }
+            }
+        })
+    }
     @IBAction func PirepSendCancelBTN(sender: AnyObject) {
         encodedMessage.text = ""
         icTraceBTN.enabled = false
@@ -510,19 +552,16 @@ class PSendViewController: UIViewController {
         chopModBTN.enabled = true
         chopModSevBTN.enabled = true
         chopSevBTN.enabled = true
+    }
+    
+    // Pass in a String and it will be displayed in an alert view
+    func displayAlertWithTitle(title:String, message:String){
+        let alert:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let defaultAction:UIAlertAction =  UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(defaultAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+        // alert.dismissViewControllerAnimated(true, completion: nil)
         
         
     }
-    
-    /*
-     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
